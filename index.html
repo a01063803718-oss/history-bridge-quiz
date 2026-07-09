@@ -1,0 +1,2860 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff7e8" />
+  <title>뜻과 문화 연결 포인트 중심 · 역사 퀴즈</title>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap");
+:root {
+  --bg: #0d1220;
+  --panel: #141b2e;
+  --panel-2: #1d263d;
+  --text: #f6f7fb;
+  --muted: #aeb8cf;
+  --line: rgba(255,255,255,.12);
+  --accent: #d8b56d;
+  --accent-2: #f0dca9;
+  --good: #3bd182;
+  --bad: #ff6b6b;
+  --shadow: 0 20px 60px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif; background: radial-gradient(circle at top, #1e2a44 0, var(--bg) 48%); color: var(--text); }
+button, select, input { font: inherit; }
+a { color: var(--accent-2); }
+.app-frame { width: min(100%, 980px); margin: 0 auto; padding: 14px 14px 28px; display: grid; grid-template-columns: 232px minmax(0, 560px); justify-content: center; gap: 18px; align-items: start; }
+.app-shell { width: 100%; min-width: 0; }
+.toc-side { position: sticky; top: 14px; align-self: start; background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035)); border: 1px solid var(--line); border-radius: 24px; padding: 14px; box-shadow: var(--shadow); }
+.toc-side h2, .toc-drawer h2 { margin: 0 0 10px; font-size: 18px; letter-spacing: -.04em; }
+.toc-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.toc-item { width: 100%; text-align: left; border: 1px solid var(--line); background: rgba(255,255,255,.045); color: var(--muted); border-radius: 14px; padding: 10px 11px; line-height: 1.35; cursor: pointer; }
+.toc-item strong { display: block; color: var(--text); font-size: 13px; }
+.toc-item span { display: block; margin-top: 2px; font-size: 11px; }
+.toc-item.active { background: rgba(216,181,109,.16); border-color: rgba(216,181,109,.48); color: var(--accent-2); }
+.toc-item.locked { opacity: .58; cursor: default; }
+.toc-backdrop { position: fixed; inset: 0; z-index: 950; background: rgba(0,0,0,.58); backdrop-filter: blur(6px); }
+.toc-drawer { position: fixed; left: 12px; top: 12px; bottom: 12px; z-index: 960; width: min(84vw, 300px); overflow: auto; background: linear-gradient(180deg, #202a42, #12182a); border: 1px solid rgba(240,220,169,.28); border-radius: 24px; padding: 16px; box-shadow: var(--shadow); transform: translateX(-110%); transition: transform .22s ease; }
+.toc-drawer.open { transform: translateX(0); }
+.toc-close { width: 100%; margin-bottom: 12px; }
+@media (max-width: 820px) { .app-frame { display: block; padding: 14px 14px 28px; } .toc-side { display: none; } }
+@media (min-width: 821px) { .toc-backdrop, .toc-drawer { display: none; } }
+.topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; backdrop-filter: blur(16px); }
+.topbar > div { flex: 1; min-width: 0; text-align: center; }
+.topbar h1 { margin: 0; font-size: clamp(13px, 3.45vw, 17px); line-height: 1.22; letter-spacing: -.03em; }
+.eyebrow { margin: 0 0 6px; color: var(--accent-2); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.card { background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035)); border: 1px solid var(--line); border-radius: 24px; padding: 18px; margin: 14px 0; box-shadow: var(--shadow); }
+.compact { box-shadow: none; }
+.hero h2, .card h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.22; letter-spacing: -.04em; }
+.card h3 { margin: 0 0 14px; font-size: 18px; }
+.muted { color: var(--muted); line-height: 1.65; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.pill { padding: 8px 10px; border-radius: 999px; background: rgba(216,181,109,.12); border: 1px solid rgba(216,181,109,.25); color: var(--accent-2); font-size: 13px; }
+.label { display: block; margin: 14px 0 8px; color: var(--muted); font-size: 13px; }
+.select-wrap select, .search { width: 100%; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); border-radius: 16px; padding: 14px 12px; outline: none; }
+.segmented { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.segmented button, .answer, .primary, .secondary, .ghost, .ghost-link { border: 0; border-radius: 16px; cursor: pointer; }
+.segmented button { padding: 12px; background: var(--panel-2); color: var(--muted); border: 1px solid var(--line); }
+.segmented button.active { background: rgba(216,181,109,.18); color: var(--accent-2); border-color: rgba(216,181,109,.5); }
+.primary, .secondary { padding: 15px 16px; font-weight: 800; }
+.primary { background: linear-gradient(180deg, var(--accent-2), var(--accent)); color: #15100a; }
+.secondary { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+.full { width: 100%; margin-top: 14px; }
+.ghost { background: rgba(255,255,255,.06); color: var(--text); border: 1px solid var(--line); padding: 10px 12px; }
+.ghost-link { width: 100%; background: transparent; color: var(--accent-2); padding: 14px; }
+.clean-list { padding-left: 20px; color: var(--muted); line-height: 1.7; }
+.progress-wrap { margin-bottom: 18px; }
+.progress-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.progress { height: 8px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
+.progress div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .25s ease; }
+.quiz-card h2 { font-size: 22px; }
+.answers { display: grid; gap: 10px; margin-top: 18px; }
+.answer { width: 100%; text-align: left; padding: 15px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); line-height: 1.45; }
+.answer.selected { border-color: rgba(240,220,169,.95); background: rgba(216,181,109,.16); box-shadow: 0 0 0 2px rgba(216,181,109,.18) inset; }
+.answer.correct { border-color: rgba(59,209,130,.9); background: rgba(59,209,130,.12); }
+.answer.wrong { border-color: rgba(255,107,107,.9); background: rgba(255,107,107,.12); }
+.answer:disabled { cursor: default; }
+.bee-panel { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin: 0 0 16px; padding: 13px 13px 72px; min-height: 122px; overflow: hidden; border: 1px solid rgba(240,220,169,.22); border-radius: 18px; background: linear-gradient(180deg, rgba(216,181,109,.14), rgba(216,181,109,.05)); }
+.bee-panel .bee-title { margin: 0 0 4px; color: var(--muted); font-size: 12px; font-weight: 700; position: relative; z-index: 2; }
+.bee-panel strong { font-size: 20px; color: var(--accent-2); position: relative; z-index: 2; }
+.bee-hive { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; max-width: 58%; position: relative; z-index: 2; }
+.bee { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.13); font-size: 17px; }
+.bee-more { display: inline-flex; align-items: center; height: 26px; padding: 0 8px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.13); color: var(--accent-2); font-weight: 800; font-size: 12px; }
+.bee-scene { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; pointer-events: none; z-index: 1; }
+.bee-scene .flower-meadow { position: absolute; left: 0; right: 0; bottom: 0; height: 36px; background:
+  radial-gradient(circle at 7% 70%, #ffd96d 0 4px, #fff7c1 4px 8px, transparent 8px),
+  radial-gradient(circle at 14% 86%, #ff7aa2 0 4px, #ffd0e1 4px 8px, transparent 8px),
+  radial-gradient(circle at 22% 70%, #9ae36b 0 4px, #ebffcd 4px 8px, transparent 8px),
+  radial-gradient(circle at 31% 82%, #82d8ff 0 4px, #d8f2ff 4px 8px, transparent 8px),
+  radial-gradient(circle at 42% 72%, #ffd96d 0 4px, #fff7c1 4px 8px, transparent 8px),
+  radial-gradient(circle at 53% 84%, #ff7aa2 0 4px, #ffd0e1 4px 8px, transparent 8px),
+  radial-gradient(circle at 64% 72%, #9ae36b 0 4px, #ebffcd 4px 8px, transparent 8px),
+  radial-gradient(circle at 76% 84%, #82d8ff 0 4px, #d8f2ff 4px 8px, transparent 8px),
+  radial-gradient(circle at 88% 72%, #ffd96d 0 4px, #fff7c1 4px 8px, transparent 8px),
+  linear-gradient(180deg, rgba(105,166,96,.55) 0, rgba(86,143,83,.82) 32%, rgba(56,104,57,.95) 100%);
+}
+.bee-scene .flower-meadow::before { content: ""; position: absolute; inset: 0; background:
+  linear-gradient(90deg, transparent 0 6%, rgba(98,170,88,.95) 6% 6.7%, transparent 6.7% 12%, rgba(98,170,88,.95) 12% 12.7%, transparent 12.7% 20%, rgba(98,170,88,.95) 20% 20.7%, transparent 20.7% 28%, rgba(98,170,88,.95) 28% 28.7%, transparent 28.7% 36%, rgba(98,170,88,.95) 36% 36.7%, transparent 36.7% 44%, rgba(98,170,88,.95) 44% 44.7%, transparent 44.7% 52%, rgba(98,170,88,.95) 52% 52.7%, transparent 52.7% 60%, rgba(98,170,88,.95) 60% 60.7%, transparent 60.7% 68%, rgba(98,170,88,.95) 68% 68.7%, transparent 68.7% 76%, rgba(98,170,88,.95) 76% 76.7%, transparent 76.7% 84%, rgba(98,170,88,.95) 84% 84.7%, transparent 84.7% 92%, rgba(98,170,88,.95) 92% 92.7%, transparent 92.7%);
+  opacity: .55; }
+.bee-scene .temple { position: absolute; right: 18px; bottom: 18px; width: 118px; height: 42px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.24)); opacity: .78; }
+.bee-scene .temple::before { content: ""; position: absolute; inset: 0; background:
+  linear-gradient(transparent 0 18%, rgba(230,220,190,.92) 18% 30%, transparent 30%) center top / 100% 100% no-repeat,
+  linear-gradient(135deg, transparent 49%, rgba(230,220,190,.92) 50%) left 7px top / 50% 18px no-repeat,
+  linear-gradient(225deg, transparent 49%, rgba(230,220,190,.92) 50%) right 7px top / 50% 18px no-repeat,
+  linear-gradient(rgba(214,204,177,.96), rgba(214,204,177,.96)) center 15px / 100px 6px no-repeat,
+  linear-gradient(rgba(214,204,177,.92), rgba(214,204,177,.92)) 13px 21px / 10px 18px no-repeat,
+  linear-gradient(rgba(214,204,177,.92), rgba(214,204,177,.92)) 31px 21px / 10px 18px no-repeat,
+  linear-gradient(rgba(214,204,177,.92), rgba(214,204,177,.92)) 49px 21px / 10px 18px no-repeat,
+  linear-gradient(rgba(214,204,177,.92), rgba(214,204,177,.92)) 67px 21px / 10px 18px no-repeat,
+  linear-gradient(rgba(214,204,177,.92), rgba(214,204,177,.92)) 85px 21px / 10px 18px no-repeat,
+  linear-gradient(rgba(201,190,164,.96), rgba(201,190,164,.96)) center bottom / 110px 5px no-repeat;
+}
+.bee-scene .temple::after { content: ""; position: absolute; left: -145px; right: 86px; bottom: 8px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); }
+@media (max-width: 420px) {
+  .bee-panel { padding-bottom: 78px; }
+  .bee-scene .temple { right: 10px; width: 92px; height: 34px; }
+}
+.selection-notice { margin-top: 12px; padding: 12px; border-radius: 14px; background: rgba(255,107,107,.10); border: 1px solid rgba(255,107,107,.38); color: #ffd1d1; }
+.game-over-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.feedback { margin-top: 16px; padding: 14px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid var(--line); line-height: 1.6; }
+.feedback strong { color: var(--accent-2); }
+.feedback .good { color: var(--good); }
+.feedback .bad { color: var(--bad); }
+.result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0 6px; }
+.result-grid div { background: rgba(255,255,255,.055); border: 1px solid var(--line); border-radius: 18px; padding: 14px; text-align: center; }
+.result-grid strong { display: block; font-size: 24px; }
+.result-grid span { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+.review-item, .keyword-card { background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 18px; padding: 14px; margin: 10px 0; }
+.review-item h4, .keyword-card h3 { margin: 0 0 8px; }
+.keyword-card p { margin: 8px 0; color: var(--muted); line-height: 1.55; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tag { padding: 5px 8px; border-radius: 999px; background: rgba(255,255,255,.07); color: var(--muted); font-size: 12px; }
+.cards-list { padding-bottom: 20px; }
+.empty { text-align: center; color: var(--muted); padding: 22px 0; }
+
+.tip-preview, .shop-preview { display: grid; gap: 10px; }
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 420px) { .action-grid { grid-template-columns: 1fr; } }
+.highlight { background: linear-gradient(180deg, transparent 45%, rgba(255,111,165,.55) 45%, rgba(255,111,165,.55) 88%, transparent 88%); color: #fff; padding: 0 2px; border-radius: 4px; }
+.tip-note { line-height: 1.78; color: var(--muted); }
+.tip-note h3 { color: var(--text); margin: 18px 0 8px; }
+.tip-note p { margin: 10px 0; }
+.teacher-box { border-left: 4px solid rgba(240,220,169,.7); padding-left: 12px; }
+.currency-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+.currency-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(240,220,169,.28); background: rgba(216,181,109,.10); color: var(--accent-2); padding: 8px 10px; border-radius: 999px; font-weight: 800; font-size: 13px; }
+.creator-footer { margin: 22px 0 8px; text-align: center; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.creator-footer strong { color: var(--accent-2); letter-spacing: .06em; }
+.modal-backdrop { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 18px; background: rgba(0,0,0,.62); backdrop-filter: blur(8px); }
+.modal-card { width: min(100%, 520px); max-height: 88vh; overflow: auto; background: linear-gradient(180deg, #202a42, #12182a); border: 1px solid rgba(240,220,169,.28); border-radius: 24px; padding: 18px; box-shadow: var(--shadow); }
+.modal-card h2 { margin: 0 0 10px; font-size: 23px; }
+.teacher-answer { width: 100%; text-align: left; margin-top: 10px; padding: 14px; border-radius: 16px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); cursor: pointer; }
+.teacher-answer.selected { border-color: rgba(240,220,169,.95); background: rgba(216,181,109,.16); }
+.teacher-answer.correct { border-color: rgba(59,209,130,.9); background: rgba(59,209,130,.12); }
+.teacher-answer.wrong { border-color: rgba(255,107,107,.9); background: rgba(255,107,107,.12); }
+.shop-list { display: grid; gap: 12px; }
+.shop-item { background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+.shop-item h3 { margin: 0 0 6px; }
+.shop-item p { margin: 8px 0; color: var(--muted); line-height: 1.55; }
+.shop-meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-top: 12px; }
+.shop-meta button { min-width: 110px; }
+
+@media (max-width: 430px) {
+  .result-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 380px) {
+  .hero h2, .card h2 { font-size: 21px; }
+  .app-shell { padding-left: 10px; padding-right: 10px; }
+}
+
+/* v13 밝은 고가독성 테마: 그림은 배너, 글자는 흰 카드 위 */
+:root {
+  --bg: #fff7e8 !important;
+  --panel: #fffaf0 !important;
+  --panel-2: #fff3d8 !important;
+  --text: #23304a !important;
+  --muted: #5f6b7f !important;
+  --line: rgba(113, 88, 36, .22) !important;
+  --accent: #d6a63b !important;
+  --accent-2: #7b5410 !important;
+  --good: #1d8a58 !important;
+  --bad: #c44d4d !important;
+  --shadow: 0 16px 36px rgba(101, 73, 24, .12) !important;
+  color-scheme: light !important;
+}
+html, body {
+  background: linear-gradient(180deg, #ecf8ff 0%, #fff7e8 42%, #fff3d9 100%) !important;
+  color: var(--text) !important;
+}
+body::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.82), rgba(255,255,255,0) 38%),
+    linear-gradient(180deg, rgba(255,255,255,.44), rgba(255,248,229,.72)) !important;
+}
+.app-frame { max-width: 1040px !important; }
+
+.topbar {
+  background: #fffaf0 !important;
+  border: 1px solid rgba(113,88,36,.18) !important;
+  border-radius: 24px !important;
+  padding: 10px 12px !important;
+  margin-top: 8px !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+}
+.topbar h1, .topbar .eyebrow { text-shadow: none !important; }
+.topbar h1 { color: #23304a !important; }
+.eyebrow { color: #8b6417 !important; }
+
+.card, .toc-side, .toc-drawer, .modal-card {
+  background: #fffaf0 !important;
+  color: var(--text) !important;
+  border-color: rgba(113,88,36,.20) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+}
+.card h2, .card h3, .hero h2, .quiz-card h2, .keyword-card h3, .shop-item h3 {
+  color: #23304a !important;
+}
+.muted, .clean-list, .keyword-card p, .shop-item p, .tip-note, .label, .progress-meta {
+  color: #5f6b7f !important;
+}
+
+/* Hero: image is separate top banner, not behind text */
+.hero.card {
+  padding: 0 0 18px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(214,166,59,.32) !important;
+  background: #fffaf0 !important;
+}
+.hero-art {
+  height: clamp(150px, 32vw, 220px) !important;
+  width: 100% !important;
+  background: url("./parthenon-watercolor.png") center center / cover no-repeat !important;
+  border-bottom: 1px solid rgba(113,88,36,.13) !important;
+}
+.hero.card > .eyebrow,
+.hero.card > h2,
+.hero.card > .muted,
+.hero.card > .pill-row {
+  margin-left: 18px !important;
+  margin-right: 18px !important;
+}
+.hero.card > .eyebrow { margin-top: 16px !important; }
+.hero.card h2 {
+  color: #23304a !important;
+  text-shadow: none !important;
+}
+.hero.card .muted {
+  color: #4f5e73 !important;
+  max-width: none !important;
+}
+
+/* Controls */
+.toc-item, .segmented button, .answer, .secondary, .ghost, .teacher-answer,
+.select-wrap select, .search, .ghost-link {
+  background: #fff3d8 !important;
+  color: #26364d !important;
+  border: 1px solid rgba(113,88,36,.20) !important;
+}
+.toc-item strong { color: #23304a !important; }
+.toc-item span { color: #6a7384 !important; }
+.toc-item.locked { opacity: .62 !important; }
+.toc-item.active, .segmented button.active, .answer.selected, .teacher-answer.selected {
+  background: #ffe9ab !important;
+  border-color: rgba(214,166,59,.75) !important;
+  color: #6d4d0e !important;
+}
+.primary {
+  background: linear-gradient(180deg, #ffe9a9, #d6a63b) !important;
+  color: #342404 !important;
+  box-shadow: 0 10px 22px rgba(166,123,28,.18) !important;
+}
+.pill, .currency-chip {
+  background: #fff0c8 !important;
+  color: #7b5410 !important;
+  border-color: rgba(214,166,59,.36) !important;
+}
+.progress { background: rgba(113,88,36,.14) !important; }
+.progress div { background: linear-gradient(90deg, #d6a63b, #ffe7a0) !important; }
+
+/* Quiz / economy panels */
+.bee-panel {
+  background: linear-gradient(180deg, #fff6dc, #ffedbc) !important;
+  border-color: rgba(214,166,59,.35) !important;
+}
+.bee-panel .bee-title { color: #72561f !important; }
+.bee-panel strong { color: #7b5410 !important; }
+.bee, .bee-more {
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(113,88,36,.18) !important;
+}
+.feedback, .review-item, .keyword-card, .shop-item {
+  background: #fffaf0 !important;
+  border-color: rgba(113,88,36,.18) !important;
+}
+.answer.correct, .teacher-answer.correct {
+  border-color: rgba(29,138,88,.72) !important;
+  background: #e7f7ee !important;
+}
+.answer.wrong, .teacher-answer.wrong {
+  border-color: rgba(196,77,77,.72) !important;
+  background: #ffecec !important;
+}
+.selection-notice {
+  background: #fff0f0 !important;
+  border-color: rgba(196,77,77,.36) !important;
+  color: #8d3030 !important;
+}
+.highlight {
+  background: linear-gradient(180deg, transparent 44%, rgba(255,143,185,.55) 44%, rgba(255,143,185,.55) 88%, transparent 88%) !important;
+  color: #23304a !important;
+}
+.creator-footer { color: #5f6b7f !important; }
+.creator-footer strong { color: #7b5410 !important; }
+a { color: #7b5410 !important; }
+
+@media (max-width: 820px) {
+  .topbar { position: sticky !important; top: 8px !important; }
+  .hero-art { height: 158px !important; background-position: center center !important; }
+}
+
+/* v14 tip + popup style updates */
+.handwritten {
+  font-family: "Nanum Pen Script", "Comic Sans MS", "Segoe Print", cursive !important;
+  letter-spacing: .01em;
+}
+.byline { font-size: 24px; margin-top: -2px; }
+.notebook-paper {
+  position: relative;
+  margin-top: 10px;
+  padding: 18px 18px 18px 28px;
+  border-radius: 18px;
+  background:
+    linear-gradient(90deg, transparent 0 16px, rgba(227,93,93,.46) 16px 18px, transparent 18px),
+    repeating-linear-gradient(180deg, rgba(116,162,214,.18) 0 1px, transparent 1px 34px),
+    linear-gradient(180deg, #fffefb, #fff9ee);
+  border: 1px solid rgba(126,103,61,.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+.notebook-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.notebook-paper p,
+.notebook-paper h3 {
+  position: relative;
+  z-index: 1;
+}
+.notebook-paper p {
+  font-size: 24px;
+  line-height: 1.45;
+  color: #31435d !important;
+}
+.notebook-paper h3 {
+  font-family: "Nanum Pen Script", "Comic Sans MS", "Segoe Print", cursive !important;
+  font-size: 30px;
+  color: #7b5410 !important;
+  margin-top: 22px;
+}
+.tip-note.notebook-paper .highlight {
+  display: inline;
+  padding: 0 .18em;
+  font-weight: 700;
+  background: linear-gradient(180deg, transparent 28%, rgba(255,237,102,.96) 28%, rgba(255,237,102,.96) 88%, transparent 88%) !important;
+  box-shadow: 0 .08em 0 rgba(255,237,102,.96), 0 -.03em 0 rgba(255,237,102,.25) inset;
+  border-radius: 6px;
+  color: #21314a !important;
+}
+.teacher-box { border-left: 0 !important; padding-left: 0 !important; }
+.teacher-quiz-modal {
+  color: #223248 !important;
+  background:
+    linear-gradient(180deg, rgba(255,250,238,.84), rgba(255,248,232,.92)),
+    url('./parthenon-watercolor.png') center center / cover no-repeat !important;
+  border: 1px solid rgba(214,166,59,.34) !important;
+}
+.teacher-quiz-modal h2,
+.teacher-quiz-modal h3,
+.teacher-quiz-modal .eyebrow { color: #23304a !important; text-shadow: none !important; }
+.teacher-quiz-modal .muted { color: #526176 !important; }
+.teacher-quiz-modal .teacher-answer,
+.teacher-quiz-modal .selection-notice,
+.teacher-quiz-modal .feedback {
+  background: rgba(255,250,240,.88) !important;
+}
+.teacher-quiz-modal .feedback { backdrop-filter: blur(2px); }
+
+/* v15 popup background fix + first screen creators */
+.first-screen-footer {
+  margin-top: 12px !important;
+  margin-bottom: 16px !important;
+}
+.teacher-quiz-modal {
+  overflow: hidden !important;
+  padding: 0 !important;
+  background: #fffaf0 !important;
+}
+.teacher-quiz-art {
+  height: 158px !important;
+  width: 100% !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08)),
+    url('./parthenon-watercolor.png') center center / cover no-repeat !important;
+  border-bottom: 1px solid rgba(214,166,59,.28) !important;
+}
+.teacher-quiz-body {
+  padding: 18px !important;
+  background: linear-gradient(180deg, rgba(255,250,238,.92), rgba(255,248,232,.96)) !important;
+}
+.teacher-quiz-modal h2,
+.teacher-quiz-modal h3,
+.teacher-quiz-modal .eyebrow,
+.teacher-quiz-modal .muted {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* v16 popup scroll fix + creator multiline */
+.creator-footer {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+.creator-footer strong {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+.modal-backdrop {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  overflow: auto !important;
+  padding: 12px 14px 24px !important;
+}
+.teacher-quiz-modal {
+  width: min(100%, 520px) !important;
+  max-height: 86vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  margin-top: 2vh !important;
+}
+.teacher-quiz-art {
+  height: 120px !important;
+  flex: 0 0 120px !important;
+}
+.teacher-quiz-body {
+  padding: 14px 16px 16px !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: calc(86vh - 120px) !important;
+}
+.teacher-quiz-body h2 { font-size: 22px !important; }
+.teacher-quiz-body h3 { font-size: 18px !important; line-height: 1.45 !important; }
+.teacher-answer {
+  margin-top: 8px !important;
+  padding: 12px !important;
+  line-height: 1.42 !important;
+}
+#teacherSubmitBtn, #teacherContinueBtn {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 2 !important;
+}
+#teacherSubmitBtn {
+  margin-top: 10px !important;
+}
+#teacherContinueBtn {
+  margin-top: 10px !important;
+}
+@media (max-width: 430px) {
+  .teacher-quiz-modal { max-height: 84vh !important; }
+  .teacher-quiz-art { height: 100px !important; flex-basis: 100px !important; }
+  .teacher-quiz-body { max-height: calc(84vh - 100px) !important; padding: 12px 14px 14px !important; }
+  .teacher-answer { padding: 11px !important; font-size: 15px !important; }
+  .creator-footer { font-size: 17px !important; }
+}
+
+
+/* v20 목차 폭 축소 */
+.app-frame {
+  grid-template-columns: 168px minmax(0, 620px) !important;
+  gap: 14px !important;
+}
+.toc-side {
+  padding: 11px !important;
+  border-radius: 20px !important;
+}
+.toc-side h2 {
+  font-size: 16px !important;
+  margin-bottom: 8px !important;
+}
+.toc-list {
+  gap: 7px !important;
+}
+.toc-item {
+  padding: 9px 9px !important;
+  border-radius: 13px !important;
+  line-height: 1.28 !important;
+}
+.toc-item strong {
+  font-size: 12px !important;
+}
+.toc-item span {
+  font-size: 10px !important;
+}
+@media (min-width: 821px) and (max-width: 1040px) {
+  .app-frame {
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .toc-side {
+    padding: 9px !important;
+  }
+  .toc-item {
+    padding: 8px 8px !important;
+  }
+  .toc-item strong {
+    font-size: 11px !important;
+  }
+  .toc-item span {
+    font-size: 9.5px !important;
+  }
+}
+
+/* v21 첫 화면 목차 숨김 + 챕터 화면 상단 목차버튼 제거 */
+.toc-side[hidden],
+#tocBtn[hidden] {
+  display: none !important;
+}
+.app-frame.home-mode {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+.app-frame.home-mode .app-shell {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* v25: renderToc 복구 + 목차는 버튼 클릭 시에만 드로어로 표시 */
+.app-frame {
+  display: block !important;
+  width: min(100%, 980px) !important;
+  margin: 0 auto !important;
+  padding: 14px 14px 28px !important;
+}
+.app-shell {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+}
+.toc-side,
+.toc-side[hidden] {
+  display: none !important;
+}
+#tocBtn,
+#tocBtn[hidden] {
+  display: inline-flex !important;
+}
+.toc-backdrop[hidden] {
+  display: none !important;
+}
+.toc-backdrop:not([hidden]) {
+  display: block !important;
+}
+.toc-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 950 !important;
+  background: rgba(48, 42, 31, .32) !important;
+  backdrop-filter: blur(4px) !important;
+}
+.toc-drawer {
+  display: block !important;
+  position: fixed !important;
+  left: 12px !important;
+  top: 12px !important;
+  bottom: 12px !important;
+  z-index: 960 !important;
+  width: min(88vw, 360px) !important;
+  overflow: auto !important;
+  transform: translateX(-120%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: transform .18s ease, opacity .18s ease !important;
+  padding: 18px !important;
+  border-radius: 26px !important;
+  background: #fffaf0 !important;
+  color: #23304a !important;
+  border: 1px solid rgba(113,88,36,.22) !important;
+  box-shadow: 0 22px 52px rgba(72, 56, 28, .24) !important;
+}
+.toc-drawer.open {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.toc-drawer h2 {
+  font-size: 22px !important;
+  color: #23304a !important;
+}
+.toc-drawer .toc-list {
+  gap: 10px !important;
+}
+.toc-drawer .toc-item {
+  padding: 13px 14px !important;
+  border-radius: 18px !important;
+  background: #fff3d8 !important;
+}
+.toc-drawer .toc-item.active {
+  background: #ffe9ab !important;
+}
+.toc-drawer .toc-item strong {
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+  color: #23304a !important;
+}
+.toc-drawer .toc-item span {
+  font-size: 13px !important;
+  color: #6a7384 !important;
+}
+.toc-close {
+  width: 100% !important;
+  padding: 12px 14px !important;
+  border-radius: 16px !important;
+  font-weight: 800 !important;
+  background: #fff3d8 !important;
+}
+
+/* v26 초5-6용 재미있는 문제 문장 */
+#questionText {
+  white-space: pre-line !important;
+  line-height: 1.38 !important;
+}
+.quiz-card .eyebrow {
+  font-size: 14px !important;
+}
+
+/* v27: 질문을 더 읽기 쉽게 */
+#questionText {
+  white-space: pre-line !important;
+  line-height: 1.45 !important;
+  font-size: clamp(20px, 3.2vw, 25px) !important;
+}
+.answer {
+  line-height: 1.5 !important;
+}
+.quiz-card .eyebrow {
+  font-size: 14px !important;
+}
+.feedback {
+  white-space: pre-line !important;
+}
+
+/* v28 오답 확인/리셋 버튼 항상 표시 */
+button:disabled {
+  opacity: .58 !important;
+  cursor: not-allowed !important;
+}
+
+/* v29 기념품샵 강화 */
+.shop-hero-card { overflow: hidden !important; }
+.shop-notice {
+  margin-top: 12px !important;
+  padding: 12px 14px !important;
+  border-radius: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+}
+.shop-notice.good {
+  background: #e8f8ef !important;
+  color: #17663f !important;
+  border: 1px solid rgba(29,138,88,.22) !important;
+}
+.shop-notice.warn {
+  background: #fff4d8 !important;
+  color: #7b5410 !important;
+  border: 1px solid rgba(214,166,59,.28) !important;
+}
+.shop-item {
+  display: grid !important;
+  gap: 14px !important;
+  background: linear-gradient(135deg, #fffdf7, #fff4dc) !important;
+}
+.shop-item.owned {
+  background: linear-gradient(135deg, #f7fff8, #fff8de) !important;
+}
+.shop-item-main {
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  align-items: start !important;
+}
+.shop-icon {
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 20px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 30px !important;
+  background: #fff3d8 !important;
+  border: 1px solid rgba(113,88,36,.20) !important;
+  box-shadow: 0 8px 18px rgba(101,73,24,.10) !important;
+}
+.shop-copy h3 { margin: 0 0 6px !important; }
+.shop-copy p { margin: 6px 0 !important; }
+.shop-effect {
+  font-size: 14px !important;
+  color: #8b6417 !important;
+  font-weight: 700 !important;
+}
+.shop-actions {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+}
+.shop-actions button { min-width: 88px !important; }
+.owned-list {
+  display: grid !important;
+  gap: 10px !important;
+}
+.owned-item {
+  display: grid !important;
+  grid-template-columns: 44px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: center !important;
+  padding: 12px !important;
+  border: 1px solid rgba(113,88,36,.18) !important;
+  border-radius: 16px !important;
+  background: #fffdf7 !important;
+}
+.owned-item.equipped {
+  border-color: rgba(214,166,59,.58) !important;
+  background: #fff2c7 !important;
+}
+.owned-icon {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 16px !important;
+  display: grid !important;
+  place-items: center !important;
+  background: #fff3d8 !important;
+  font-size: 24px !important;
+}
+.owned-item strong {
+  display: block !important;
+  font-size: 16px !important;
+}
+.owned-item p {
+  margin: 4px 0 0 !important;
+  color: var(--muted) !important;
+  line-height: 1.4 !important;
+}
+body.souvenir-temple-bg::after {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -2 !important;
+  pointer-events: none !important;
+  background: url("parthenon-watercolor.png") center top / cover no-repeat !important;
+  opacity: .26 !important;
+}
+body.souvenir-temple-bg .quiz-card,
+body.souvenir-temple-bg .hero.card {
+  border-color: rgba(214,166,59,.42) !important;
+}
+body.souvenir-temple-bg .bee-panel {
+  background:
+    linear-gradient(180deg, rgba(255,252,239,.72), rgba(255,231,166,.68)),
+    url("parthenon-watercolor.png") center 34% / cover no-repeat !important;
+}
+@media (max-width: 520px) {
+  .shop-meta { align-items: stretch !important; }
+  .shop-actions { justify-content: stretch !important; }
+  .shop-actions button { flex: 1 1 96px !important; }
+}
+
+/* v30: 퀴즈 중 홈으로 돌아가기 버튼 */
+.quiz-control-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  margin-bottom: 12px !important;
+}
+.quit-quiz-btn {
+  min-width: 96px !important;
+  padding: 10px 14px !important;
+  border-radius: 18px !important;
+  font-weight: 900 !important;
+}
+.quit-quiz-note {
+  color: var(--muted) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+#quitQuizBottomBtn {
+  margin-top: 12px !important;
+}
+@media (max-width: 420px) {
+  .quiz-control-row {
+    align-items: stretch !important;
+  }
+  .quit-quiz-note {
+    align-self: center !important;
+    font-size: 13px !important;
+  }
+}
+
+/* v31: 홈 화면 투명한 내 아이템 지갑 */
+.home-wallet-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,250,240,.40)) !important;
+  backdrop-filter: blur(10px) !important;
+}
+.home-wallet {
+  margin: 12px 0 14px !important;
+  padding: 14px !important;
+  min-height: 86px !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,.66) !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.56), rgba(255,255,255,.18)),
+    radial-gradient(circle at 20% 0%, rgba(255,230,163,.46), transparent 42%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.80),
+    0 14px 34px rgba(101,73,24,.10) !important;
+  display: grid !important;
+  gap: 10px !important;
+}
+.wallet-empty {
+  color: var(--muted) !important;
+  text-align: center !important;
+  line-height: 1.55 !important;
+  padding: 12px !important;
+}
+.wallet-item {
+  display: grid !important;
+  grid-template-columns: 42px minmax(0,1fr) !important;
+  gap: 10px !important;
+  align-items: center !important;
+  padding: 10px 12px !important;
+  border-radius: 18px !important;
+  background: rgba(255,255,255,.58) !important;
+  border: 1px solid rgba(113,88,36,.12) !important;
+}
+.wallet-item.equipped {
+  background: rgba(255,235,172,.72) !important;
+  border-color: rgba(214,166,59,.38) !important;
+}
+.wallet-icon {
+  width: 42px !important;
+  height: 42px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 16px !important;
+  background: rgba(255,243,216,.76) !important;
+  font-size: 24px !important;
+}
+.wallet-name {
+  font-weight: 900 !important;
+  color: #23304a !important;
+  line-height: 1.35 !important;
+}
+
+/* v33: 선생님 tip 두 박스 + 더 귀여운 필기체 */
+.handwritten {
+  font-family: "Gaegu", "Nanum Pen Script", "Comic Sans MS", "Segoe Print", cursive !important;
+  letter-spacing: .005em !important;
+}
+.notebook-paper h3 {
+  font-family: "Gaegu", "Nanum Pen Script", "Comic Sans MS", "Segoe Print", cursive !important;
+  font-weight: 700 !important;
+}
+.teacher-tips-page > h2 {
+  margin-bottom: 18px !important;
+}
+.teacher-tip-block {
+  margin-top: 18px !important;
+}
+.teacher-tip-block + .teacher-tip-block {
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px dashed rgba(123,84,16,.28) !important;
+}
+.hun-tip-block .notebook-paper {
+  background:
+    linear-gradient(90deg, transparent 0 16px, rgba(227,93,93,.42) 16px 18px, transparent 18px),
+    repeating-linear-gradient(180deg, rgba(116,162,214,.16) 0 1px, transparent 1px 34px),
+    linear-gradient(180deg, #fffefb, #fff7ed) !important;
+}
+.hun-tip-block .notebook-paper p {
+  margin: 12px 0 !important;
+}
+.hun-tip-block .notebook-paper h3 {
+  margin-top: 26px !important;
+  margin-bottom: 10px !important;
+  color: #8b5a11 !important;
+}
+.hun-tip-block .notebook-paper h3:first-child {
+  margin-top: 0 !important;
+}
+
+/* v34: tip 버튼 분리 + Heon 표기 + 형광펜 */
+.tip-button-row {
+  display: grid !important;
+  gap: 10px !important;
+}
+.tip-jump-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  margin: 12px 0 18px !important;
+}
+.tip-jump-row button {
+  padding: 12px 10px !important;
+  border-radius: 16px !important;
+  font-weight: 900 !important;
+}
+@media (max-width: 420px) {
+  .tip-jump-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* v36: Tip / 학습만화 / 추억 앨범 3칸 + 이미지 지연 로딩 구조 */
+.teacher-content-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+.teacher-content-card {
+  border: 1px solid rgba(113,88,36,.18) !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #fffdf7, #fff2d4) !important;
+  color: #23304a !important;
+  padding: 14px 10px !important;
+  display: grid !important;
+  gap: 5px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 10px 24px rgba(101,73,24,.08) !important;
+}
+.teacher-content-card strong { font-size: 16px !important; letter-spacing: -.03em !important; }
+.teacher-content-card small { color: var(--muted) !important; line-height: 1.3 !important; font-size: 12px !important; }
+.teacher-content-icon { font-size: 26px !important; line-height: 1 !important; }
+.teacher-content-card:active { transform: translateY(1px) !important; }
+.comic-viewer {
+  margin: 16px 0 18px !important;
+  padding: 10px !important;
+  border-radius: 24px !important;
+  background: #fffdf7 !important;
+  border: 1px solid rgba(113,88,36,.18) !important;
+  box-shadow: 0 16px 36px rgba(101,73,24,.10) !important;
+}
+.comic-viewer img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 18px !important;
+}
+.comic-viewer figcaption {
+  margin-top: 10px !important;
+  color: #7b5410 !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+}
+.memory-album-list { display: grid !important; gap: 18px !important; }
+.memory-polaroid {
+  margin: 0 !important;
+  padding: 12px 12px 18px !important;
+  border-radius: 24px !important;
+  background: #fffdf8 !important;
+  border: 1px solid rgba(113,88,36,.18) !important;
+  box-shadow: 0 18px 34px rgba(101,73,24,.12) !important;
+  transform: rotate(-.5deg);
+}
+.memory-polaroid:nth-child(2) { transform: rotate(.6deg); }
+.memory-polaroid:nth-child(3) { transform: rotate(-.2deg); }
+.memory-polaroid img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 18px !important;
+  background: #fff3d8 !important;
+}
+.memory-caption {
+  display: grid !important;
+  gap: 4px !important;
+  text-align: center !important;
+  margin-top: 12px !important;
+}
+.memory-caption strong {
+  font-family: "Gaegu", "Nanum Pen Script", cursive !important;
+  font-size: 25px !important;
+  color: #7b5410 !important;
+}
+.memory-caption span {
+  color: var(--muted) !important;
+  font-weight: 700 !important;
+}
+@media (max-width: 520px) {
+  .teacher-content-grid { grid-template-columns: 1fr !important; }
+  .teacher-content-card {
+    grid-template-columns: 42px 1fr !important;
+    text-align: left !important;
+    align-items: center !important;
+  }
+  .teacher-content-card small { grid-column: 2 !important; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="toc-backdrop" id="tocBackdrop" hidden></div>
+  <aside class="toc-drawer" id="tocDrawer" aria-label="목차" aria-hidden="true">
+    <button class="ghost toc-close" id="tocCloseBtn">목차 닫기</button>
+    <h2>목차</h2>
+    <ul class="toc-list" id="tocDrawerList"></ul>
+  </aside>
+  <div class="app-frame">
+    <aside class="toc-side" id="tocSide" aria-label="목차">
+      <h2>목차</h2>
+      <ul class="toc-list" id="tocSideList"></ul>
+    </aside>
+    <div class="app-shell">
+    <header class="topbar">
+      <button class="ghost" id="tocBtn" aria-label="목차 열기">목차</button>
+      <div>
+        <p class="eyebrow">History Bridge Quiz</p>
+        <h1 id="chapterTitle"></h1>
+      </div>
+      <button class="ghost" id="cardsBtn" aria-label="카드 보기">카드</button>
+    </header>
+
+    <main id="app" aria-live="polite"></main>
+    </div>
+  </div>
+
+  <template id="homeTemplate">
+    <section class="hero card">
+      <div class="hero-art" aria-hidden="true"></div>
+      <p class="eyebrow">링크 공유형 모바일 웹 퀴즈앱</p>
+      <h2>유물과 신화 속 장면을 보고 역사 퀴즈를 풀어 봅니다.</h2>
+      <p class="muted">유물과 신화 속 장면을 따라가며, 그리스 문화가 로마로 이어진 흐름을 퀴즈로 알아봅니다.</p>
+      <div class="pill-row" id="statsPills"></div>
+    </section>
+
+    <section class="card">
+      <h3>퀴즈 설정</h3>
+      <label class="label">주제</label>
+      <div class="select-wrap">
+        <select id="categorySelect"></select>
+      </div>
+      <label class="label">문제 수</label>
+      <div class="segmented" id="countSelect"></div>
+      <button class="primary full" id="startQuizBtn">퀴즈 시작</button>
+      <button class="secondary full" id="wrongOnlyBtn">오답 확인 / 다시 풀기</button>
+      <button class="secondary full" id="clearWrongBtn">오답 기록 초기화</button>
+    </section>
+
+    <section class="card compact">
+      <h3>선생님 콘텐츠</h3>
+      <p class="muted">Tip, 학습만화, 추억 앨범을 골라서 볼 수 있습니다.</p>
+      <div class="teacher-content-grid">
+        <button class="teacher-content-card" id="tipHubBtn">
+          <span class="teacher-content-icon">✍️</span>
+          <strong>Tip</strong>
+          <small>에블린·헌 선생님 노트</small>
+        </button>
+        <button class="teacher-content-card" id="learningComicBtn">
+          <span class="teacher-content-icon">📖</span>
+          <strong>학습만화</strong>
+          <small>헤카테 8컷 만화</small>
+        </button>
+        <button class="teacher-content-card" id="memoryAlbumBtn">
+          <span class="teacher-content-icon">📸</span>
+          <strong>추억 앨범</strong>
+          <small>선생님들의 박물관 기록</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="card compact">
+      <h3>기념품샵</h3>
+      <p class="muted">퀴즈에서 모은 보석으로 앱 안의 기념품을 구매합니다.</p>
+      <button class="secondary full" id="shopBtn">기념품샵 들어가기</button>
+    </section>
+
+    <section class="card compact home-wallet-card">
+      <h3>내 아이템</h3>
+      <p class="muted">구매한 기념품이 이곳에 보관됩니다. 모은 아이템을 확인하고, 배경권은 퀴즈 화면 꾸미기에 사용할 수 있습니다.</p>
+      <div class="home-wallet" id="homeWallet"></div>
+    </section>
+
+    <section class="card compact">
+      <h3>사용법</h3>
+      <ol class="clean-list">
+        <li>카톡·문자로 이 페이지 주소를 공유합니다.</li>
+        <li>휴대폰에서 접속해 주제를 선택합니다.</li>
+        <li>답을 고른 뒤 <strong>제출</strong>을 눌러야 채점됩니다. 제출 전에는 답을 수정할 수 있습니다.</li>
+        <li>정답이면 <strong>벌 채집 성공</strong> 문구와 함께 벌이 1마리 추가됩니다.</li>
+        <li>오답이면 <strong>앗! 벌을 놓쳤습니다</strong> 문구와 함께 벌이 1마리 사라집니다.</li>
+        <li>벌이 0마리가 되면 퀴즈가 중지되고, O를 누르면 처음부터 다시 시작하고 X를 누르면 홈으로 돌아갑니다.</li>
+        <li><strong>선생님 퀴즈를 맞히면</strong> 보석 1개를 받습니다.</li>
+        <li>채집한 벌 10마리가 모이면 보석 1개로 바뀝니다.</li>
+        <li>보석은 기념품샵에서 사용할 수 있습니다.</li>
+        <li>오답은 홈 화면과 결과 화면에서 확인할 수 있고, <strong>오답 기록 초기화</strong> 버튼으로 지울 수 있습니다.</li>
+      </ol>
+    </section>
+
+    <footer class="creator-footer">
+      <strong>크리에이터</strong><br />HIFS 3학년<br />미아 · 루크 · 에블린 · 헌
+    </footer>
+  </template>
+
+  <template id="quizTemplate">
+    <section class="quiz-card card">
+      <div class="quiz-control-row">
+        <button class="secondary quit-quiz-btn" id="quitQuizTopBtn">홈으로</button>
+        <span class="quit-quiz-note">그만 풀고 나가기</span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressText"></span>
+          <span id="scoreText"></span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+      <div class="bee-panel" aria-label="벌 채집 현황">
+        <div>
+          <p class="bee-title">귀여운 벌 채집</p>
+          <strong id="beeCountText">5마리</strong>
+        </div>
+        <div class="bee-hive" id="beeHive" aria-hidden="true"></div>
+        <div class="bee-scene" aria-hidden="true">
+          <div class="temple"></div>
+          <div class="flower-meadow"></div>
+        </div>
+      </div>
+      <p class="eyebrow" id="questionType"></p>
+      <h2 id="questionText"></h2>
+      <div id="answers" class="answers"></div>
+      <div id="selectionNotice" class="selection-notice" hidden>답을 먼저 선택하세요.</div>
+      <button class="primary full" id="submitBtn">제출</button>
+      <div id="feedback" class="feedback" hidden></div>
+      <button class="primary full" id="nextBtn" disabled hidden>다음 문제</button>
+      <button class="secondary full" id="quitQuizBottomBtn">그만 풀고 홈으로 돌아가기</button>
+    </section>
+  </template>
+
+  <template id="resultTemplate">
+    <section class="card result-card">
+      <p class="eyebrow">결과</p>
+      <h2 id="resultTitle"></h2>
+      <p class="muted" id="resultSummary"></p>
+      <div class="result-grid">
+        <div><strong id="finalScore"></strong><span>정답</span></div>
+        <div><strong id="wrongCount"></strong><span>오답</span></div>
+        <div><strong id="bestScore"></strong><span>최고점</span></div>
+        <div><strong id="finalBeeCount"></strong><span>남은 벌</span></div>
+        <div><strong id="finalGemCount"></strong><span>보석</span></div>
+      </div>
+      <button class="primary full" id="retryWrongBtn">오답 확인 / 다시 풀기</button>
+      <button class="secondary full" id="clearWrongResultBtn">오답 기록 초기화</button>
+      <button class="secondary full" id="newQuizBtn">새 퀴즈 풀기</button>
+      <button class="ghost-link" id="shareBtn">링크 공유하기</button>
+    </section>
+    <section class="card" id="wrongReviewCard"></section>
+  </template>
+
+  <template id="cardsTemplate">
+    <section class="card">
+      <p class="eyebrow">키워드 카드</p>
+      <h2>45개 키워드 자료실</h2>
+      <input id="cardSearch" class="search" placeholder="키워드 검색: 카메오, 라라리움, 신라…" />
+    </section>
+    <section id="cardsList" class="cards-list"></section>
+  </template>
+
+  <template id="tipTemplate">
+    <section class="card teacher-tips-page">
+      <p class="eyebrow">선생님 tip</p>
+      <h2>에블린 선생님과 헌 선생님의 신화 노트</h2>
+
+      <div class="tip-jump-row">
+        <button class="secondary" id="jumpEvelynTipBtn">에블린 선생님 tip</button>
+        <button class="secondary" id="jumpHeonTipBtn">헌 선생님 tip</button>
+      </div>
+
+      <div class="teacher-tip-block" id="evelynTipBlock">
+        <p class="eyebrow">에블린 선생님의 tip</p>
+        <h2>사랑의 신 아모르(에로스)</h2>
+        <p class="muted handwritten byline">by. Evelyn</p>
+        <div class="tip-note teacher-box notebook-paper handwritten">
+          <p>안녕하세요? 이 책은 사랑의 신 아모르를 소개하는 책입니다.</p>
+          <p><span class="highlight">아모르는 사랑의 여신 비너스와 전쟁의 신 마르스의 아들이에요.</span> 에로스에게는 작은 날개가 달려 있어요.</p>
+          <h3>아모르의 상징물</h3>
+          <p>아모르의 상징물은 활과 화살이에요. 하지만 아모르는 두 가지 화살이 있어요. 황금 화살에 맞으면 사랑에 빠지고, 납 화살에 맞으면 사랑을 거부하거나 멀어지게 돼요.</p>
+          <p>또 아모르의 상징물은 햇불이에요. 사랑의 열정과 타오르는 감정을 상징해요. 또 다른 상징물은 장미예요. 아름다움, 사랑, 로맨스를 상징하는 꽃으로 아모르와 함께 자주 등장해요.</p>
+          <p>아모르의 상징물은 이것만 있지 않아요. 바로 비둘기예요. 순수한 사랑과 평화를 상징하며 아모르와 함께 그려져요.</p>
+          <h3>아모르의 어머니, 비너스</h3>
+          <p>비너스도 아모르처럼 사랑의 신이에요. 비너스는 맨몸으로 서서 두 손으로 머리카락을 잡고 있어요.</p>
+          <p><span class="highlight">신화에 따르면 비너스는 바다의 거품에서 맨몸으로 태어났고 태어날 때부터 성인의 모습이에요.</span></p>
+          <p><span class="highlight">비너스의 자세는 오른손은 가슴에 올려놓고 왼손은 흘러내리는 치마를 잡는 거예요!</span></p>
+        </div>
+      </div>
+
+      <div class="teacher-tip-block heon-tip-block" id="heonTipBlock">
+        <p class="eyebrow">헌 선생님의 tip</p>
+        <h2>신들의 탄생과 전쟁 이야기</h2>
+        <p class="muted handwritten byline">by. Heon</p>
+        <div class="tip-note teacher-box notebook-paper handwritten">
+          <h3>1. 디오노시스와 사일레노스</h3>
+          <p><span class="highlight">디오노시스</span>라는 신은 <span class="highlight">포도주</span>와 술과 <span class="highlight">포도</span>의 신이야.</p>
+          <p>포도야? 포도주야? 둘 다야. 포도에서 포도주가 나오고, 포도주와 술이 디오노시스와 연결되기 때문이야.</p>
+          <p>그리고 그 디오노시스의 스승을 <span class="highlight">사일레노스</span>라고 해. 또 그의 추종자들을 <span class="highlight">사일렌스</span>라고 하기도 해. 여기서는 헷갈리면 안 돼.</p>
+          <p>사일레노스는 디오노시스의 스승이고, 사일렌스는 그를 따르는 무리처럼 볼 수 있어.</p>
+
+          <h3>2. 헥헤이트라는 특별한 여신</h3>
+          <p>이제, <span class="highlight">헥헤이트</span>란 여신에 대해서 설명해 볼게.</p>
+          <p>이 여신은 아주 특별하고, 사람들 사이에서 헥헤이트의 뜻과 의미에 대한 논쟁이 많이 벌어지고 있는 여신이지. 내가 차근차근 풀이해 줄게.</p>
+          <p>헥헤이트는 <span class="highlight">저세상에서 온 요정 같은 존재</span>야. 하지만 사람들이 그걸 신으로 알고 있지. 우선, 물론 요정과 신 둘 다 맞아.</p>
+          <p>헥헤이트는 그래서 <span class="highlight">어둠의 마법</span>과 어두운 곳을 자기 본거지로 삼아. 그리고 그 헥헤이트의 상징 물건은 <span class="highlight">횃불</span>이야.</p>
+          <p>이때 당시에는 횃불이 불을 밝히는 것뿐만 아니라, <span class="highlight">정치적이고 종교적인 의미</span>도 많았어. 거기에 불을 붙이고, 신성한 기름을 넣어서 불을 밝힌 다음, 신들에게 기도하거나 제사를 지낼 때도 많이 사용됐어.</p>
+
+          <h3>3. 제우스와 티탄들의 전쟁</h3>
+          <p>이번에는 <span class="highlight">제우스와 티탄들의 전쟁</span> 이야기를 해 볼게.</p>
+          <p>최고급 무기를 가진 제우스의 군대도 문제가 있었다.</p>
+          <p>자기들이 있던 데는 너무 지대가 낮은 곳이었다. 그래서 밤에 <span class="highlight">마운트 올림포스</span>라는 산에 올라갔다.</p>
+          <p>낮이 되자 <span class="highlight">제우스는 번개</span>로, <span class="highlight">포세이돈은 바람과 물</span>로, <span class="highlight">하데스는 유령과 악령</span>으로 공격을 퍼부었다.</p>
+          <p>그래서 <span class="highlight">오르티스 군대</span>는 무너졌다. 그렇게 해서 제우스는 아버지를 산산조각 내고, 아버지를 다시 한 번 바다에 던져 버렸다.</p>
+          <p><span class="highlight">우라노스와 같은 최후</span>를 맞이하게 되었던 거다. 그리고 우라노스가 얘기했던 저주도 실제가 되었다.</p>
+
+          <h3>4. 올림포스의 열두 신, 아테나부터</h3>
+          <p>아, 그리고 <span class="highlight">올림포스의 열두 신</span> 이야기를 해 보자.</p>
+          <p>열두 신은 일단 <span class="highlight">아테나</span>부터 시작하자.</p>
+          <p>생각하는 힘과 기억력이 좋은 타이탄 <span class="highlight">미티스</span>가 있었다. 제우스가 미티스와 결혼해서 낳은 아이가 아테나였다.</p>
+          <p>하지만 미티스가 낳은 아들은 제우스보다, 아버지보다 강한 아이가 될 것이라는 <span class="highlight">신탁</span>이 있었다.</p>
+          <p>그래서 제우스는 미티스를 입으로 빨아들여 버렸다. <span class="highlight">마치 크로노스처럼</span> 말이다. 그리고 다른 신들에게 미안하다고 했다.</p>
+          <p>하지만 아테나와 미티스는 아직도 제우스의 몸속에 있었다.</p>
+
+          <h3>5. 제우스의 머리에서 나온 아테나</h3>
+          <p>그런데 <span class="highlight">아테나</span>는 제우스의 목뼈를 잡고 두개골 안으로 쏙 들어갔다.</p>
+          <p>그다음에 제우스의 두개골에 막 주먹을 날리기 시작했다.</p>
+          <p>제우스가 아침 식사를 하고 있을 때, 아테나는 아주 세게 두드리면서 말했다.</p>
+          <p><span class="highlight">“나가고 싶어! 나가고 싶어!”</span></p>
+          <p>아테나는 세게 두드렸고, 결국 <span class="highlight">제우스의 머리</span>는 식사하는 도중에 갈라져 버렸다.</p>
+          <p>그렇게 제우스의 두개골 안에서 아테나가 나오게 되었다. 하지만 <span class="highlight">미티스는 제우스의 뱃속에서 죽었다.</span></p>
+
+          <h3>6. 아르테미스와 아폴로의 탄생</h3>
+          <p>이제 <span class="highlight">아르테미스</span> 이야기를 해 보자.</p>
+          <p>아르테미스는 제우스의 행태 때문에 태어난 신이라고 볼 수 있다.</p>
+          <p><span class="highlight">헤라의 노여움</span>을 산 여자가 있었다. 그 여자는 제우스의 부인이 될 여자였다. 인간 부인이었다.</p>
+          <p>헤라는 올림포스에 있는 부인이었지만, 제우스는 그리스의 여자들을 쫓아다녔다. 그중 헤라가 눈치챈 사람들 중 한 사람이 있었다.</p>
+          <p>헤라는 그 여자에게 <span class="highlight">저주</span>를 내렸다.</p>
+          <p>어떤 땅, 어떤 뿌리가 있는 땅이든 이 여자를 받아주지 말라. 섬도 안 된다. 하늘도 안 된다. 이런 저주를 내린 것이다.</p>
+          <p>그러자 아이를 낳아야 했던 <span class="highlight">레미스</span>는 뿌리가 없는 섬에 도착하여, 거기에서 안식을 취했다.</p>
+          <p>거기에서 아이 둘이 태어났는데, 그게 바로 <span class="highlight">아르테미스와 아폴로</span>다.</p>
+          <p>둘 다 아주 중요한 신이었다.</p>
+
+          <h3>8. 디오니소스의 이상한 탄생</h3>
+          <p>이제 마지막으로 <span class="highlight">디오니소스의 탄생</span>을 봅시다.</p>
+          <p>디오니소스는 아주 이상하게 태어난 아이입니다. 또 제우스의 인간 여자친구 사이에서 태어난 아이입니다.</p>
+          <p>하지만 그 인간 여자친구는 너무 자만해서, 자기가 헤라처럼 제우스의 신 형태를 볼 수 있다고 말했다.</p>
+          <p>그런데 <span class="highlight">신의 형태</span>는 인간이 보면 바로 타버릴 수 있기 때문에 아주 조심해야 한다.</p>
+          <p>하지만 그걸 모른 제우스의 여자친구는 결국 <span class="highlight">타죽어 버렸다</span>.</p>
+          <p>하지만 그 안에 있던 아이는 제우스의 자식이니까, 제우스의 피가 들어 있어서 어떻게든 살아남았다.</p>
+          <p>제우스는 그 아이를 가엾게 여겨, <span class="highlight">자기 허벅지</span>를 잘라서 아이를 그 안에 쑤셔 넣었다.</p>
+          <p>그리고 <span class="highlight">8년 뒤</span>에 그 아이를 꺼내 보니 이미 <span class="highlight">성체</span>가 되어 있었다.</p>
+          <p>그게 바로 디오니소스다.</p>
+        </div>
+      </div>
+
+      <button class="secondary full" id="tipHomeBtn">홈으로 돌아가기</button>
+    </section>
+  </template>
+
+  <template id="learningComicTemplate">
+    <section class="card comic-page-card">
+      <p class="eyebrow">선생님들의 학습 만화</p>
+      <h2>박물관 키워드 만화 ① 헤카테</h2>
+      <p class="muted">네 명의 선생님이 박물관에서 헤카테라는 키워드를 대화로 설명하는 8컷 만화입니다.</p>
+      <figure class="comic-viewer">
+        <img src="comic-hecate.webp" alt="박물관 키워드 만화 ① 헤카테 8컷 학습만화" loading="lazy" decoding="async" />
+        <figcaption>헤카테 = 어둠 · 마법 · 횃불의 여신</figcaption>
+      </figure>
+      <button class="secondary full" id="comicHomeBtn">홈으로 돌아가기</button>
+    </section>
+  </template>
+
+  <template id="memoryAlbumTemplate">
+    <section class="card memory-album-hero">
+      <p class="eyebrow">선생님들의 추억 앨범</p>
+      <h2>박물관 탐험 기록</h2>
+      <p class="muted">만화풍으로 남긴 세 장의 박물관 추억입니다. 이미지는 서버 용량을 아끼기 위해 WebP로 압축했습니다.</p>
+    </section>
+    <section class="memory-album-list">
+      <article class="memory-polaroid">
+        <img src="memory-entrance.webp" alt="그리스가 로마에게 로마가 그리스에게 전시 입구 앞에서 찍은 만화풍 단체 사진" loading="lazy" decoding="async" />
+        <div class="memory-caption">
+          <strong>전시 입구에서</strong>
+          <span>그리스와 로마의 시작</span>
+        </div>
+      </article>
+      <article class="memory-polaroid">
+        <img src="memory-gallery.webp" alt="박물관 전시실에서 조각상과 함께 찍은 만화풍 단체 사진" loading="lazy" decoding="async" />
+        <div class="memory-caption">
+          <strong>조각 전시실에서</strong>
+          <span>신들과 만난 순간</span>
+        </div>
+      </article>
+      <article class="memory-polaroid">
+        <img src="memory-busts.webp" alt="고전 흉상 앞에서 찍은 만화풍 단체 사진" loading="lazy" decoding="async" />
+        <div class="memory-caption">
+          <strong>흉상 앞에서</strong>
+          <span>오늘의 장난스러운 기록</span>
+        </div>
+      </article>
+    </section>
+    <button class="secondary full" id="albumHomeBtn">홈으로 돌아가기</button>
+  </template>
+
+  <template id="shopTemplate">
+    <section class="card shop-hero-card">
+      <p class="eyebrow">기념품샵</p>
+      <h2>보석으로 신화 기념품을 모아 보세요.</h2>
+      <p class="muted">선생님 퀴즈 정답과 벌 10마리 변환으로 얻은 보석을 사용할 수 있습니다. 에블린·헌 선생님 tip과 연결된 기념품을 모아 보세요.</p>
+      <div class="currency-line">
+        <span class="currency-chip" id="shopGemCount">💎 0개</span>
+        <span class="currency-chip" id="shopBeeBank">🐝 0/10</span>
+        <span class="currency-chip" id="shopOwnedCount">🎁 0개</span>
+      </div>
+      <div class="shop-notice" id="shopNotice" hidden></div>
+    </section>
+    <section class="card">
+      <h3>상품</h3>
+      <div class="shop-list" id="shopList"></div>
+    </section>
+    <section class="card">
+      <h3>내 보관함</h3>
+      <p class="muted">구매한 기념품이 여기에 모입니다. 배경권은 퀴즈 화면 꾸미기에 적용할 수 있습니다.</p>
+      <div class="owned-list" id="ownedList"></div>
+    </section>
+  </template>
+
+  <script>
+window.HISTORY_QUIZ_DATA = {
+  "title": "그리스가 로마에게, 로마가 그리스에게",
+  "subtitle": "키워드 기반 모바일 역사 퀴즈",
+  "sourceNote": "업로드된 키워드 사진자료 링크집을 바탕으로 만든 정적 웹앱입니다. 이미지는 복제하지 않고 공개 이미지/박물관 링크로 연결합니다.",
+  "coreConnection": "그리스 미술·신화 → 로마의 수용·재해석 → 로마/서역 물품과 양식의 동방 전파 → 신라 고분의 외래계 유리·금속·장식문화 이해",
+  "items": [
+    {
+      "no": 1,
+      "keyword": "그리스가 로마에게 / 로마가 그리스에게",
+      "english": "Greek influence on Rome / Roman reception of Greece",
+      "visual": "그리스 조각과 로마 복제품을 나란히 비교",
+      "search": "Greek sculpture Roman copy marble statue",
+      "linkText": "열기",
+      "importance": "로마가 그리스 양식을 수집·복제·제국화한 구조를 잡기",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+sculpture+Roman+copy+marble+statue&title=Special:MediaSearch&type=image",
+      "categories": [
+        "연결·박물관",
+        "동서 교류"
+      ]
+    },
+    {
+      "no": 2,
+      "keyword": "오스트리아 빈 미술사 박물관",
+      "english": "Kunsthistorisches Museum Wien",
+      "visual": "고대 그리스·로마 컬렉션 전시장, 카메오, 도기, 조각",
+      "search": "Kunsthistorisches Museum Greek Roman Antiquities",
+      "linkText": "열기",
+      "importance": "오늘 자료의 대표 박물관 배경",
+      "photoUrl": "https://www.khm.at/en/exhibitions/collection-of-greek-and-roman-antiquities",
+      "categories": [
+        "연결·박물관"
+      ]
+    },
+    {
+      "no": 3,
+      "keyword": "콘트라포스토",
+      "english": "contrapposto",
+      "visual": "한쪽 다리에 체중을 싣고 S자 균형을 만든 조각 자세",
+      "search": "Doryphoros contrapposto Greek statue",
+      "linkText": "열기",
+      "importance": "그리스식 몸의 이상이 로마 조각으로 이어짐",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Doryphoros+contrapposto+Greek+statue&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 4,
+      "keyword": "카메오",
+      "english": "cameo",
+      "visual": "층이 다른 보석·유리를 깎아 인물을 도드라지게 만든 장식",
+      "search": "Gemma Augustea cameo Kunsthistorisches Museum",
+      "linkText": "열기",
+      "importance": "작은 물건 속 권력·신화·황제 이미지",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Gemma+Augustea+cameo+Kunsthistorisches+Museum&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 5,
+      "keyword": "아이기스",
+      "english": "aegis",
+      "visual": "아테나·제우스의 방패/흉갑. 고르곤 머리 장식",
+      "search": "Athena aegis Gorgoneion statue",
+      "linkText": "열기",
+      "importance": "신의 보호, 공포, 권위를 시각화",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Athena+aegis+Gorgoneion+statue&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 6,
+      "keyword": "신화",
+      "english": "mythology",
+      "visual": "신·영웅·세계의 기원 이야기. 도기와 조각의 핵심 주제",
+      "search": "Greek mythology vase Zeus Athena",
+      "linkText": "열기",
+      "importance": "그리스 신화가 로마 이름으로 재사용됨",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+mythology+vase+Zeus+Athena&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 7,
+      "keyword": "출산",
+      "english": "childbirth / birth",
+      "visual": "탄생 장면, 산모·아이, 출산 여신 또는 봉헌물",
+      "search": "ancient Greek childbirth votive terracotta",
+      "linkText": "열기",
+      "importance": "생명·가정·여성 의례와 연결",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+Greek+childbirth+votive+terracotta&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 8,
+      "keyword": "추종자",
+      "english": "follower / attendant",
+      "visual": "디오니소스를 따르는 사티로스·마이나스 같은 인물",
+      "search": "Dionysus followers satyr maenad vase",
+      "linkText": "열기",
+      "importance": "술·광기·축제의 세계",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Dionysus+followers+satyr+maenad+vase&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 9,
+      "keyword": "크라테르",
+      "english": "krater",
+      "visual": "포도주와 물을 섞는 큰 그릇",
+      "search": "Greek red figure krater symposium",
+      "linkText": "열기",
+      "importance": "심포시온의 중심 도구",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+red+figure+krater+symposium&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 10,
+      "keyword": "도기 공방",
+      "english": "pottery workshop",
+      "visual": "도기를 빚고 굽고 그림을 그리는 작업장",
+      "search": "ancient Greek pottery workshop vase painting",
+      "linkText": "열기",
+      "importance": "도기는 당시의 그림책이자 생활 기록",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+Greek+pottery+workshop+vase+painting&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 11,
+      "keyword": "라라리움",
+      "english": "lararium",
+      "visual": "로마 가정에 둔 작은 제단. 라레스에게 제사",
+      "search": "Pompeii lararium household shrine",
+      "linkText": "열기",
+      "importance": "집 안의 종교와 가족 보호",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Pompeii+lararium+household+shrine&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 12,
+      "keyword": "토가",
+      "english": "toga",
+      "visual": "로마 시민 남성이 공식적으로 두르는 큰 겉옷",
+      "search": "Roman toga statue citizen",
+      "linkText": "열기",
+      "importance": "로마 시민권과 공적 신분 표시",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+toga+statue+citizen&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 13,
+      "keyword": "튜닉",
+      "english": "tunic",
+      "visual": "고대 그리스·로마의 기본 옷",
+      "search": "Roman tunic ancient clothing",
+      "linkText": "열기",
+      "importance": "일상복과 신분·성별 차이",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+tunic+ancient+clothing&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 14,
+      "keyword": "노화",
+      "english": "aging / old age",
+      "visual": "주름과 늙은 얼굴을 사실적으로 표현한 초상",
+      "search": "Roman veristic portrait old man",
+      "linkText": "열기",
+      "importance": "로마 초상의 사실성, 경험과 권위",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+veristic+portrait+old+man&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 15,
+      "keyword": "사후세계",
+      "english": "afterlife",
+      "visual": "무덤·석관·장례그림에 나타난 죽은 뒤의 세계",
+      "search": "Roman sarcophagus afterlife relief",
+      "linkText": "열기",
+      "importance": "망자와 산 자가 이어진다고 본 장례관",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+sarcophagus+afterlife+relief&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 16,
+      "keyword": "전령",
+      "english": "messenger / herald",
+      "visual": "헤르메스·메르쿠리우스처럼 소식을 전하는 신·인물",
+      "search": "Hermes messenger god statue caduceus",
+      "linkText": "열기",
+      "importance": "신과 인간, 세계 사이의 연결자",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Hermes+messenger+god+statue+caduceus&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 17,
+      "keyword": "팬파이프",
+      "english": "panpipes / syrinx",
+      "visual": "목신 판이 부는 여러 관의 악기",
+      "search": "Pan playing panpipes ancient art",
+      "linkText": "열기",
+      "importance": "자연·목가·판 신화",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Pan+playing+panpipes+ancient+art&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 18,
+      "keyword": "베누스 푸디카",
+      "english": "Venus Pudica",
+      "visual": "몸을 손으로 가리는 베누스/아프로디테 유형",
+      "search": "Capitoline Venus Pudica statue",
+      "linkText": "열기",
+      "importance": "그리스 아프로디테가 로마 베누스로 계승",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Capitoline+Venus+Pudica+statue&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 19,
+      "keyword": "의술",
+      "english": "medicine / healing",
+      "visual": "아스클레피오스, 뱀 지팡이, 치유 신전",
+      "search": "Asclepius statue rod serpent",
+      "linkText": "열기",
+      "importance": "병 치료를 신에게 비는 봉헌 문화",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Asclepius+statue+rod+serpent&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 20,
+      "keyword": "봉헌물",
+      "english": "votive offering",
+      "visual": "신에게 바치는 물건. 병이 나은 부위 모형도 있음",
+      "search": "ancient Greek votive offering body part",
+      "linkText": "열기",
+      "importance": "기도와 감사의 물질 증거",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+Greek+votive+offering+body+part&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 21,
+      "keyword": "설화석고",
+      "english": "alabaster",
+      "visual": "희고 반투명한 부드러운 석재. 향유병·작은 조각에 사용",
+      "search": "ancient alabaster alabastron vessel",
+      "linkText": "열기",
+      "importance": "고급 향유·장례·장식품 재료",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+alabaster+alabastron+vessel&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 22,
+      "keyword": "그리핀",
+      "english": "griffin",
+      "visual": "독수리 머리와 사자 몸을 가진 상상의 동물",
+      "search": "ancient griffin Greek Scythian art",
+      "linkText": "열기",
+      "importance": "서아시아·그리스·초원 문화 장식 모티프",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+griffin+Greek+Scythian+art&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅",
+        "동서 교류"
+      ]
+    },
+    {
+      "no": 23,
+      "keyword": "스핑크스",
+      "english": "sphinx",
+      "visual": "사람 머리와 사자 몸의 신화적 존재",
+      "search": "Greek sphinx sculpture vase",
+      "linkText": "열기",
+      "importance": "이집트 기원 모티프가 그리스에서 재해석",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+sphinx+sculpture+vase&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 24,
+      "keyword": "네메아의 사자",
+      "english": "Nemean lion",
+      "visual": "헤라클레스가 죽인 괴물 사자",
+      "search": "Heracles Nemean lion vase painting",
+      "linkText": "열기",
+      "importance": "영웅의 첫 과업과 사자 가죽 상징",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Heracles+Nemean+lion+vase+painting&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 25,
+      "keyword": "히드라",
+      "english": "Hydra",
+      "visual": "머리가 여러 개인 물뱀 괴물",
+      "search": "Heracles Hydra vase painting",
+      "linkText": "열기",
+      "importance": "잘라도 다시 자라는 괴물, 헤라클레스 과업",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Heracles+Hydra+vase+painting&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 26,
+      "keyword": "가니메데스",
+      "english": "Ganymede",
+      "visual": "제우스가 독수리 모습으로 데려간 아름다운 소년",
+      "search": "Ganymede eagle Zeus ancient art",
+      "linkText": "열기",
+      "importance": "신의 선택, 아름다움, 권력의 이미지",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Ganymede+eagle+Zeus+ancient+art&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 27,
+      "keyword": "트로이전쟁",
+      "english": "Trojan War",
+      "visual": "그리스군과 트로이의 전쟁 신화",
+      "search": "Trojan War Greek vase Achilles Hector",
+      "linkText": "열기",
+      "importance": "라오콘·아킬레우스·헥토르 이야기의 배경",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Trojan+War+Greek+vase+Achilles+Hector&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 28,
+      "keyword": "헤르마",
+      "english": "herm",
+      "visual": "기둥 위에 헤르메스 머리 또는 남성상을 얹은 조형물",
+      "search": "ancient Greek herm Hermes",
+      "linkText": "열기",
+      "importance": "길·경계·집 입구를 지키는 상징",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=ancient+Greek+herm+Hermes&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 29,
+      "keyword": "실레루스/실레누스",
+      "english": "Silenus",
+      "visual": "디오니소스의 늙은 스승 또는 술 취한 추종자",
+      "search": "Silenus Dionysus statue vase",
+      "linkText": "열기",
+      "importance": "술·풍자·연회의 인물",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Silenus+Dionysus+statue+vase&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 30,
+      "keyword": "부조",
+      "english": "relief",
+      "visual": "평평한 면에서 인물이 튀어나오게 새긴 조각",
+      "search": "Roman relief sculpture Ara Pacis",
+      "linkText": "열기",
+      "importance": "제단·석관·기념비의 이야기 장면",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+relief+sculpture+Ara+Pacis&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 31,
+      "keyword": "환조",
+      "english": "sculpture in the round",
+      "visual": "사방에서 볼 수 있는 완전 입체 조각",
+      "search": "Greek marble statue sculpture in the round",
+      "linkText": "열기",
+      "importance": "인물상이 공간 속에 서 있는 방식",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+marble+statue+sculpture+in+the+round&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 32,
+      "keyword": "헤카테",
+      "english": "Hecate",
+      "visual": "밤·마법·갈림길·저승과 관련된 여신",
+      "search": "Hecate three formed statue",
+      "linkText": "열기",
+      "importance": "경계와 어둠의 여신",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Hecate+three+formed+statue&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 33,
+      "keyword": "코타보스",
+      "english": "kottabos",
+      "visual": "심포시온에서 남은 포도주를 던져 맞히는 놀이",
+      "search": "kottabos Greek symposium vase",
+      "linkText": "열기",
+      "importance": "술자리의 게임 문화",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=kottabos+Greek+symposium+vase&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 34,
+      "keyword": "아리스토텔레스",
+      "english": "Aristotle",
+      "visual": "그리스 철학자. 논리학·윤리학·자연학 체계화",
+      "search": "Aristotle bust ancient sculpture",
+      "linkText": "열기",
+      "importance": "그리스 지식이 로마·중세로 전달됨",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Aristotle+bust+ancient+sculpture&title=Special:MediaSearch&type=image",
+      "categories": [
+        "기타"
+      ]
+    },
+    {
+      "no": 35,
+      "keyword": "라오콘",
+      "english": "Laocoon",
+      "visual": "트로이의 사제. 목마를 경고했다가 뱀에게 죽음",
+      "search": "Laocoon and His Sons Vatican sculpture",
+      "linkText": "열기",
+      "importance": "고통과 움직임을 극적으로 표현한 고대 조각",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Laocoon+and+His+Sons+Vatican+sculpture&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 36,
+      "keyword": "카이사르",
+      "english": "Julius Caesar",
+      "visual": "로마 말기의 장군·정치가",
+      "search": "Julius Caesar portrait bust Tusculum",
+      "linkText": "열기",
+      "importance": "공화정에서 제정으로 넘어가는 권력의 상징",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Julius+Caesar+portrait+bust+Tusculum&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 37,
+      "keyword": "사제",
+      "english": "priest",
+      "visual": "신에게 제사를 주관하는 사람",
+      "search": "Roman priest sacrifice relief",
+      "linkText": "열기",
+      "importance": "종교가 정치·가정·전쟁과 연결됨",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+priest+sacrifice+relief&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 38,
+      "keyword": "심포시온",
+      "english": "symposium",
+      "visual": "그리스 남성 귀족의 술자리·토론·놀이 문화",
+      "search": "Greek symposium vase painting",
+      "linkText": "열기",
+      "importance": "크라테르·코타보스·음악·신화가 한자리",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+symposium+vase+painting&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 39,
+      "keyword": "봉수형 유리병",
+      "english": "phoenix-head glass ewer",
+      "visual": "신라 황남대총 출토 유리병. 봉황 머리 모양 주둥이",
+      "search": "Silla phoenix head glass ewer Hwangnamdaechong",
+      "linkText": "열기",
+      "importance": "로마·서역 유리문화가 신라까지 닿은 핵심 증거",
+      "photoUrl": "https://www.museum.go.kr/MUSEUM/contents/M0501000000.do?pageSize=10&relicRecommendCategory=&relicRecommendId=519881&sc=&schM=view&sv=",
+      "categories": [
+        "연결·박물관",
+        "신라 연결",
+        "동서 교류"
+      ]
+    },
+    {
+      "no": 40,
+      "keyword": "등잔",
+      "english": "oil lamp",
+      "visual": "기름을 넣어 불을 밝히는 생활·종교 도구",
+      "search": "Roman oil lamp terracotta",
+      "linkText": "열기",
+      "importance": "가정·제단·무덤에서 사용",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+oil+lamp+terracotta&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 41,
+      "keyword": "망자",
+      "english": "deceased / the dead",
+      "visual": "죽은 사람. 장례미술의 중심 인물",
+      "search": "Greek grave stele deceased",
+      "linkText": "열기",
+      "importance": "무덤 조각이 죽은 사람을 기억하게 함",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+grave+stele+deceased&title=Special:MediaSearch&type=image",
+      "categories": [
+        "생활·의례"
+      ]
+    },
+    {
+      "no": 42,
+      "keyword": "결속",
+      "english": "bond / unity",
+      "visual": "가족·공동체·도시·제국을 묶는 관계",
+      "search": "Roman dextrarum iunctio relief marriage",
+      "linkText": "열기",
+      "importance": "손잡기 장면은 가족·혼인·작별의 결속 표현",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Roman+dextrarum+iunctio+relief+marriage&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 43,
+      "keyword": "작별",
+      "english": "farewell",
+      "visual": "산 자와 죽은 자가 헤어지는 장면",
+      "search": "Greek grave stele farewell scene",
+      "linkText": "열기",
+      "importance": "장례부조에서 손을 잡고 헤어지는 모습",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Greek+grave+stele+farewell+scene&title=Special:MediaSearch&type=image",
+      "categories": [
+        "예술·조각"
+      ]
+    },
+    {
+      "no": 44,
+      "keyword": "제우스 / 유피테르 / 주피터",
+      "english": "Zeus / Jupiter",
+      "visual": "그리스·라틴·영어 이름이 다른 최고신",
+      "search": "Zeus Jupiter statue thunderbolt eagle",
+      "linkText": "열기",
+      "importance": "이름은 바뀌지만 하늘·번개·권위는 유지",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Zeus+Jupiter+statue+thunderbolt+eagle&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    },
+    {
+      "no": 45,
+      "keyword": "에우…",
+      "english": "unconfirmed: Europa or Euphronios",
+      "visual": "단어 끊김. 에우로페/에우프로니오스 후보",
+      "search": "Europa and the Bull / Euphronios Krater",
+      "linkText": "열기",
+      "importance": "정확한 단어 확인 필요",
+      "photoUrl": "https://commons.wikimedia.org/w/index.php?search=Europa+and+the+Bull+Euphronios+Krater&title=Special:MediaSearch&type=image",
+      "categories": [
+        "신화·영웅"
+      ]
+    }
+  ]
+};
+
+  </script>
+  <script>
+const CHAPTERS = [
+  { no: 1, title: '그리스가 로마에게, 로마가 그리스에게', status: '열림', active: true },
+  { no: 2, title: '준비 중', status: '업데이트 예정' },
+  { no: 3, title: '준비 중', status: '업데이트 예정' },
+  { no: 4, title: '준비 중', status: '업데이트 예정' },
+  { no: 5, title: '준비 중', status: '업데이트 예정' },
+  { no: 6, title: '준비 중', status: '업데이트 예정' },
+  { no: 7, title: '준비 중', status: '업데이트 예정' },
+  { no: 8, title: '준비 중', status: '업데이트 예정' },
+  { no: 9, title: '준비 중', status: '업데이트 예정' },
+  { no: 10, title: '준비 중', status: '업데이트 예정' },
+  { no: 11, title: '준비 중', status: '업데이트 예정' },
+  { no: 12, title: '준비 중', status: '업데이트 예정' }
+];
+
+let selectedChapterNo = null;
+
+function getSelectedChapter() {
+  return CHAPTERS.find(chapter => chapter.no === selectedChapterNo) || null;
+}
+
+function updateChapterHeader() {
+  const title = document.getElementById('chapterTitle');
+  if (!title) return;
+  const chapter = getSelectedChapter();
+  title.innerHTML = chapter ? chapter.title.replace(/,\s*/g, '<br>') : '';
+}
+
+function updateShellLayout() {
+  const tocSide = document.getElementById('tocSide');
+  const tocBtn = document.getElementById('tocBtn');
+  const appFrame = document.querySelector('.app-frame');
+  if (tocSide) tocSide.hidden = true;
+  if (tocBtn) tocBtn.hidden = false;
+  if (appFrame) {
+    appFrame.classList.add('home-mode');
+    appFrame.classList.remove('toc-open');
+  }
+}
+
+const DATA = window.HISTORY_QUIZ_DATA;
+const app = document.querySelector('#app');
+const homeTemplate = document.querySelector('#homeTemplate');
+const quizTemplate = document.querySelector('#quizTemplate');
+const resultTemplate = document.querySelector('#resultTemplate');
+const cardsTemplate = document.querySelector('#cardsTemplate');
+const tipTemplate = document.querySelector('#tipTemplate');
+const learningComicTemplate = document.querySelector('#learningComicTemplate');
+const memoryAlbumTemplate = document.querySelector('#memoryAlbumTemplate');
+const shopTemplate = document.querySelector('#shopTemplate');
+
+let selectedCategory = '전체';
+let selectedCount = 10;
+let quiz = [];
+let currentIndex = 0;
+let score = 0;
+const STARTING_BEES = 5;
+const WRONG_STORAGE_KEY = 'historyQuizWrongQuestions_v19';
+let beeCount = STARTING_BEES;
+let selectedAnswer = null;
+let selectedButton = null;
+let submitted = false;
+function safeGet(key, fallback) {
+  try { return window.localStorage.getItem(key) ?? fallback; } catch (e) { return fallback; }
+}
+function safeSet(key, value) {
+  try { window.localStorage.setItem(key, value); } catch (e) {}
+}
+let wrongQuestions = [];
+try { wrongQuestions = JSON.parse(safeGet(WRONG_STORAGE_KEY, '[]')) || []; } catch (e) { wrongQuestions = []; }
+let best = Number(safeGet('historyQuizBest', '0') || 0);
+let gems = Number(safeGet('historyQuizGems', '0') || 0);
+let beeBank = Number(safeGet('historyQuizBeeBank', '0') || 0);
+let ownedSouvenirs = [];
+try { ownedSouvenirs = JSON.parse(safeGet('historyQuizOwnedSouvenirs', '[]')) || []; } catch (e) { ownedSouvenirs = []; }
+let equippedSouvenir = safeGet('historyQuizEquippedSouvenir', '') || '';
+let teacherQuizMilestonesShown = new Set();
+let teacherQuizQuestion = null;
+const TEACHERS = ['헌', '루크', '에블린', '미아'];
+const SOUVENIRS = [
+  { id: 'amor-sticker', icon: '🌹', name: '아모르 장미 스티커', price: 1, desc: '사랑의 신 아모르를 떠올리는 장미 기념품입니다.', effect: '보관함에 장미 스티커가 추가됩니다.', type: 'collectible' },
+  { id: 'venus-card', icon: '🌊', name: '비너스 카드', price: 2, desc: '바다의 거품에서 태어난 비너스 설명 카드입니다.', effect: '비너스 핵심 설명 카드를 보관합니다.', type: 'collectible' },
+  { id: 'gold-arrow', icon: '🏹', name: '황금 화살 배지', price: 3, desc: '사랑에 빠지게 하는 아모르의 황금 화살 배지입니다.', effect: '보관함에 황금 화살 배지가 표시됩니다.', type: 'collectible' },
+  { id: 'hecate-torch', icon: '🔥', name: '헥헤이트 횃불 키링', price: 2, desc: '어둠과 마법, 갈림길을 밝히는 헥헤이트의 횃불 기념품입니다.', effect: '보관함에 헥헤이트 횃불 키링이 추가됩니다.', type: 'collectible' },
+  { id: 'dionysus-grape', icon: '🍇', name: '디오노시스 포도 배지', price: 2, desc: '포도와 포도주, 축제를 떠올리게 하는 디오노시스 기념품입니다.', effect: '보관함에 디오노시스 포도 배지가 추가됩니다.', type: 'collectible' },
+  { id: 'silenos-card', icon: '🧓', name: '사일레노스 스승 카드', price: 2, desc: '디오노시스의 스승 사일레노스를 기억하는 설명 카드입니다.', effect: '보관함에 사일레노스 스승 카드가 추가됩니다.', type: 'collectible' },
+  { id: 'zeus-lightning', icon: '⚡', name: '제우스 번개 배지', price: 3, desc: '티탄 전쟁에서 제우스가 사용한 번개의 힘을 담은 배지입니다.', effect: '보관함에 제우스 번개 배지가 표시됩니다.', type: 'collectible' },
+  { id: 'athena-helmet', icon: '🛡️', name: '아테나 투구 스티커', price: 3, desc: '제우스의 머리에서 나온 아테나를 떠올리는 지혜와 전쟁 전략의 스티커입니다.', effect: '보관함에 아테나 투구 스티커가 추가됩니다.', type: 'collectible' },
+  { id: 'artemis-apollo', icon: '🌙', name: '아르테미스·아폴로 쌍둥이 카드', price: 4, desc: '뿌리 없는 섬에서 태어난 아르테미스와 아폴로의 탄생 카드입니다.', effect: '보관함에 아르테미스·아폴로 쌍둥이 카드가 추가됩니다.', type: 'collectible' },
+  { id: 'dionysus-rebirth', icon: '🦵', name: '디오니소스 두 번째 탄생 카드', price: 4, desc: '제우스의 허벅지에서 다시 태어난 디오니소스 이야기를 담은 카드입니다.', effect: '보관함에 디오니소스 두 번째 탄생 카드가 추가됩니다.', type: 'collectible' },
+  { id: 'temple-bg', icon: '🏛️', name: '그리스 신전 배경권', price: 5, desc: '퀴즈 화면을 꾸밀 수 있는 특별 배경권입니다.', effect: '구매 후 “적용”을 누르면 앱 배경에 신전 수채화가 켜집니다.', type: 'theme' }
+];
+const TEACHER_QUIZ_QUESTIONS = [
+  { teacher: '에블린', question: '비너스의 자세는 무엇인가요?', answer: '오른손은 가슴에 올리고 왼손은 흘러내리는 치마를 잡는 자세', options: ['오른손은 가슴에 올리고 왼손은 흘러내리는 치마를 잡는 자세','두 손으로 방패를 들고 서 있는 자세','활과 화살을 들고 달리는 자세','월계관을 쓰고 책을 든 자세'] },
+  { teacher: '에블린', question: '다음 중 틀린 것은 무엇인가요?', answer: '아모르의 상징물은 해바라기다.', options: ['아모르는 마르스와 비너스의 아들이다.','아모르의 상징물은 해바라기다.','에로스의 로마 이름은 아모르다.','비너스는 태어날 때부터 성인의 모습이었다.'] },
+  { teacher: '에블린', question: '아모르의 상징물이 아닌 것은 무엇인가요?', answer: '참새', options: ['장미','햇불','참새','비둘기'] },
+  { teacher: '에블린', question: '비너스는 어디에서 태어났나요?', answer: '거품', options: ['제우스','가이아','거품','헤라'] }
+];
+
+const categories = ['전체', ...Array.from(new Set(DATA.items.flatMap(i => i.categories)))];
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function sample(arr, n) {
+  return shuffle(arr).slice(0, n);
+}
+
+function strip(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
+
+function makeOptions(correct, pool, key) {
+  const distractors = sample(pool.filter(item => strip(item[key]) !== strip(correct)), 3).map(item => item[key]);
+  return shuffle([correct, ...distractors]);
+}
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function asConnectionOption(text) {
+  return `역사 연결 단서: ${text}`;
+}
+
+function makeOptionsFromValues(correct, values, formatter) {
+  const formattedCorrect = formatter(correct);
+  const distractors = sample(values.filter(value => strip(value) !== strip(correct)), 3).map(formatter);
+  return shuffle([formattedCorrect, ...distractors]);
+}
+
+const HISTORY_QUIZ_BANK = [
+  { no: 1, label: '흐름 이해', q: '로마는 그리스 미술을 어떻게 받아들였나요?', a: '그리스 조각을 모으고 복제품을 만들며 자기 문화로 활용했다.', o: ['그리스 조각을 모두 없애고 새 양식만 만들었다.', '그리스 문자 사용을 금지했다.', '신화와 조각을 전혀 받아들이지 않았다.'], e: '로마는 그리스 문화를 단순히 베끼기만 한 것이 아니라, 제국의 취향과 권력 표현에 맞게 다시 사용했습니다.' },
+  { no: 2, label: '박물관 읽기', q: '오스트리아 빈 미술사 박물관에서 이 수업과 가장 관련 깊은 전시는 무엇인가요?', a: '고대 그리스·로마 유물 전시', o: ['현대 자동차 전시', '중세 기사 갑옷만 있는 전시', '공룡 화석 전시'], e: '이 박물관의 고대 컬렉션에는 조각, 도기, 카메오처럼 그리스·로마 문화를 보여 주는 자료가 있습니다.' },
+  { no: 3, label: '조각 자세', q: '콘트라포스토는 어떤 자세를 말하나요?', a: '한쪽 다리에 체중을 싣고 몸이 자연스럽게 기울어진 자세', o: ['두 팔을 똑바로 들고 뛰는 자세', '바닥에 엎드린 자세', '말을 타고 활을 쏘는 자세'], e: '콘트라포스토는 그리스 조각에서 사람 몸을 더 자연스럽고 살아 있게 보이게 한 대표적 자세입니다.' },
+  { no: 4, label: '작은 유물', q: '카메오는 어떤 장식품인가요?', a: '색이나 층이 다른 보석·유리를 깎아 인물을 도드라지게 만든 장식', o: ['포도주와 물을 섞는 큰 그릇', '로마 시민이 두르는 큰 옷', '기름을 넣어 불을 밝히는 등'], e: '카메오는 작지만 신화, 황제, 권력의 이미지를 담을 수 있는 고급 장식품입니다.' },
+  { no: 5, label: '신의 상징', q: '아이기스에 자주 붙어 있는 무서운 머리는 무엇인가요?', a: '고르곤의 머리', o: ['사자 갈기', '독수리 날개', '포도송이'], e: '아이기스는 아테나나 제우스의 보호와 권위를 보여 주는 방패 또는 흉갑입니다.' },
+  { no: 6, label: '신화 이해', q: '그리스·로마 미술에서 신화가 중요한 이유는 무엇인가요?', a: '신과 영웅 이야기가 도기와 조각의 주요 주제가 되었기 때문이다.', o: ['신화가 법전을 쓰는 방법만 알려 주었기 때문이다.', '신화가 전쟁 무기 이름만 정했기 때문이다.', '신화가 숫자 계산법만 설명했기 때문이다.'], e: '도기와 조각에는 신, 영웅, 괴물의 이야기가 많이 그려졌습니다.' },
+  { no: 7, label: '생활과 의례', q: '출산 장면이나 출산 여신과 관련된 유물은 주로 무엇을 보여 주나요?', a: '생명, 가정, 여성 의례에 대한 관심', o: ['전차 경주의 규칙', '화산 폭발의 원리', '동전 만드는 기술'], e: '고대 사람들은 출산과 생명을 중요한 의례와 기도의 주제로 보았습니다.' },
+  { no: 8, label: '신의 무리', q: '디오니소스의 추종자와 가장 관련 깊은 세계는 무엇인가요?', a: '술, 축제, 흥분과 광기의 세계', o: ['로마 법정의 재판 절차', '농기구 수리 방법', '항구의 세금 계산'], e: '디오니소스 주변에는 사티로스와 마이나스 같은 추종자가 등장합니다.' },
+  { no: 9, label: '연회 도구', q: '크라테르는 심포시온에서 무엇을 할 때 쓰던 그릇인가요?', a: '포도주와 물을 섞을 때', o: ['갑옷을 보관할 때', '종이를 말릴 때', '불을 피울 때'], e: '고대 그리스 연회에서는 포도주를 물과 섞어 마셨고, 크라테르는 그 중심 도구였습니다.' },
+  { no: 10, label: '도기 읽기', q: '그리스 도기가 역사 자료가 되는 이유는 무엇인가요?', a: '그림을 통해 신화와 생활 모습을 알려 주기 때문이다.', o: ['항상 금으로 만들어졌기 때문이다.', '글자가 하나도 없기 때문이다.', '전쟁에서 방패로 쓰였기 때문이다.'], e: '도기의 그림은 당시 사람들의 생활과 이야기를 보여 주는 그림책 같은 자료입니다.' },
+  { no: 11, label: '로마 가정', q: '라라리움은 로마 집 안에서 어떤 역할을 했나요?', a: '가족을 지키는 신에게 제사 지내는 작은 제단', o: ['손님에게 물을 파는 가게', '군인이 훈련하는 운동장', '공연을 보는 원형 극장'], e: '라라리움은 로마인의 종교가 집 안 생활과도 연결되어 있었음을 보여 줍니다.' },
+  { no: 12, label: '로마 시민', q: '토가가 로마에서 중요했던 이유는 무엇인가요?', a: '공식 자리에서 로마 시민의 신분을 보여 주었기 때문이다.', o: ['전쟁터에서 입는 철갑옷이었기 때문이다.', '어린아이만 입는 잠옷이었기 때문이다.', '바다에서 헤엄칠 때 입는 옷이었기 때문이다.'], e: '토가는 옷이면서 동시에 시민권과 공적 신분을 보여 주는 표시였습니다.' },
+  { no: 13, label: '고대 의복', q: '튜닉은 고대 그리스·로마에서 어떤 옷이었나요?', a: '많은 사람들이 입던 기본 옷', o: ['신에게 바치는 향유병', '포도주를 섞는 그릇', '사방에서 보는 조각상'], e: '튜닉은 일상복이었고, 길이와 재료에 따라 신분이나 성별 차이도 드러났습니다.' },
+  { no: 14, label: '초상 조각', q: '로마 초상에서 주름과 늙은 얼굴을 사실적으로 표현한 까닭은 무엇인가요?', a: '나이와 경험, 권위를 보여 주기 위해서', o: ['젊어 보이는 것만 중요했기 때문에', '얼굴을 일부러 알아볼 수 없게 하려고', '동물처럼 보이게 하려고'], e: '로마 초상은 그리스식 이상미와 달리 실제 얼굴과 사회적 권위를 강조하기도 했습니다.' },
+  { no: 15, label: '장례 문화', q: '사후세계 장면이 무덤이나 석관에 자주 나온 이유는 무엇인가요?', a: '죽은 뒤의 삶과 망자를 기억하는 마음을 담았기 때문이다.', o: ['음식을 보관하는 방법을 알려 주기 위해서', '배를 만드는 설계도였기 때문에', '시장 가격표였기 때문에'], e: '장례미술은 죽음 뒤의 세계와 산 자의 기억을 함께 보여 줍니다.' },
+  { no: 16, label: '신의 역할', q: '헤르메스·메르쿠리우스 같은 전령 신은 어떤 역할을 하나요?', a: '소식을 전하고 신과 인간 세계를 이어 준다.', o: ['바다 괴물을 사냥한다.', '포도주 그릇을 굽는다.', '로마 시민 옷을 만든다.'], e: '전령은 서로 다른 세계를 오가는 연결자입니다.' },
+  { no: 17, label: '악기와 신화', q: '팬파이프와 가장 관련 깊은 신은 누구인가요?', a: '목신 판', o: ['아테나', '카이사르', '라오콘'], e: '팬파이프는 여러 관으로 된 악기이며 자연과 목가적 세계를 떠올리게 합니다.' },
+  { no: 18, label: '조각 유형', q: '베누스 푸디카 조각에서 베누스는 보통 어떤 모습인가요?', a: '손으로 몸을 가리는 모습', o: ['말을 타고 창을 드는 모습', '법전을 들고 재판하는 모습', '머리가 여러 개인 괴물 모습'], e: '그리스의 아프로디테 유형은 로마에서 베누스 조각으로 이어졌습니다.' },
+  { no: 19, label: '치유와 신', q: '아스클레피오스와 뱀 지팡이는 어떤 주제와 관련 있나요?', a: '의술과 치유', o: ['전차 경주', '화폐 제작', '포도주 놀이'], e: '고대 사람들은 병 치료와 회복을 신에게 기도하기도 했습니다.' },
+  { no: 20, label: '기도의 증거', q: '봉헌물은 무엇인가요?', a: '신에게 기도하거나 감사하며 바치는 물건', o: ['로마 시민이 입는 겉옷', '전쟁에서 쓰는 투구', '포도주를 섞는 큰 그릇'], e: '봉헌물은 사람들이 무엇을 빌고 감사했는지 보여 주는 물질 증거입니다.' },
+  { no: 21, label: '재료 이해', q: '설화석고는 주로 어떤 물건에 쓰였나요?', a: '향유병이나 작은 조각', o: ['거대한 철제 전차', '나무로 만든 배의 돛', '로마 도로의 포장돌만'], e: '설화석고는 희고 반투명한 느낌 때문에 고급 용기와 장식품에 쓰였습니다.' },
+  { no: 22, label: '상상의 동물', q: '그리핀은 어떤 모습의 상상 동물인가요?', a: '독수리 머리와 사자 몸을 가진 동물', o: ['말 머리와 물고기 몸을 가진 동물', '사람 머리와 새 몸만 가진 동물', '뱀 머리 세 개가 달린 개'], e: '그리핀은 서아시아, 그리스, 초원 문화에서 널리 보이는 장식 모티프입니다.' },
+  { no: 23, label: '문화 변형', q: '스핑크스가 문화 연결을 보여 주는 까닭은 무엇인가요?', a: '이집트 기원의 모티프가 그리스에서 다시 해석되었기 때문이다.', o: ['로마에서 처음 발명한 악기였기 때문이다.', '신라의 금관 이름이었기 때문이다.', '포도주 섞는 그릇이었기 때문이다.'], e: '스핑크스는 문화가 이동하며 모습과 의미가 바뀔 수 있음을 보여 줍니다.' },
+  { no: 24, label: '영웅 이야기', q: '네메아의 사자는 누구의 과업에 나오는 괴물인가요?', a: '헤라클레스', o: ['아리스토텔레스', '카이사르', '비너스'], e: '헤라클레스는 네메아의 사자를 물리치고 사자 가죽을 상징처럼 지닙니다.' },
+  { no: 25, label: '괴물 이야기', q: '히드라는 어떤 괴물인가요?', a: '머리가 여러 개인 물뱀 괴물', o: ['날개 달린 말', '작은 가정 제단', '흰 향유병'], e: '히드라는 헤라클레스 과업에 나오는 괴물로, 잘라도 다시 자라는 머리로 유명합니다.' },
+  { no: 26, label: '신화 장면', q: '가니메데스 이야기에서 제우스는 어떤 모습으로 나타나나요?', a: '독수리', o: ['사자', '돌고래', '뱀 지팡이'], e: '제우스가 독수리 모습으로 가니메데스를 데려가는 장면은 미술의 주제가 되었습니다.' },
+  { no: 27, label: '전쟁 신화', q: '트로이전쟁은 어떤 이야기들의 배경이 되나요?', a: '라오콘, 아킬레우스, 헥토르 같은 영웅 이야기', o: ['로마 가정의 작은 제단 이야기만', '포도주 던지기 놀이 규칙만', '향유병 만드는 법만'], e: '트로이전쟁은 그리스·로마 미술에서 반복해서 등장한 큰 신화적 배경입니다.' },
+  { no: 28, label: '길과 경계', q: '헤르마는 주로 어디를 지키는 상징으로 쓰였나요?', a: '길, 경계, 집 입구', o: ['배의 돛대 위', '도기 가마 속', '황제의 침대 밑'], e: '헤르마는 헤르메스와 관련된 기둥형 조형물로 경계와 보호의 의미가 있습니다.' },
+  { no: 29, label: '연회 인물', q: '실레누스는 누구와 관련된 인물인가요?', a: '디오니소스', o: ['아테나', '헤카테', '아스클레피오스'], e: '실레누스는 디오니소스의 늙은 스승 또는 술 취한 추종자로 묘사됩니다.' },
+  { no: 30, label: '조각 방식', q: '부조는 어떤 조각인가요?', a: '평평한 면에서 인물이 튀어나오게 새긴 조각', o: ['사방에서 완전히 볼 수 있는 조각', '포도주를 담는 그릇', '로마 시민의 겉옷'], e: '부조는 제단, 석관, 기념비에서 이야기를 장면처럼 보여 주는 데 자주 쓰였습니다.' },
+  { no: 31, label: '입체 조각', q: '환조는 어떤 조각인가요?', a: '사방에서 볼 수 있는 완전한 입체 조각', o: ['평평한 면에 낮게 새긴 그림', '가정에 둔 작은 제단', '술자리에서 하는 놀이'], e: '환조는 인물상이 공간 속에 실제로 서 있는 것처럼 보이게 합니다.' },
+  { no: 32, label: '여신의 영역', q: '헤카테와 관련 깊은 것은 무엇인가요?', a: '밤, 마법, 갈림길, 저승', o: ['공식 시민 의복', '철학 강의실', '포도주 섞는 그릇'], e: '헤카테는 경계와 어둠의 여신으로 여겨졌습니다.' },
+  { no: 33, label: '연회 놀이', q: '코타보스는 어떤 놀이인가요?', a: '남은 포도주를 던져 목표를 맞히는 놀이', o: ['주름진 얼굴을 조각하는 방법', '집 안 제단에 제사 지내는 일', '신에게 병이 나은 부위 모형을 바치는 일'], e: '코타보스는 심포시온 같은 술자리 문화와 관련 있습니다.' },
+  { no: 34, label: '지식의 전달', q: '아리스토텔레스가 중요한 이유는 무엇인가요?', a: '그리스 지식이 로마와 중세로 이어지는 흐름을 보여 주기 때문이다.', o: ['로마 시민의 겉옷을 처음 만든 사람이기 때문이다.', '히드라를 물리친 영웅이기 때문이다.', '기름 등잔을 발명한 장인이기 때문이다.'], e: '아리스토텔레스의 논리학, 윤리학, 자연학은 뒤의 시대에 큰 영향을 주었습니다.' },
+  { no: 35, label: '비극적 장면', q: '라오콘은 왜 고통스럽게 묘사되나요?', a: '트로이 목마를 경고했다가 뱀에게 죽는 이야기와 관련 있기 때문이다.', o: ['심포시온에서 놀이에 졌기 때문이다.', '토가를 잃어버렸기 때문이다.', '카메오를 만들다 실패했기 때문이다.'], e: '라오콘 조각은 고통, 움직임, 긴장감을 극적으로 보여 주는 고대 조각으로 유명합니다.' },
+  { no: 36, label: '로마 정치', q: '카이사르는 로마 역사에서 어떤 변화를 떠올리게 하나요?', a: '공화정에서 제정으로 넘어가는 권력 변화', o: ['그리스 도기 공방의 작업 순서', '출산 여신에게 바치는 기도', '목신 판의 악기 연주법'], e: '카이사르는 장군이자 정치가로, 로마 권력 구조의 변화를 이해할 때 중요한 인물입니다.' },
+  { no: 37, label: '제사 역할', q: '사제는 어떤 일을 하는 사람인가요?', a: '신에게 제사를 주관하는 사람', o: ['도기를 굽는 장인', '전차를 수리하는 기술자', '토가를 파는 상인'], e: '고대 사회에서 종교는 정치, 가정, 전쟁과도 연결되었습니다.' },
+  { no: 38, label: '그리스 연회', q: '심포시온에서는 어떤 일이 함께 이루어졌나요?', a: '술, 대화, 음악, 놀이가 함께 이루어졌다.', o: ['혼자 조용히 잠만 잤다.', '전쟁 포로만 재판했다.', '금속 무기만 만들었다.'], e: '심포시온은 크라테르, 코타보스, 음악, 신화가 연결되는 그리스 남성 귀족의 연회 문화입니다.' },
+  { no: 39, label: '신라 연결', q: '신라 황남대총의 봉수형 유리병이 중요한 이유는 무엇인가요?', a: '로마·서역 유리문화가 신라까지 전해졌을 가능성을 보여 주기 때문이다.', o: ['신라 사람들이 모두 로마어만 썼다는 증거이기 때문이다.', '그리스 조각상이 신라에서 만들어졌다는 증거이기 때문이다.', '트로이전쟁이 신라에서 일어났다는 증거이기 때문이다.'], e: '이 유리병은 물건과 기술, 취향이 먼 지역까지 이동했음을 보여 주는 중요한 자료입니다.' },
+  { no: 40, label: '생활 도구', q: '등잔은 무엇을 위해 쓰던 물건인가요?', a: '기름을 넣어 불을 밝히기 위해', o: ['포도주를 섞기 위해', '시민권을 증명하기 위해', '신화를 새기기 위해'], e: '등잔은 집, 제단, 무덤 등 여러 공간에서 사용된 생활 도구입니다.' },
+  { no: 41, label: '장례미술', q: '장례미술에서 망자는 누구를 뜻하나요?', a: '죽은 사람', o: ['전령 신', '포도주 그릇', '로마 시민 옷'], e: '망자를 어떻게 기억했는지 보면 고대인의 죽음에 대한 생각을 알 수 있습니다.' },
+  { no: 42, label: '몸짓 읽기', q: '장례부조에서 손을 잡는 장면은 무엇을 나타낼 수 있나요?', a: '가족, 혼인, 작별의 결속', o: ['전차 경주의 출발 신호', '도기 가격 흥정', '악기 연주 방법'], e: '손잡기 장면은 사람 사이의 관계와 이별의 감정을 보여 줍니다.' },
+  { no: 43, label: '이별 장면', q: '작별 장면이 장례부조에 나오는 이유는 무엇인가요?', a: '산 자와 죽은 자가 헤어지는 순간을 보여 주기 위해', o: ['포도주를 더 맛있게 섞기 위해', '철학자의 책 제목을 적기 위해', '동물의 종류를 분류하기 위해'], e: '장례부조는 죽은 사람과 남은 사람의 관계를 시각적으로 표현했습니다.' },
+  { no: 44, label: '이름 비교', q: '제우스, 유피테르, 주피터는 무엇을 보여 주는 예인가요?', a: '같은 최고신이 문화와 언어에 따라 다른 이름으로 불린 예', o: ['서로 전혀 관계없는 세 명의 로마 황제', '신라의 세 가지 유리병 이름', '도기 공방의 세 가지 도구'], e: '이름은 달라도 하늘, 번개, 권위라는 핵심 성격은 이어집니다.' }
+];
+
+function makeHistoryQuestion(def) {
+  const item = DATA.items.find(x => x.no === def.no) || DATA.items[0];
+  return {
+    id: `${def.no}-history-${strip(def.q).slice(0, 18)}`,
+    itemNo: def.no,
+    typeLabel: def.label || '역사 퀴즈',
+    question: def.q,
+    answer: def.a,
+    options: shuffle([def.a, ...def.o]),
+    explanation: def.e,
+    item
+  };
+}
+
+function buildQuestion(item, type, pool) {
+  const def = HISTORY_QUIZ_BANK.find(q => q.no === item.no);
+  if (def) return makeHistoryQuestion(def);
+
+  return {
+    id: `${item.no}-basic`,
+    itemNo: item.no,
+    typeLabel: '역사 퀴즈',
+    question: `‘${item.keyword}’와 가장 관련 깊은 설명은 무엇인가요?`,
+    answer: item.visual,
+    options: makeOptions(item.visual, pool, 'visual'),
+    explanation: item.importance,
+    item
+  };
+}
+
+
+function getPool(category) {
+  if (category === '전체') return DATA.items;
+  return DATA.items.filter(item => item.categories.includes(category));
+}
+
+function buildQuiz(category, count, wrongOnly=false) {
+  if (wrongOnly && wrongQuestions.length) {
+    return sample(wrongQuestions, Math.min(count, wrongQuestions.length));
+  }
+  const pool = getPool(category).filter(item => !String(item.keyword).includes('에우…'));
+  const generated = HISTORY_QUIZ_BANK
+    .filter(def => pool.some(item => item.no === def.no))
+    .map(makeHistoryQuestion);
+  pool.forEach(item => {
+    if (!generated.some(q => q.itemNo === item.no)) generated.push(buildQuestion(item, 'basic', pool));
+  });
+  return sample(generated, Math.min(count, generated.length));
+}
+
+function makeTocButton(chapter) {
+  const btn = document.createElement('button');
+  btn.className = `toc-item${selectedChapterNo === chapter.no ? ' active' : ''}${chapter.active ? '' : ' locked'}`;
+  btn.type = 'button';
+  btn.innerHTML = `<strong>${chapter.no}. ${chapter.title}</strong><span>${chapter.status}</span>`;
+  btn.addEventListener('click', () => {
+    if (chapter.active) {
+      selectedChapterNo = chapter.no;
+      updateChapterHeader();
+      renderToc();
+      closeToc();
+      renderHome();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+  return btn;
+}
+
+function renderToc() {
+  ['tocSideList', 'tocDrawerList'].forEach(id => {
+    const list = document.getElementById(id);
+    if (!list) return;
+    list.innerHTML = '';
+    CHAPTERS.forEach(chapter => {
+      const li = document.createElement('li');
+      li.appendChild(makeTocButton(chapter));
+      list.appendChild(li);
+    });
+  });
+}
+
+function openToc() {
+  const drawer = document.getElementById('tocDrawer');
+  const backdrop = document.getElementById('tocBackdrop');
+  if (!drawer || !backdrop) return;
+  backdrop.hidden = false;
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+}
+
+function closeToc() {
+  const drawer = document.getElementById('tocDrawer');
+  const backdrop = document.getElementById('tocBackdrop');
+  if (!drawer || !backdrop) return;
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  setTimeout(() => { if (!drawer.classList.contains('open')) backdrop.hidden = true; }, 180);
+}
+
+function renderHome() {
+  applySouvenirTheme();
+  updateChapterHeader();
+  updateShellLayout();
+  app.innerHTML = '';
+  const chapter = getSelectedChapter();
+  if (!chapter) {
+    app.innerHTML = `
+      <section class="card chapter-prompt">
+        <p class="eyebrow">목차에서 시작하기</p>
+        <h2>목차에서 공부할 챕터를 선택하세요.</h2>
+        <p class="muted">목차를 열어 챕터를 누르면 상단의 History Bridge Quiz 아래에 챕터 제목이 표시되고, 해당 챕터의 퀴즈와 선생님 팁이 열립니다.</p>
+        <button class="primary full" id="chooseChapterBtn">목차 열기</button>
+      </section>
+      <footer class="creator-footer first-screen-footer">
+        <strong>크리에이터</strong><br />HIFS 3학년<br />미아 · 루크 · 에블린 · 헌
+      </footer>
+    `;
+    const btn = document.getElementById('chooseChapterBtn');
+    if (btn) btn.addEventListener('click', openToc);
+    return;
+  }
+  app.append(homeTemplate.content.cloneNode(true));
+
+  document.querySelector('#statsPills').innerHTML = `
+    <span class="pill">키워드 ${DATA.items.length}개</span>
+    <span class="pill">사진자료 링크 ${DATA.items.filter(i => i.photoUrl).length}개</span>
+    <span class="pill">최고점 ${best}점</span>
+    <span class="pill">보석 💎 ${gems}개</span>
+    <span class="pill">벌 변환 🐝 ${beeBank}/10</span>`;
+
+  renderHomeWallet();
+
+  const categorySelect = document.querySelector('#categorySelect');
+  categorySelect.innerHTML = categories.map(c => `<option value="${c}">${c}</option>`).join('');
+  categorySelect.value = selectedCategory;
+  categorySelect.addEventListener('change', e => selectedCategory = e.target.value);
+
+  const countSelect = document.querySelector('#countSelect');
+  [10, 20, 45].forEach(n => {
+    const btn = document.createElement('button');
+    btn.textContent = n === 45 ? '전체' : `${n}문제`;
+    btn.className = selectedCount === n ? 'active' : '';
+    btn.addEventListener('click', () => {
+      selectedCount = n;
+      renderHome();
+    });
+    countSelect.appendChild(btn);
+  });
+
+  document.querySelector('#startQuizBtn').addEventListener('click', () => startQuiz(false));
+  document.querySelector('#tipHubBtn').addEventListener('click', () => renderTip('evelyn'));
+  document.querySelector('#learningComicBtn').addEventListener('click', renderLearningComic);
+  document.querySelector('#memoryAlbumBtn').addEventListener('click', renderMemoryAlbum);
+  document.querySelector('#shopBtn').addEventListener('click', renderShop);
+  const wrongBtn = document.querySelector('#wrongOnlyBtn');
+  const clearWrongBtn = document.querySelector('#clearWrongBtn');
+  wrongBtn.hidden = false;
+  clearWrongBtn.hidden = false;
+  if (wrongQuestions.length === 0) {
+    wrongBtn.disabled = true;
+    wrongBtn.textContent = '오답 확인 / 다시 풀기 (0)';
+    clearWrongBtn.disabled = true;
+    clearWrongBtn.textContent = '오답 기록 초기화';
+  } else {
+    wrongBtn.disabled = false;
+    wrongBtn.textContent = `오답 확인 / 다시 풀기 (${wrongQuestions.length})`;
+    clearWrongBtn.disabled = false;
+    clearWrongBtn.textContent = '오답 기록 초기화';
+  }
+  wrongBtn.addEventListener('click', () => {
+    if (wrongQuestions.length) startQuiz(true);
+  });
+
+  clearWrongBtn.addEventListener('click', () => {
+    wrongQuestions = [];
+    safeSet(WRONG_STORAGE_KEY, JSON.stringify(wrongQuestions));
+    renderHome();
+  });
+}
+
+function startQuiz(wrongOnly=false) {
+  quiz = buildQuiz(selectedCategory, selectedCount, wrongOnly);
+  currentIndex = 0;
+  score = 0;
+  beeCount = STARTING_BEES;
+  teacherQuizMilestonesShown = new Set();
+  teacherQuizQuestion = null;
+  if (!quiz.length) return renderHome();
+  renderQuestion();
+}
+
+function renderQuestion() {
+  applySouvenirTheme();
+  const q = quiz[currentIndex];
+  selectedAnswer = null;
+  selectedButton = null;
+  submitted = false;
+  app.innerHTML = '';
+  app.append(quizTemplate.content.cloneNode(true));
+
+  document.querySelector('#progressText').textContent = `${currentIndex + 1} / ${quiz.length}`;
+  document.querySelector('#scoreText').textContent = `${score}점 · 벌 ${beeCount}마리 · 💎 ${gems}개`;
+  document.querySelector('#progressBar').style.width = `${((currentIndex) / quiz.length) * 100}%`;
+  document.querySelector('#questionType').textContent = q.typeLabel;
+  document.querySelector('#questionText').textContent = q.question;
+  renderBees();
+
+  const answers = document.querySelector('#answers');
+  q.options.forEach(option => {
+    const btn = document.createElement('button');
+    btn.className = 'answer';
+    btn.textContent = option;
+    btn.addEventListener('click', () => chooseAnswer(btn, option));
+    answers.appendChild(btn);
+  });
+
+  document.querySelector('#submitBtn').addEventListener('click', () => submitAnswer(q));
+
+  const quitTopBtn = document.querySelector('#quitQuizTopBtn');
+  const quitBottomBtn = document.querySelector('#quitQuizBottomBtn');
+  [quitTopBtn, quitBottomBtn].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', quitQuizToHome);
+  });
+
+  document.querySelector('#nextBtn').addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= quiz.length) renderResult();
+    else renderQuestion();
+  });
+}
+
+function quitQuizToHome() {
+  saveEconomy();
+  renderHome();
+}
+
+
+function renderBees() {
+  const countText = document.querySelector('#beeCountText');
+  const hive = document.querySelector('#beeHive');
+  if (!countText || !hive) return;
+  countText.textContent = `${beeCount}마리`;
+  const visibleCount = Math.min(Math.max(beeCount, 0), 60);
+  hive.innerHTML = Array.from({ length: visibleCount }, () => '<span class="bee">🐝</span>').join('') + (beeCount > 60 ? `<span class="bee-more">+${beeCount - 60}</span>` : '');
+}
+
+function chooseAnswer(button, selected) {
+  if (submitted) return;
+  selectedAnswer = selected;
+  selectedButton = button;
+  document.querySelectorAll('.answer').forEach(btn => btn.classList.remove('selected'));
+  button.classList.add('selected');
+  const notice = document.querySelector('#selectionNotice');
+  if (notice) notice.hidden = true;
+}
+
+function submitAnswer(q) {
+  if (submitted) return;
+  const notice = document.querySelector('#selectionNotice');
+  if (!selectedAnswer) {
+    if (notice) {
+      notice.textContent = '답을 먼저 선택하세요.';
+      notice.hidden = false;
+    }
+    return;
+  }
+
+  submitted = true;
+  const correct = selectedAnswer === q.answer;
+  document.querySelector('#submitBtn').disabled = true;
+  document.querySelectorAll('.answer').forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === q.answer) btn.classList.add('correct');
+    if (btn === selectedButton && !correct) btn.classList.add('wrong');
+  });
+
+  let conversionMessage = '';
+  if (correct) {
+    score++;
+    beeCount++;
+    beeBank++;
+    conversionMessage = convertBeeBankToGems();
+    removeWrong(q);
+  } else {
+    beeCount = Math.max(beeCount - 1, 0);
+    addWrong(q);
+  }
+
+  renderBees();
+  document.querySelector('#scoreText').textContent = `${score}점 · 벌 ${beeCount}마리 · 💎 ${gems}개`;
+
+  const feedback = document.querySelector('#feedback');
+  feedback.hidden = false;
+  feedback.innerHTML = `
+    <p><strong class="${correct ? 'good' : 'bad'}">${correct ? '벌 채집 성공' : '앗! 벌을 놓쳤습니다'}</strong></p>
+    <p>${correct ? '벌이 한 마리 추가되었습니다.' : '벌 한 마리가 사라졌습니다.'}</p>
+    ${conversionMessage ? `<p><strong>보석 변환:</strong> ${conversionMessage}</p>` : ''}
+    <p><strong>정답:</strong> ${q.answer}</p>
+    <p>${q.explanation}</p>
+    <p><strong>사진자료:</strong> <a href="${q.item.photoUrl}" target="_blank" rel="noopener">${q.item.search}</a></p>`;
+
+  document.querySelector('#progressBar').style.width = `${((currentIndex + 1) / quiz.length) * 100}%`;
+
+  if (beeCount <= 0) {
+    showBeeGameOver();
+    return;
+  }
+
+  const answeredCount = currentIndex + 1;
+  if (answeredCount % 5 === 0 && !teacherQuizMilestonesShown.has(answeredCount)) {
+    teacherQuizMilestonesShown.add(answeredCount);
+    teacherQuizQuestion = sample(TEACHER_QUIZ_QUESTIONS, 1)[0];
+    showTeacherQuizModal();
+    return;
+  }
+
+  const nextBtn = document.querySelector('#nextBtn');
+  nextBtn.hidden = false;
+  nextBtn.disabled = false;
+  nextBtn.textContent = currentIndex + 1 >= quiz.length ? '결과 보기' : '다음 문제';
+}
+
+function showBeeGameOver() {
+  const submitBtn = document.querySelector('#submitBtn');
+  const nextBtn = document.querySelector('#nextBtn');
+  if (submitBtn) submitBtn.hidden = true;
+  if (nextBtn) nextBtn.hidden = true;
+
+  const panel = document.createElement('div');
+  panel.className = 'feedback';
+  panel.innerHTML = `
+    <h3>벌을 다시 채집하시겠습니까?</h3>
+    <p class="muted">벌이 0마리가 되어 퀴즈가 중지되었습니다.</p>
+    <div class="game-over-actions">
+      <button class="primary" id="restartBeeBtn">O</button>
+      <button class="secondary" id="homeBeeBtn">X</button>
+    </div>`;
+  document.querySelector('.quiz-card').appendChild(panel);
+
+  document.querySelector('#restartBeeBtn').addEventListener('click', () => {
+    currentIndex = 0;
+    score = 0;
+    beeCount = STARTING_BEES;
+    renderQuestion();
+  });
+  document.querySelector('#homeBeeBtn').addEventListener('click', renderHome);
+}
+
+
+function convertBeeBankToGems() {
+  if (beeBank < 10) {
+    safeSet('historyQuizBeeBank', String(beeBank));
+    return '';
+  }
+  let converted = 0;
+  while (beeBank >= 10) {
+    beeBank -= 10;
+    gems += 1;
+    converted += 1;
+  }
+  safeSet('historyQuizBeeBank', String(beeBank));
+  safeSet('historyQuizGems', String(gems));
+  return `채집한 벌 10마리가 보석 ${converted}개로 바뀌었습니다. 현재 보석 ${gems}개, 다음 변환까지 벌 ${beeBank}/10마리입니다.`;
+}
+
+function saveEconomy() {
+  safeSet('historyQuizGems', String(gems));
+  safeSet('historyQuizBeeBank', String(beeBank));
+  safeSet('historyQuizOwnedSouvenirs', JSON.stringify(ownedSouvenirs));
+  safeSet('historyQuizEquippedSouvenir', equippedSouvenir || '');
+}
+
+function applySouvenirTheme() {
+  const templeActive = equippedSouvenir === 'temple-bg' && ownedSouvenirs.includes('temple-bg');
+  document.body.classList.toggle('souvenir-temple-bg', templeActive);
+}
+
+function getOwnedSouvenirs() {
+  return SOUVENIRS.filter(item => ownedSouvenirs.includes(item.id));
+}
+
+function renderHomeWallet() {
+  const wallet = document.querySelector('#homeWallet');
+  if (!wallet) return;
+  const ownedItems = getOwnedSouvenirs();
+  if (!ownedItems.length) {
+    wallet.innerHTML = '<div class="wallet-empty">아직 지갑이 비어 있습니다.<br>퀴즈로 보석을 모아 기념품을 사 보세요.</div>';
+    return;
+  }
+  wallet.innerHTML = ownedItems.map(item => `
+    <div class="wallet-item ${equippedSouvenir === item.id ? 'equipped' : ''}">
+      <span class="wallet-icon" aria-hidden="true">${item.icon}</span>
+      <span class="wallet-name">${item.name}</span>
+    </div>
+  `).join('');
+}
+
+function showShopNotice(message, tone = 'good') {
+  const notice = document.querySelector('#shopNotice');
+  if (!notice) return;
+  notice.hidden = false;
+  notice.className = `shop-notice ${tone}`;
+  notice.textContent = message;
+}
+
+function revealNextAfterTeacherQuiz() {
+  const nextBtn = document.querySelector('#nextBtn');
+  if (!nextBtn) return;
+  nextBtn.hidden = false;
+  nextBtn.disabled = false;
+  nextBtn.textContent = currentIndex + 1 >= quiz.length ? '결과 보기' : '다음 문제';
+  document.querySelector('#scoreText').textContent = `${score}점 · 벌 ${beeCount}마리 · 💎 ${gems}개`;
+}
+
+function showTeacherQuizModal() {
+  const tq = teacherQuizQuestion || TEACHER_QUIZ_QUESTIONS[0];
+  let selected = null;
+  let submittedTeacher = false;
+  const modal = document.createElement('div');
+  modal.className = 'modal-backdrop';
+  modal.innerHTML = `
+    <div class="modal-card teacher-quiz-modal" role="dialog" aria-modal="true" aria-label="선생님 퀴즈">
+      <div class="teacher-quiz-art" aria-hidden="true"></div>
+      <div class="teacher-quiz-body">
+        <p class="eyebrow">중간 보너스</p>
+        <h2>${tq.teacher} 선생님 퀴즈!!</h2>
+        <p class="muted">5문제마다 열리는 보너스 퀴즈입니다. 맞히면 보석 1개를 받습니다.</p>
+        <h3>${tq.question}</h3>
+        <div id="teacherAnswers"></div>
+        <div id="teacherNotice" class="selection-notice" hidden>답을 먼저 선택하세요.</div>
+        <button class="primary full" id="teacherSubmitBtn">선생님 퀴즈 제출</button>
+        <div id="teacherFeedback" class="feedback" hidden></div>
+        <button class="secondary full" id="teacherContinueBtn" hidden>계속하기</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  const answers = modal.querySelector('#teacherAnswers');
+  tq.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'teacher-answer';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      if (submittedTeacher) return;
+      selected = opt;
+      answers.querySelectorAll('.teacher-answer').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      modal.querySelector('#teacherNotice').hidden = true;
+    });
+    answers.appendChild(btn);
+  });
+  modal.querySelector('#teacherSubmitBtn').addEventListener('click', () => {
+    if (submittedTeacher) return;
+    if (!selected) {
+      modal.querySelector('#teacherNotice').hidden = false;
+      return;
+    }
+    submittedTeacher = true;
+    const ok = selected === tq.answer;
+    answers.querySelectorAll('.teacher-answer').forEach(btn => {
+      btn.disabled = true;
+      if (btn.textContent === tq.answer) btn.classList.add('correct');
+      if (btn.textContent === selected && !ok) btn.classList.add('wrong');
+    });
+    if (ok) {
+      gems += 1;
+      saveEconomy();
+    }
+    const fb = modal.querySelector('#teacherFeedback');
+    fb.hidden = false;
+    fb.innerHTML = ok
+      ? `<p><strong class="good">정답입니다.</strong></p><p>보석 1개를 받았습니다. 현재 보석은 ${gems}개입니다.</p>`
+      : `<p><strong class="bad">아쉽습니다.</strong></p><p>정답은 <strong>${tq.answer}</strong>입니다.</p>`;
+    modal.querySelector('#teacherSubmitBtn').hidden = true;
+    modal.querySelector('#teacherContinueBtn').hidden = false;
+  });
+  modal.querySelector('#teacherContinueBtn').addEventListener('click', () => {
+    modal.remove();
+    revealNextAfterTeacherQuiz();
+  });
+}
+
+function removeWrong(q) {
+  wrongQuestions = wrongQuestions.filter(item => item.id !== q.id);
+  safeSet(WRONG_STORAGE_KEY, JSON.stringify(wrongQuestions));
+}
+
+function addWrong(q) {
+  const filtered = wrongQuestions.filter(item => item.id !== q.id);
+  wrongQuestions = [q, ...filtered].slice(0, 50);
+  safeSet(WRONG_STORAGE_KEY, JSON.stringify(wrongQuestions));
+}
+
+function renderResult() {
+  best = Math.max(best, score);
+  safeSet('historyQuizBest', String(best));
+  app.innerHTML = '';
+  app.append(resultTemplate.content.cloneNode(true));
+
+  const percent = Math.round((score / quiz.length) * 100);
+  document.querySelector('#resultTitle').textContent = `${percent}점 수준입니다.`;
+  document.querySelector('#resultSummary').textContent = percent >= 80 ? '핵심 키워드 연결이 좋습니다.' : percent >= 50 ? '기본 흐름은 잡혔습니다. 오답을 다시 확인하세요.' : '키워드 카드부터 다시 보는 것이 좋습니다.';
+  document.querySelector('#finalScore').textContent = `${score}/${quiz.length}`;
+  document.querySelector('#wrongCount').textContent = `${quiz.length - score}`;
+  document.querySelector('#bestScore').textContent = `${best}`;
+  document.querySelector('#finalBeeCount').textContent = `${beeCount}`;
+  document.querySelector('#finalGemCount').textContent = `${gems}`;
+
+  const retryWrongBtn = document.querySelector('#retryWrongBtn');
+  const clearWrongResultBtn = document.querySelector('#clearWrongResultBtn');
+  retryWrongBtn.hidden = false;
+  clearWrongResultBtn.hidden = false;
+  if (wrongQuestions.length === 0) {
+    retryWrongBtn.disabled = true;
+    retryWrongBtn.textContent = '오답 확인 / 다시 풀기 (0)';
+    clearWrongResultBtn.disabled = true;
+  } else {
+    retryWrongBtn.disabled = false;
+    retryWrongBtn.textContent = `오답 확인 / 다시 풀기 (${wrongQuestions.length})`;
+    clearWrongResultBtn.disabled = false;
+  }
+  retryWrongBtn.addEventListener('click', () => {
+    if (wrongQuestions.length) startQuiz(true);
+  });
+  clearWrongResultBtn.addEventListener('click', () => {
+    wrongQuestions = [];
+    safeSet(WRONG_STORAGE_KEY, JSON.stringify(wrongQuestions));
+    renderResult();
+  });
+  document.querySelector('#newQuizBtn').addEventListener('click', renderHome);
+  document.querySelector('#shareBtn').addEventListener('click', shareApp);
+
+  const review = document.querySelector('#wrongReviewCard');
+  const wrongInThisQuiz = quiz.filter(q => wrongQuestions.some(w => w.id === q.id));
+  if (!wrongInThisQuiz.length) {
+    review.innerHTML = '<h3>오답 리뷰</h3><p class="empty">이번 퀴즈에서 새로 확인할 오답이 없습니다.</p>';
+  } else {
+    review.innerHTML = '<h3>오답 리뷰</h3>' + wrongInThisQuiz.map(q => `
+      <div class="review-item">
+        <h4>${q.item.keyword}</h4>
+        <p class="muted">${q.item.visual}</p>
+        <p><strong>핵심:</strong> ${q.item.importance}</p>
+      </div>`).join('');
+  }
+}
+
+function shareApp() {
+  const shareData = { title: '역사 퀴즈', text: '그리스·로마 역사 키워드 퀴즈', url: location.href };
+  if (navigator.share) navigator.share(shareData).catch(() => {});
+  else navigator.clipboard.writeText(location.href).then(() => alert('링크를 복사했습니다.'));
+}
+
+
+function renderTip(target = 'evelyn') {
+  app.innerHTML = '';
+  app.append(tipTemplate.content.cloneNode(true));
+  document.querySelector('#tipHomeBtn').addEventListener('click', renderHome);
+  document.querySelector('#jumpEvelynTipBtn').addEventListener('click', () => {
+    document.querySelector('#evelynTipBlock')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.querySelector('#jumpHeonTipBtn').addEventListener('click', () => {
+    document.querySelector('#heonTipBlock')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  const targetId = target === 'heon' ? '#heonTipBlock' : '#evelynTipBlock';
+  setTimeout(() => document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+function renderLearningComic() {
+  app.innerHTML = '';
+  app.append(learningComicTemplate.content.cloneNode(true));
+  document.querySelector('#comicHomeBtn').addEventListener('click', renderHome);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderMemoryAlbum() {
+  app.innerHTML = '';
+  app.append(memoryAlbumTemplate.content.cloneNode(true));
+  document.querySelector('#albumHomeBtn').addEventListener('click', renderHome);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderShop() {
+  applySouvenirTheme();
+  app.innerHTML = '';
+  app.append(shopTemplate.content.cloneNode(true));
+
+  document.querySelector('#shopGemCount').textContent = `💎 ${gems}개`;
+  document.querySelector('#shopBeeBank').textContent = `🐝 ${beeBank}/10`;
+  document.querySelector('#shopOwnedCount').textContent = `🎁 ${ownedSouvenirs.length}개`;
+
+  const list = document.querySelector('#shopList');
+  list.innerHTML = SOUVENIRS.map(item => {
+    const owned = ownedSouvenirs.includes(item.id);
+    const canBuy = gems >= item.price && !owned;
+    const equipped = equippedSouvenir === item.id;
+    const buyLabel = owned ? '구매 완료' : canBuy ? '구매' : '보석 부족';
+    const themeButton = item.type === 'theme' && owned
+      ? `<button class="${equipped ? 'secondary' : 'primary'}" data-equip="${item.id}">${equipped ? '적용 중' : '적용'}</button>`
+      : '';
+    return `<article class="shop-item ${owned ? 'owned' : ''}">
+      <div class="shop-item-main">
+        <div class="shop-icon" aria-hidden="true">${item.icon}</div>
+        <div class="shop-copy">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <p class="shop-effect">${item.effect}</p>
+        </div>
+      </div>
+      <div class="shop-meta">
+        <span class="currency-chip">💎 ${item.price}개</span>
+        <div class="shop-actions">
+          <button class="${owned ? 'secondary' : 'primary'}" data-buy="${item.id}" ${canBuy ? '' : 'disabled'}>${buyLabel}</button>
+          ${themeButton}
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+
+  list.querySelectorAll('[data-buy]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = SOUVENIRS.find(x => x.id === btn.dataset.buy);
+      if (!item) return;
+      if (ownedSouvenirs.includes(item.id)) {
+        showShopNotice('이미 구매한 기념품입니다.', 'warn');
+        return;
+      }
+      if (gems < item.price) {
+        showShopNotice(`보석이 부족합니다. ${item.name}은 보석 ${item.price}개가 필요합니다.`, 'warn');
+        return;
+      }
+      gems -= item.price;
+      ownedSouvenirs.push(item.id);
+      if (item.type === 'theme') equippedSouvenir = item.id;
+      saveEconomy();
+      applySouvenirTheme();
+      renderShop();
+      showShopNotice(`${item.icon} ${item.name} 구매 완료! 보관함에 추가되었습니다.`, 'good');
+    });
+  });
+
+  list.querySelectorAll('[data-equip]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = SOUVENIRS.find(x => x.id === btn.dataset.equip);
+      if (!item || !ownedSouvenirs.includes(item.id)) return;
+      equippedSouvenir = equippedSouvenir === item.id ? '' : item.id;
+      saveEconomy();
+      applySouvenirTheme();
+      renderShop();
+      showShopNotice(equippedSouvenir === item.id ? `${item.icon} ${item.name} 적용 완료!` : `${item.icon} ${item.name} 적용을 해제했습니다.`, 'good');
+    });
+  });
+
+  const ownedList = document.querySelector('#ownedList');
+  const ownedItems = getOwnedSouvenirs();
+  if (!ownedItems.length) {
+    ownedList.innerHTML = '<p class="empty">아직 구매한 기념품이 없습니다. 퀴즈와 선생님 퀴즈로 보석을 모아 보세요.</p>';
+  } else {
+    ownedList.innerHTML = ownedItems.map(item => {
+      const equipped = equippedSouvenir === item.id;
+      return `<article class="owned-item ${equipped ? 'equipped' : ''}">
+        <span class="owned-icon" aria-hidden="true">${item.icon}</span>
+        <div>
+          <strong>${item.name}</strong>
+          <p>${equipped ? '현재 적용 중입니다.' : item.effect}</p>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  const home = document.createElement('button');
+  home.className = 'secondary full';
+  home.textContent = '홈으로 돌아가기';
+  home.addEventListener('click', renderHome);
+  app.appendChild(home);
+}
+
+
+function renderCards() {
+  app.innerHTML = '';
+  app.append(cardsTemplate.content.cloneNode(true));
+  const input = document.querySelector('#cardSearch');
+  input.addEventListener('input', () => renderCardList(input.value));
+  renderCardList('');
+}
+
+function renderCardList(query) {
+  const list = document.querySelector('#cardsList');
+  const q = query.trim().toLowerCase();
+  const items = DATA.items.filter(item => {
+    const text = `${item.keyword} ${item.english} ${item.visual} ${item.importance} ${item.search} ${item.categories.join(' ')}`.toLowerCase();
+    return !q || text.includes(q);
+  });
+  list.innerHTML = items.map(item => `
+    <article class="keyword-card">
+      <p class="eyebrow">No. ${item.no}</p>
+      <h3>${item.keyword}</h3>
+      <p><strong>영어/원어:</strong> ${item.english}</p>
+      <p><strong>사진으로 볼 대상:</strong> ${item.visual}</p>
+      <p><strong>왜 중요한가:</strong> ${item.importance}</p>
+      <p><a href="${item.photoUrl}" target="_blank" rel="noopener">사진자료 검색 열기</a></p>
+      <div class="tag-row">${item.categories.map(c => `<span class="tag">${c}</span>`).join('')}</div>
+    </article>`).join('') || '<p class="empty">검색 결과가 없습니다.</p>';
+}
+
+document.querySelector('#tocBtn').addEventListener('click', openToc);
+document.querySelector('#tocCloseBtn').addEventListener('click', closeToc);
+document.querySelector('#tocBackdrop').addEventListener('click', closeToc);
+document.querySelector('#cardsBtn').addEventListener('click', renderCards);
+
+try {
+  applySouvenirTheme();
+  renderToc();
+  updateChapterHeader();
+  renderHome();
+} catch (err) {
+  app.innerHTML = '<section class="card"><h2>앱을 여는 중 문제가 생겼습니다.</h2><p class="muted">휴대폰 파일 미리보기에서 스크립트가 제한되었을 수 있습니다. Chrome 또는 Samsung Internet으로 다시 열어주세요.</p><p class="muted">오류: ' + String(err.message || err) + '</p></section>';
+}
+
+  </script>
+</body>
+</html>
