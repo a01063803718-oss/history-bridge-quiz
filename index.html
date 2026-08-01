@@ -4276,6 +4276,249 @@ body.chapter-1-current .toc-item {
 }
 </style>
 
+
+<style id="history2-card-reference-final">
+/* Final Chapter 2 item-card detail shape: match the approved reference.
+   One outer document frame + one wide image frame. No nested frame stack. */
+.history2-item-card {
+  position: relative !important;
+  width: min(94vw, 520px) !important;
+  max-height: calc(100vh - 28px) !important;
+  overflow-y: auto !important;
+  padding: 16px 16px 22px !important;
+  border-radius: 22px !important;
+  color: #30271f !important;
+  background:
+    radial-gradient(circle at 18% 4%, rgba(255,255,255,.52), transparent 28%),
+    linear-gradient(180deg, #fbf4e3 0%, #f3e7cf 58%, #ead8b8 100%) !important;
+  border: 2px solid #8f6840 !important;
+  outline: 1px solid rgba(255,250,236,.95) !important;
+  outline-offset: -6px !important;
+  box-shadow:
+    0 0 0 3px #ead7b5,
+    0 0 0 5px rgba(108,74,38,.56),
+    0 24px 58px rgba(29,22,16,.36) !important;
+}
+.history2-item-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 9px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(127,91,49,.46) !important;
+  border-radius: 15px !important;
+  background:
+    linear-gradient(#8c653a,#8c653a) left 8px top 8px/22px 1px no-repeat,
+    linear-gradient(#8c653a,#8c653a) left 8px top 8px/1px 22px no-repeat,
+    linear-gradient(#8c653a,#8c653a) right 8px top 8px/22px 1px no-repeat,
+    linear-gradient(#8c653a,#8c653a) right 8px top 8px/1px 22px no-repeat,
+    linear-gradient(#8c653a,#8c653a) left 8px bottom 8px/22px 1px no-repeat,
+    linear-gradient(#8c653a,#8c653a) left 8px bottom 8px/1px 22px no-repeat,
+    linear-gradient(#8c653a,#8c653a) right 8px bottom 8px/22px 1px no-repeat,
+    linear-gradient(#8c653a,#8c653a) right 8px bottom 8px/1px 22px no-repeat !important;
+  box-shadow: none !important;
+}
+.history2-item-card::after { content:none !important; display:none !important; }
+.history2-item-card > * { position: relative !important; z-index: 1 !important; }
+
+.history2-item-card .item-card-topline {
+  min-height: 34px !important;
+  margin: 0 8px 8px !important;
+  padding: 0 46px 0 0 !important;
+}
+.history2-item-card .item-card-series {
+  color: #5d4a35 !important;
+  font-size: 10px !important;
+  letter-spacing: .10em !important;
+}
+.history2-item-card .item-card-rarity {
+  min-height: 28px !important;
+  padding: 5px 12px !important;
+}
+.history2-item-card .item-card-close {
+  top: 10px !important;
+  right: 10px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: 1.5px solid #9c7548 !important;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.55) !important;
+}
+
+/* Remove the large inner panel that caused the stacked-frame look. */
+.history2-item-card .item-card-art {
+  position: relative !important;
+  display: block !important;
+  width: auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  margin: 6px 10px 18px !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.history2-item-card .item-card-art::before,
+.history2-item-card .item-card-art::after {
+  content: none !important;
+  display: none !important;
+}
+.history2-item-card .item-card-glow { display:none !important; }
+
+/* The image itself is the single large landscape frame. */
+.history2-item-card .item-card-icon.has-art {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  aspect-ratio: 16 / 10 !important;
+  margin: 0 !important;
+  padding: 8px !important;
+  overflow: hidden !important;
+  transform: none !important;
+  border-radius: 10px !important;
+  border: 1.5px solid #9a7445 !important;
+  outline: 1px solid rgba(154,116,69,.30) !important;
+  outline-offset: -5px !important;
+  background: #f8efdc !important;
+  box-shadow: 0 8px 18px rgba(91,62,28,.14) !important;
+  filter: none !important;
+}
+.history2-item-card .item-card-icon.has-art::before,
+.history2-item-card .item-card-icon.has-art::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 3 !important;
+  width: 18px !important;
+  height: 18px !important;
+  pointer-events: none !important;
+}
+.history2-item-card .item-card-icon.has-art::before {
+  left: 5px !important;
+  top: 5px !important;
+  border-left: 1px solid #8d6539 !important;
+  border-top: 1px solid #8d6539 !important;
+  border-radius: 7px 0 0 0 !important;
+}
+.history2-item-card .item-card-icon.has-art::after {
+  right: 5px !important;
+  bottom: 5px !important;
+  border-right: 1px solid #8d6539 !important;
+  border-bottom: 1px solid #8d6539 !important;
+  border-radius: 0 0 7px 0 !important;
+}
+.history2-item-card .item-card-icon.has-art .souvenir-art,
+.history2-item-card .item-card-icon.has-art .souvenir-art-card {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.history2-item-card .item-card-icon.has-art img,
+.history2-item-card .souvenir-art-card img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+}
+
+.history2-item-card .item-card-name-wrap {
+  margin: 0 24px 18px !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+.history2-item-card .item-card-rarity-ko {
+  margin: 0 0 5px !important;
+  color: #6a7b84 !important;
+  font-size: 13px !important;
+}
+.history2-item-card .item-card-name-wrap h2 {
+  margin: 0 !important;
+  color: #3b2d21 !important;
+  font-size: clamp(28px, 7vw, 34px) !important;
+  line-height: 1.18 !important;
+}
+.history2-item-card .history2-card-summary {
+  margin: 10px 0 0 !important;
+  color: #665847 !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+.history2-item-card .history2-acquired-date,
+.history2-acquired-date { display:none !important; }
+
+.history2-item-card .item-card-story {
+  margin: 0 10px 14px !important;
+  padding: 17px 18px !important;
+  border-radius: 12px !important;
+  background: rgba(255,250,239,.78) !important;
+  border: 1px solid rgba(116,82,43,.40) !important;
+  outline: 1px solid rgba(116,82,43,.16) !important;
+  outline-offset: -5px !important;
+  box-shadow: none !important;
+}
+.history2-item-card .item-card-story h3 {
+  margin: 0 0 9px !important;
+  color: #3e3429 !important;
+  font-size: 17px !important;
+}
+.history2-item-card .item-card-story p {
+  margin: 0 !important;
+  color: #5d544a !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+.history2-item-card .item-card-apply-wrap {
+  margin: 0 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.history2-item-card .item-card-apply-status { display:none !important; }
+.history2-item-card .item-card-apply-btn {
+  min-height: 54px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg,#7d4c95,#663776) !important;
+  color: #fff !important;
+  border: 2px solid #5b326d !important;
+  outline: 1px solid rgba(255,255,255,.34) !important;
+  outline-offset: -5px !important;
+  box-shadow: 0 5px 12px rgba(73,43,87,.24) !important;
+}
+.history2-item-card .item-card-number { display:none !important; }
+
+@media (max-width: 420px) {
+  .history2-item-card {
+    width: 95vw !important;
+    padding: 13px 13px 18px !important;
+    border-radius: 19px !important;
+  }
+  .history2-item-card .item-card-art { margin: 4px 7px 15px !important; }
+  .history2-item-card .item-card-name-wrap { margin: 0 14px 15px !important; }
+  .history2-item-card .item-card-story { margin: 0 7px 12px !important; }
+}
+</style>
+
 </head>
 <body>
   <div class="toc-backdrop" id="tocBackdrop" hidden></div>
