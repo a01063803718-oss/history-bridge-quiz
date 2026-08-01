@@ -3954,6 +3954,219 @@ body.countries-bg .chapter2-cloud {
   outline-offset:-5px !important;
 }
 
+
+
+/* FINAL VISIBLE BORDER + CARD OVERRIDE
+   Layout and dimensions remain unchanged; only border/skin treatment is altered. */
+
+/* Chapter 1: unmistakable Greek/Roman border skin, no layout change. */
+body.chapter-1-current .card,
+body.chapter-1-current .panel,
+body.chapter-1-current .content-card,
+body.chapter-1-current .teacher-content-card,
+body.chapter-1-current .keyword-card,
+body.chapter-1-current .shop-item,
+body.chapter-1-current .wallet-item,
+body.chapter-1-current .owned-item,
+body.chapter-1-current .quiz-card,
+body.chapter-1-current .results-card,
+body.chapter-1-current .modal-card {
+  border: 2px solid #c5a458 !important;
+  outline: 1px solid rgba(255,255,255,.88) !important;
+  outline-offset: -6px !important;
+  box-shadow:
+    inset 0 0 0 3px rgba(215,188,119,.18),
+    0 8px 20px rgba(99,76,31,.10) !important;
+}
+body.chapter-1-current .card::before,
+body.chapter-1-current .panel::before,
+body.chapter-1-current .content-card::before,
+body.chapter-1-current .teacher-content-card::before,
+body.chapter-1-current .keyword-card::before,
+body.chapter-1-current .shop-item::before,
+body.chapter-1-current .wallet-item::before,
+body.chapter-1-current .owned-item::before,
+body.chapter-1-current .quiz-card::before,
+body.chapter-1-current .results-card::before,
+body.chapter-1-current .modal-card::before {
+  content:"" !important;
+  position:absolute !important;
+  inset:8px !important;
+  border:1px solid rgba(173,132,52,.55) !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+}
+body.chapter-1-current .card::after,
+body.chapter-1-current .panel::after,
+body.chapter-1-current .content-card::after,
+body.chapter-1-current .teacher-content-card::after,
+body.chapter-1-current .keyword-card::after,
+body.chapter-1-current .shop-item::after,
+body.chapter-1-current .wallet-item::after,
+body.chapter-1-current .owned-item::after,
+body.chapter-1-current .quiz-card::after,
+body.chapter-1-current .results-card::after,
+body.chapter-1-current .modal-card::after {
+  content:"" !important;
+  position:absolute !important;
+  inset:4px !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+  background:
+    radial-gradient(circle at 0 0, transparent 0 7px, #b58b35 8px 9px, transparent 10px) top left / 26px 26px no-repeat,
+    radial-gradient(circle at 100% 0, transparent 0 7px, #b58b35 8px 9px, transparent 10px) top right / 26px 26px no-repeat,
+    radial-gradient(circle at 0 100%, transparent 0 7px, #b58b35 8px 9px, transparent 10px) bottom left / 26px 26px no-repeat,
+    radial-gradient(circle at 100% 100%, transparent 0 7px, #b58b35 8px 9px, transparent 10px) bottom right / 26px 26px no-repeat !important;
+}
+body.chapter-1-current button,
+body.chapter-1-current .btn,
+body.chapter-1-current .answer,
+body.chapter-1-current .teacher-answer,
+body.chapter-1-current .toc-item {
+  border:1.5px solid #c1a05a !important;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.65), inset 0 0 0 4px rgba(194,156,77,.10) !important;
+}
+
+/* Chapter 2: approved antique-document double border, same structure. */
+body.chapter-2-bg .card,
+body.countries-bg .card,
+body.chapter-2-bg .panel,
+body.countries-bg .panel,
+body.chapter-2-bg .content-card,
+body.countries-bg .content-card,
+body.chapter-2-bg .teacher-content-card,
+body.countries-bg .teacher-content-card,
+body.chapter-2-bg .keyword-card,
+body.countries-bg .keyword-card,
+body.chapter-2-bg .shop-item,
+body.countries-bg .shop-item,
+body.chapter-2-bg .wallet-item,
+body.countries-bg .wallet-item,
+body.chapter-2-bg .owned-item,
+body.countries-bg .owned-item,
+body.chapter-2-bg .quiz-card,
+body.countries-bg .quiz-card,
+body.chapter-2-bg .results-card,
+body.countries-bg .results-card,
+body.chapter-2-bg .modal-card,
+body.countries-bg .modal-card {
+  position:relative !important;
+  border:2px solid #8e6840 !important;
+  outline:1px solid rgba(255,248,228,.90) !important;
+  outline-offset:-6px !important;
+  box-shadow:inset 0 0 0 3px rgba(137,94,46,.12), 0 8px 20px rgba(73,47,23,.10) !important;
+}
+body.chapter-2-bg .card::before,
+body.countries-bg .card::before,
+body.chapter-2-bg .panel::before,
+body.countries-bg .panel::before,
+body.chapter-2-bg .content-card::before,
+body.countries-bg .content-card::before,
+body.chapter-2-bg .teacher-content-card::before,
+body.countries-bg .teacher-content-card::before,
+body.chapter-2-bg .keyword-card::before,
+body.countries-bg .keyword-card::before,
+body.chapter-2-bg .shop-item::before,
+body.countries-bg .shop-item::before,
+body.chapter-2-bg .wallet-item::before,
+body.countries-bg .wallet-item::before,
+body.chapter-2-bg .owned-item::before,
+body.countries-bg .owned-item::before,
+body.chapter-2-bg .quiz-card::before,
+body.countries-bg .quiz-card::before,
+body.chapter-2-bg .results-card::before,
+body.countries-bg .results-card::before,
+body.chapter-2-bg .modal-card::before,
+body.countries-bg .modal-card::before {
+  content:"" !important;
+  position:absolute !important;
+  inset:8px !important;
+  border:1px solid rgba(119,82,44,.48) !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+}
+body.chapter-2-bg .card::after,
+body.countries-bg .card::after,
+body.chapter-2-bg .panel::after,
+body.countries-bg .panel::after,
+body.chapter-2-bg .content-card::after,
+body.countries-bg .content-card::after,
+body.chapter-2-bg .teacher-content-card::after,
+body.countries-bg .teacher-content-card::after,
+body.chapter-2-bg .keyword-card::after,
+body.countries-bg .keyword-card::after,
+body.chapter-2-bg .shop-item::after,
+body.countries-bg .shop-item::after,
+body.chapter-2-bg .wallet-item::after,
+body.countries-bg .wallet-item::after,
+body.chapter-2-bg .owned-item::after,
+body.countries-bg .owned-item::after,
+body.chapter-2-bg .quiz-card::after,
+body.countries-bg .quiz-card::after,
+body.chapter-2-bg .results-card::after,
+body.countries-bg .results-card::after,
+body.chapter-2-bg .modal-card::after,
+body.countries-bg .modal-card::after {
+  content:"" !important;
+  position:absolute !important;
+  inset:5px !important;
+  pointer-events:none !important;
+  z-index:0 !important;
+  background:
+    linear-gradient(#805a32,#805a32) left top/22px 1px no-repeat,
+    linear-gradient(#805a32,#805a32) left top/1px 22px no-repeat,
+    linear-gradient(#805a32,#805a32) right top/22px 1px no-repeat,
+    linear-gradient(#805a32,#805a32) right top/1px 22px no-repeat,
+    linear-gradient(#805a32,#805a32) left bottom/22px 1px no-repeat,
+    linear-gradient(#805a32,#805a32) left bottom/1px 22px no-repeat,
+    linear-gradient(#805a32,#805a32) right bottom/22px 1px no-repeat,
+    linear-gradient(#805a32,#805a32) right bottom/1px 22px no-repeat !important;
+}
+
+/* Approved Chapter 2 detail-card shape: one outer frame, one large image frame, no acquisition date. */
+.history2-item-card {
+  width:min(94vw,520px) !important;
+  padding:20px 20px 24px !important;
+  border-radius:24px !important;
+  background:linear-gradient(180deg,#fbf4e3 0%,#f2e4c7 100%) !important;
+  border:2px solid #8f6840 !important;
+  outline:1px solid #fff9ea !important;
+  outline-offset:-7px !important;
+  box-shadow:0 0 0 4px #e8d4ae, 0 0 0 6px rgba(111,76,39,.62), 0 26px 58px rgba(32,23,15,.36) !important;
+}
+.history2-item-card .item-card-art {
+  margin:10px 12px 18px !important;
+  padding:10px !important;
+  min-height:0 !important;
+  border-radius:11px !important;
+  border:2px solid #9a7445 !important;
+  outline:1px solid rgba(154,116,69,.35) !important;
+  outline-offset:-6px !important;
+  background:#f8f0df !important;
+  box-shadow:0 8px 18px rgba(91,62,28,.14) !important;
+}
+.history2-item-card .item-card-icon.has-art {
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:4/3 !important;
+  overflow:hidden !important;
+  border-radius:6px !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-icon.has-art img {
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border-radius:5px !important;
+}
+.history2-item-card .history2-acquired-date,
+.history2-acquired-date { display:none !important; }
+
 </style>
 
 <style id="v70-final-polish">
