@@ -3722,7 +3722,7 @@ body.countries-bg .chapter2-cloud {
 
 
 
-/* v67 — Chapter 2 item cards use the approved museum-card skin; content/functionality preserved. */
+/* v67 legacy skin (superseded by v69 corrective override below). */
 .history2-item-card {
   width: min(94vw, 470px) !important;
   padding: 20px 20px 22px !important;
@@ -3777,7 +3777,292 @@ body.countries-bg .chapter2-cloud {
   border:2px solid #5b326d !important; outline:1px solid rgba(255,255,255,.34) !important; outline-offset:-5px !important; box-shadow:0 5px 12px rgba(73,43,87,.24) !important;
 }
 .history2-item-card .item-card-number { display:none !important; }
+
+
+/* v69 — FIX: Chapter 2 item-card layout matches the approved reference.
+   No structural change: remove stacked/nested frames and keep one decorated outer frame + one image frame. */
+.history2-item-card {
+  position: relative !important;
+  width: min(94vw, 520px) !important;
+  max-height: 92vh !important;
+  overflow-y: auto !important;
+  padding: 18px 18px 22px !important;
+  border-radius: 24px !important;
+  color: #332a21 !important;
+  background:
+    radial-gradient(circle at 20% 5%, rgba(255,255,255,.58), transparent 30%),
+    linear-gradient(180deg, #fbf3df 0%, #f2e5c9 54%, #ead8b8 100%) !important;
+  border: 2px solid #9a7445 !important;
+  outline: 1px solid rgba(255,255,255,.92) !important;
+  outline-offset: -7px !important;
+  box-shadow:
+    0 0 0 3px #efe1c5,
+    0 0 0 5px rgba(132,93,48,.55),
+    0 24px 54px rgba(29,23,17,.36) !important;
+}
+.history2-item-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 11px !important;
+  pointer-events: none !important;
+  border-radius: 17px !important;
+  border: 1px solid rgba(123,87,45,.44) !important;
+  background:
+    linear-gradient(#8b6233,#8b6233) left 9px top 9px/22px 1px no-repeat,
+    linear-gradient(#8b6233,#8b6233) left 9px top 9px/1px 22px no-repeat,
+    linear-gradient(#8b6233,#8b6233) right 9px top 9px/22px 1px no-repeat,
+    linear-gradient(#8b6233,#8b6233) right 9px top 9px/1px 22px no-repeat,
+    linear-gradient(#8b6233,#8b6233) left 9px bottom 9px/22px 1px no-repeat,
+    linear-gradient(#8b6233,#8b6233) left 9px bottom 9px/1px 22px no-repeat,
+    linear-gradient(#8b6233,#8b6233) right 9px bottom 9px/22px 1px no-repeat,
+    linear-gradient(#8b6233,#8b6233) right 9px bottom 9px/1px 22px no-repeat !important;
+  box-shadow: none !important;
+}
+.history2-item-card::after { display:none !important; content:none !important; }
+.history2-item-card .item-card-topline {
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 10px 8px !important;
+  padding: 0 !important;
+  min-height: 28px !important;
+}
+.history2-item-card .item-card-art {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 7px 10px 14px !important;
+  padding: 10px !important;
+  border-radius: 9px !important;
+  overflow: hidden !important;
+  background: #f7efdc !important;
+  border: 1.5px solid #9a7445 !important;
+  outline: 1px solid rgba(154,116,69,.35) !important;
+  outline-offset: -6px !important;
+  box-shadow: 0 7px 16px rgba(91,62,28,.14) !important;
+}
+.history2-item-card .item-card-art::before,
+.history2-item-card .item-card-art::after {
+  content:"" !important;
+  position:absolute !important;
+  width:20px !important;
+  height:20px !important;
+  z-index:3 !important;
+  pointer-events:none !important;
+}
+.history2-item-card .item-card-art::before {
+  left:6px !important; top:6px !important;
+  border-left:1.5px solid #8d6539 !important;
+  border-top:1.5px solid #8d6539 !important;
+  border-radius:8px 0 0 0 !important;
+}
+.history2-item-card .item-card-art::after {
+  right:6px !important; bottom:6px !important;
+  border-right:1.5px solid #8d6539 !important;
+  border-bottom:1.5px solid #8d6539 !important;
+  border-radius:0 0 8px 0 !important;
+}
+.history2-item-card .item-card-glow { display:none !important; }
+.history2-item-card .item-card-icon.has-art {
+  display:block !important;
+  width:100% !important;
+  max-width:none !important;
+  height:auto !important;
+  aspect-ratio: 4 / 3 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  outline:0 !important;
+  border-radius:5px !important;
+  background:transparent !important;
+  overflow:hidden !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-icon.has-art::before,
+.history2-item-card .item-card-icon.has-art::after { display:none !important; content:none !important; }
+.history2-item-card .item-card-icon.has-art .souvenir-art,
+.history2-item-card .item-card-icon.has-art .souvenir-art-card {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-icon.has-art img {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border:0 !important;
+  outline:0 !important;
+  border-radius:4px !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-name-wrap {
+  position:relative !important;
+  z-index:2 !important;
+  margin: 4px 18px 14px !important;
+  padding:0 !important;
+  text-align:center !important;
+  border:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-name-wrap h2 {
+  margin:4px 0 0 !important;
+  font-size: clamp(25px, 7vw, 34px) !important;
+  line-height:1.18 !important;
+  color:#34291f !important;
+}
+.history2-item-card .item-card-rarity-ko { color:#7b6d5c !important; }
+.history2-card-summary { margin:8px 0 0 !important; color:#685b4b !important; }
+.history2-acquired-date { margin:12px 0 0 !important; color:#675844 !important; }
+.history2-item-card .item-card-story {
+  position:relative !important;
+  z-index:2 !important;
+  margin: 0 10px 14px !important;
+  padding: 16px 17px !important;
+  border-radius: 12px !important;
+  background: rgba(255,250,239,.72) !important;
+  border: 1px solid rgba(127,90,47,.45) !important;
+  outline: 1px solid rgba(127,90,47,.22) !important;
+  outline-offset: -5px !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-story::before,
+.history2-item-card .item-card-story::after { display:none !important; content:none !important; }
+.history2-item-card .item-card-apply-wrap {
+  position:relative !important;
+  z-index:2 !important;
+  margin: 0 10px !important;
+  padding:0 !important;
+  border:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.history2-item-card .item-card-apply-btn {
+  border-radius: 9px !important;
+  border: 2px solid #5c326e !important;
+  outline: 1px solid rgba(255,255,255,.35) !important;
+  outline-offset:-5px !important;
+}
+
 </style>
+
+<style id="v70-final-polish">
+/* v70: preserve every existing layout; change only borders/skin details. */
+
+/* Chapter 2 teacher power-up uses the Chapter 2 river/comb-pattern pottery artwork. */
+.chapter-2-teacher-quiz .teacher-quiz-art {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(244,231,198,.12)),
+    url("chapter2-combpottery-bg.webp") center center / cover no-repeat !important;
+  border-bottom-color: rgba(121,88,46,.34) !important;
+}
+
+/* Acquired-date line is removed everywhere, including stale cached markup. */
+.history2-acquired-date { display:none !important; }
+
+/* Chapter 1: same geometry, Greek/Roman border treatment only. */
+body.chapter-1-current .card,
+body.chapter-1-current .panel,
+body.chapter-1-current .content-card,
+body.chapter-1-current .teacher-content-card,
+body.chapter-1-current .keyword-card,
+body.chapter-1-current .shop-item,
+body.chapter-1-current .souvenir-item,
+body.chapter-1-current .quiz-card,
+body.chapter-1-current .results-card,
+body.chapter-1-current .modal-card,
+body.chapter-1-current .myth-item-card:not(.history2-item-card) {
+  position: relative;
+  border-color: rgba(181,145,68,.58) !important;
+  box-shadow:
+    0 10px 24px rgba(91,72,34,.08),
+    inset 0 0 0 1px rgba(255,255,255,.72),
+    inset 0 0 0 3px rgba(198,164,91,.16) !important;
+}
+
+body.chapter-1-current .card::before,
+body.chapter-1-current .panel::before,
+body.chapter-1-current .content-card::before,
+body.chapter-1-current .teacher-content-card::before,
+body.chapter-1-current .keyword-card::before,
+body.chapter-1-current .shop-item::before,
+body.chapter-1-current .souvenir-item::before,
+body.chapter-1-current .quiz-card::before,
+body.chapter-1-current .results-card::before,
+body.chapter-1-current .modal-card::before,
+body.chapter-1-current .myth-item-card:not(.history2-item-card)::before {
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(182,145,69,.36);
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:0;
+}
+
+body.chapter-1-current .card::after,
+body.chapter-1-current .panel::after,
+body.chapter-1-current .content-card::after,
+body.chapter-1-current .teacher-content-card::after,
+body.chapter-1-current .keyword-card::after,
+body.chapter-1-current .shop-item::after,
+body.chapter-1-current .souvenir-item::after,
+body.chapter-1-current .quiz-card::after,
+body.chapter-1-current .results-card::after,
+body.chapter-1-current .modal-card::after,
+body.chapter-1-current .myth-item-card:not(.history2-item-card)::after {
+  content:"";
+  position:absolute;
+  inset:7px;
+  pointer-events:none;
+  z-index:0;
+  background:
+    conic-gradient(from 180deg at 100% 100%, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) top left / 18px 18px no-repeat,
+    conic-gradient(from 270deg at 0 100%, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) top right / 18px 18px no-repeat,
+    conic-gradient(from 90deg at 100% 0, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) bottom left / 18px 18px no-repeat,
+    conic-gradient(from 0deg at 0 0, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) bottom right / 18px 18px no-repeat;
+}
+
+/* Keep all actual content above the decorative border overlay. */
+body.chapter-1-current .card > *,
+body.chapter-1-current .panel > *,
+body.chapter-1-current .content-card > *,
+body.chapter-1-current .teacher-content-card > *,
+body.chapter-1-current .keyword-card > *,
+body.chapter-1-current .shop-item > *,
+body.chapter-1-current .souvenir-item > *,
+body.chapter-1-current .quiz-card > *,
+body.chapter-1-current .results-card > *,
+body.chapter-1-current .modal-card > *,
+body.chapter-1-current .myth-item-card:not(.history2-item-card) > * {
+  position:relative;
+  z-index:1;
+}
+
+/* Buttons: same dimensions and positions, only a restrained Greek-key-like double edge. */
+body.chapter-1-current button,
+body.chapter-1-current .btn,
+body.chapter-1-current .answer,
+body.chapter-1-current .teacher-answer,
+body.chapter-1-current .toc-item {
+  border-color: rgba(177,140,61,.52) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.56),
+    inset 0 0 0 3px rgba(192,155,76,.10),
+    0 4px 10px rgba(87,67,29,.06) !important;
+}
+</style>
+
 </head>
 <body>
   <div class="toc-backdrop" id="tocBackdrop" hidden></div>
@@ -6145,6 +6430,7 @@ function applySouvenirTheme() {
   const countriesActive = chapterNo === 2 && equippedItem && equippedItem.id === 'countries-bg';
   const combActive = chapterNo === 2 && !countriesActive;
 
+  document.body.classList.toggle('chapter-1-current', chapterNo === 1);
   document.body.classList.toggle('souvenir-temple-bg', !!templeActive);
   document.body.classList.toggle('chapter-2-bg', !!combActive);
   document.body.classList.toggle('countries-bg', !!countriesActive);
@@ -6380,7 +6666,7 @@ function showMythItemCard(item) {
       <div class="item-card-name-wrap">
         <p class="item-card-rarity-ko">${meta.rarityKo}</p>
         <h2>${item.name}</h2>
-        ${item.collection === 'history2' ? `<p class="history2-card-summary">${item.desc}</p><p class="history2-acquired-date">획득일&nbsp;&nbsp;2025.05.12</p>` : ''}
+        ${item.collection === 'history2' ? `<p class="history2-card-summary">${item.desc}</p>` : ''}
       </div>
 
       ${item.collection === 'history2' ? '' : `<div class="item-card-stats">
@@ -6495,7 +6781,7 @@ function showTeacherQuizModal() {
   const modal = document.createElement('div');
   modal.className = 'modal-backdrop';
   modal.innerHTML = `
-    <div class="modal-card teacher-quiz-modal" role="dialog" aria-modal="true" aria-label="선생님 퀴즈">
+    <div class="modal-card teacher-quiz-modal chapter-${selectedChapterNo || 1}-teacher-quiz" role="dialog" aria-modal="true" aria-label="선생님 퀴즈">
       <div class="teacher-quiz-art" aria-hidden="true"></div>
       <div class="teacher-quiz-body">
         <p class="eyebrow">중간 보너스</p>
