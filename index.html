@@ -3688,6 +3688,42 @@ body.countries-bg .history2-item-card .item-card-apply-btn {
 </style>
 
 
+<style id="chapter3-shop-storage-update">
+/* Chapter 3 shop + collapsible storage update */
+.shop-storage-toggle {
+  margin-top: 12px !important;
+}
+.shop-storage-cover {
+  width: 104px !important;
+  height: 104px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 36% 28%, rgba(255,255,255,.82), transparent 30%),
+    linear-gradient(145deg, #f7d98e, #c8933c) !important;
+  border: 1px solid rgba(113,88,36,.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 10px 22px rgba(101,73,24,.12) !important;
+  font-size: 48px !important;
+  line-height: 1 !important;
+  overflow: hidden !important;
+}
+.shop-storage-panel {
+  margin-top: 13px !important;
+  padding-top: 12px !important;
+  border-top: 1px dashed rgba(123,84,16,.24) !important;
+}
+.shop-storage-panel[hidden] { display: none !important; }
+body.chapter-3-bg .shop-hero-card,
+body.chapter-3-bg .shop-item,
+body.chapter-3-bg .shop-owned-card {
+  border-color: rgba(112, 73, 49, .24) !important;
+}
+@media (max-width: 520px) {
+  .shop-storage-cover { width: 90px !important; height: 90px !important; font-size: 42px !important; }
+}
+</style>
+
 <style id="chapter-fixed-slot-system">
 /* Fixed content slots v1: future chapter media updates only need predictable files. */
 .memory-album-empty {
@@ -3710,6 +3746,28 @@ body.chapter-3-bg .hero-art {
   background:
     linear-gradient(rgba(255,255,255,.05), rgba(255,255,255,.05)),
     url("chapter3-seodaemun-main.webp") center center / cover no-repeat !important;
+}
+
+/* Chapter 3 bee collection panel: reuse the existing Chapter 3 main image. */
+body.chapter-3-bg .bee-panel::before {
+  background:
+    linear-gradient(180deg, rgba(255,250,240,.70), rgba(246,236,220,.78)),
+    url("chapter3-seodaemun-main.webp") center center / cover no-repeat !important;
+}
+body.chapter-3-bg .bee-panel {
+  background: #f8f1e8 !important;
+  border-color: rgba(112, 73, 49, .24) !important;
+}
+body.chapter-3-bg .bee-panel::before {
+  background:
+    linear-gradient(180deg, rgba(255, 249, 242, .74), rgba(244, 234, 224, .88)),
+    url("./chapter3-seodaemun-main.webp") center center / cover no-repeat !important;
+  opacity: .80;
+  filter: saturate(.82) contrast(.96);
+}
+body.chapter-3-bg .bee-panel .bee-title,
+body.chapter-3-bg .bee-panel strong {
+  color: #6f482c !important;
 }
 
 </style>
@@ -4210,10 +4268,23 @@ body.chapter-3-bg .hero-art {
       <h3>상품</h3>
       <div class="shop-list" id="shopList"></div>
     </section>
-    <section class="card">
+    <section class="card shop-owned-card">
       <h3>내 보관함</h3>
-      <p class="muted">내 보관함에는 지금까지 구매한 모든 챕터의 기념품이 함께 모입니다. 배경권은 해당 챕터에서만 적용됩니다.</p>
-      <div class="owned-list" id="ownedList"></div>
+      <p class="muted">보관상자를 누르면 지금까지 구매한 모든 챕터의 기념품 목록이 펼쳐집니다.</p>
+      <button type="button" class="history-album-launch shop-storage-toggle" id="shopStorageToggle" aria-expanded="false" aria-controls="shopStoragePanel">
+        <span class="shop-storage-cover" aria-hidden="true">📦</span>
+        <span class="history-album-copy">
+          <span class="history-album-kicker">MY COLLECTION</span>
+          <strong>보관상자</strong>
+          <small>상자를 누르면 구매한 기념품 리스트가 펼쳐집니다.</small>
+        </span>
+        <span class="history-album-count" id="shopStorageCount">0개</span>
+        <span class="history-album-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div class="shop-storage-panel" id="shopStoragePanel" hidden>
+        <p class="muted">배경권은 해당 챕터에서만 적용됩니다.</p>
+        <div class="owned-list" id="ownedList"></div>
+      </div>
     </section>
   </template>
 
@@ -5586,7 +5657,12 @@ const SOUVENIRS = [
   { id: 'jinhan-seed-card', icon: '🌱', name: '진한 씨앗 카드', price: 2, desc: '작은 씨앗이 자라 큰 나무가 되듯, 진한에서 신라로 이어지는 성장을 표현했습니다.', effect: '작은 연맹체가 훗날 큰 국가로 발전할 수 있음을 보여 줍니다.', type: 'collectible', collection: 'history2', rarityKo: '수집 아이템', symbol: '진한 · 동남부 · 신라', subject: '진한' },
   { id: 'samhan-map-card', icon: '🗺️', name: '삼한 지도 카드', price: 4, desc: '마한·변한·진한을 한 장의 지도로 묶어 비교하도록 만든 삼한 종합 카드입니다.', effect: '서남부의 마한, 철의 변한, 신라와 이어지는 진한을 나란히 구분하게 해 줍니다.', type: 'collectible', collection: 'history2', rarityKo: '영웅 아이템', symbol: '마한 · 변한 · 진한', subject: '삼한' },
   { id: 'combpottery-bg', icon: '🏺', name: '빗살무늬토기 배경권', price: 5, desc: '강가 마을과 모래에 박힌 빗살무늬토기를 배경으로 바꾸는 신석기 분위기권입니다.', effect: '적용하면 2챕터 화면이 선사 마을 배경으로 전환됩니다.', type: 'theme', collection: 'history2', rarityKo: '특별 아이템', symbol: '신석기 · 토기 · 강가 마을', subject: '빗살무늬토기', themeClass: 'chapter-2-bg' },
-  { id: 'countries-bg', icon: '🗺️', name: '여러 나라 지도 배경권', price: 6, desc: '기원전 1세기 전후 부여·고구려·옥저·동예·마한·진한·변한의 위치를 한눈에 살펴볼 수 있는 지도입니다.', effect: '적용하면 지도 위로 구름이 떠가고 동해와 황해에 물결이 흐르는 배경이 펼쳐집니다.', type: 'theme', collection: 'history2', rarityKo: '특별 아이템', symbol: '부여 · 고구려 · 옥저 · 동예 · 삼한', subject: '기원전 1세기 전후 여러 나라의 위치', themeClass: 'countries-bg' }
+  { id: 'countries-bg', icon: '🗺️', name: '여러 나라 지도 배경권', price: 6, desc: '기원전 1세기 전후 부여·고구려·옥저·동예·마한·진한·변한의 위치를 한눈에 살펴볼 수 있는 지도입니다.', effect: '적용하면 지도 위로 구름이 떠가고 동해와 황해에 물결이 흐르는 배경이 펼쳐집니다.', type: 'theme', collection: 'history2', rarityKo: '특별 아이템', symbol: '부여 · 고구려 · 옥저 · 동예 · 삼한', subject: '기원전 1세기 전후 여러 나라의 위치', themeClass: 'countries-bg' },
+  { id: 'ch3-taegeukgi-badge', icon: '🇰🇷', name: '태극기 기억 배지', price: 1, desc: '챕터 3의 독립운동 이야기를 기억하기 위한 태극기 배지입니다.', effect: '일제강점기와 독립운동의 핵심 주제를 보관함에서 다시 확인할 수 있습니다.', type: 'collectible', collection: 'history3', rarityKo: '기본 아이템', symbol: '독립운동 · 기억', subject: '독립운동' },
+  { id: 'ch3-seodaemun-postcard', icon: '🏛️', name: '서대문형무소 탐방 엽서', price: 2, desc: '서대문형무소 역사 탐방을 한 장의 엽서처럼 기억하는 수집 아이템입니다.', effect: '챕터 3의 장소와 역사적 기억을 연결해 줍니다.', type: 'collectible', collection: 'history3', rarityKo: '수집 아이템', symbol: '서대문형무소 · 역사 탐방', subject: '서대문형무소' },
+  { id: 'ch3-independence-note', icon: '📖', name: '독립운동 기록 수첩', price: 2, desc: '독립운동과 관련해 배운 내용을 기록한다는 의미의 역사 수첩입니다.', effect: '인물·사건·장소를 하나의 기록으로 정리하는 챕터 3 수집품입니다.', type: 'collectible', collection: 'history3', rarityKo: '수집 아이템', symbol: '기록 · 독립운동 · 역사', subject: '일제강점기' },
+  { id: 'ch3-memory-bookmark', icon: '🔖', name: '역사를 기억하는 책갈피', price: 3, desc: '서대문형무소와 독립운동의 역사를 잊지 않고 기억한다는 뜻을 담은 책갈피입니다.', effect: '공부한 내용을 다시 찾아보는 역사 기억 아이템으로 보관됩니다.', type: 'collectible', collection: 'history3', rarityKo: '희귀 아이템', symbol: '기억 · 학습 · 역사', subject: '역사 기억' },
+  { id: 'ch3-freedom-star', icon: '⭐', name: '독립의 별 카드', price: 4, desc: '자유와 독립을 향한 마음을 별 모양 카드로 표현한 챕터 3 특별 수집품입니다.', effect: '챕터 3의 독립운동 주제를 대표하는 특별 카드로 보관됩니다.', type: 'collectible', collection: 'history3', rarityKo: '영웅 아이템', symbol: '자유 · 독립 · 기억', subject: '독립운동' }
 ];
 const TEACHER_QUIZ_QUESTIONS = [
   { teacher: '에블린', question: '비너스의 자세는 무엇인가요?', answer: '오른손은 가슴에 올리고 왼손은 흘러내리는 치마를 잡는 자세', options: ['오른손은 가슴에 올리고 왼손은 흘러내리는 치마를 잡는 자세','두 손으로 방패를 들고 서 있는 자세','활과 화살을 들고 달리는 자세','월계관을 쓰고 책을 든 자세'] },
@@ -6448,12 +6524,12 @@ function getMythItemCardMeta(item) {
     }
   };
 
-  if (item.collection === 'history2') {
+  if (item.collection && /^history\d+$/.test(item.collection)) {
     return {
       rarity: item.type === 'theme' ? 'SPECIAL' : (item.price >= 4 ? 'EPIC' : item.price >= 3 ? 'RARE' : 'COLLECTIBLE'),
       rarityKo: item.rarityKo || (item.type === 'theme' ? '특별 아이템' : '수집 아이템'),
-      symbol: item.symbol || '선사 · 국가 · 기억',
-      deity: item.subject || item.name.replace(/ 카드| 배지| 스티커| 키링| 배경권/g, ''),
+      symbol: item.symbol || '역사 · 기억 · 수집',
+      deity: item.subject || item.name.replace(/ 카드| 배지| 스티커| 키링| 배경권| 엽서| 수첩| 책갈피/g, ''),
       subjectLabel: '관련 주제',
       series: 'HISTORY BRIDGE · HISTORY ITEM',
       story: item.desc,
@@ -6477,6 +6553,7 @@ function getMythItemCardMeta(item) {
 
 function showMythItemCard(item) {
   const meta = getMythItemCardMeta(item);
+  const isHistoryCollection = !!(item.collection && /^history\d+$/.test(item.collection));
   const backdrop = document.createElement('div');
   const sourceView = document.querySelector('#shopList') ? 'shop' : (document.querySelector('#homeWallet') ? 'home' : '');
   backdrop.className = 'item-card-backdrop';
@@ -6488,7 +6565,7 @@ function showMythItemCard(item) {
   const isEquipped = isThemeEquipped(item, themeChapterNo) && isThemeForCurrentChapter;
 
   backdrop.innerHTML = `
-    <article class="myth-item-card ${item.collection === 'history2' ? 'history2-item-card' : ''}" role="dialog" aria-modal="true" aria-label="${item.name} 상세 카드">
+    <article class="myth-item-card ${isHistoryCollection ? 'history2-item-card' : ''}" role="dialog" aria-modal="true" aria-label="${item.name} 상세 카드">
       <button class="item-card-close" type="button" aria-label="닫기">×</button>
 
       <div class="item-card-topline">
@@ -6504,20 +6581,20 @@ function showMythItemCard(item) {
       <div class="item-card-name-wrap">
         <p class="item-card-rarity-ko">${meta.rarityKo}</p>
         <h2>${item.name}</h2>
-        ${item.collection === 'history2' ? `<p class="history2-card-summary">${item.desc}</p>` : ''}
+        ${isHistoryCollection ? `<p class="history2-card-summary">${item.desc}</p>` : ''}
       </div>
 
-      ${item.collection === 'history2' ? '' : `<div class="item-card-stats">
+      ${isHistoryCollection ? '' : `<div class="item-card-stats">
         <div><span>상징</span><strong>${meta.symbol}</strong></div>
         <div><span>${meta.subjectLabel || "관련 신"}</span><strong>${meta.deity}</strong></div>
       </div>`}
 
       <section class="item-card-story">
-        <h3>${item.collection === 'history2' ? '역사 이야기' : '아이템 이야기'}</h3>
+        <h3>${isHistoryCollection ? '역사 이야기' : '아이템 이야기'}</h3>
         <p>${meta.story}</p>
       </section>
 
-      ${item.collection === 'history2' ? '' : `<section class="item-card-ability">
+      ${isHistoryCollection ? '' : `<section class="item-card-ability">
         <span class="item-card-ability-star">✦</span>
         <div>
           <h3>${meta.abilityTitle}</h3>
@@ -7046,6 +7123,10 @@ function renderShop() {
     if (shopTitle) shopTitle.textContent = '보석으로 선사시대와 여러 나라 기념품을 모아 보세요.';
     if (shopDesc) shopDesc.textContent = '2챕터 퀴즈로 모은 보석을 사용해 선사시대 유물, 고조선, 여러 나라의 발전과 연결된 기념품을 모을 수 있습니다.';
     if (productTitle) productTitle.textContent = '2챕터 상품';
+  } else if (selectedChapterNo === 3) {
+    if (shopTitle) shopTitle.textContent = '보석으로 일제강점기·서대문형무소 기념품을 모아 보세요.';
+    if (shopDesc) shopDesc.textContent = '3챕터에서 배운 독립운동과 서대문형무소의 역사를 기억할 수 있는 기념품을 모을 수 있습니다.';
+    if (productTitle) productTitle.textContent = '3챕터 상품';
   } else {
     if (shopTitle) shopTitle.textContent = '보석으로 그리스·로마 기념품을 모아 보세요.';
     if (shopDesc) shopDesc.textContent = '선생님 퀴즈 정답과 벌 10마리 변환으로 얻은 보석을 사용할 수 있습니다. 1챕터 신화와 박물관 내용에 연결된 기념품을 모아 보세요.';
@@ -7130,8 +7211,22 @@ function renderShop() {
     });
   });
 
+  const shopStorageToggle = document.querySelector('#shopStorageToggle');
+  const shopStoragePanel = document.querySelector('#shopStoragePanel');
+  const shopStorageCount = document.querySelector('#shopStorageCount');
   const ownedList = document.querySelector('#ownedList');
   const ownedItems = getOwnedSouvenirs();
+
+  if (shopStorageCount) shopStorageCount.textContent = `${ownedItems.length}개`;
+  if (shopStorageToggle && shopStoragePanel) {
+    shopStorageToggle.setAttribute('aria-expanded', 'false');
+    shopStoragePanel.hidden = true;
+    shopStorageToggle.addEventListener('click', () => {
+      const willOpen = shopStoragePanel.hidden;
+      shopStoragePanel.hidden = !willOpen;
+      shopStorageToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  }
   if (!ownedItems.length) {
     ownedList.innerHTML = '<p class="empty">아직 구매한 기념품이 없습니다. 퀴즈와 선생님 퀴즈로 보석을 모아 보세요.</p>';
   } else {
