@@ -2886,80 +2886,6 @@ body.countries-bg .chapter2-cloud {
 
 
 
-/* FINAL VISIBLE BORDER + CARD OVERRIDE
-   Layout and dimensions remain unchanged; only border/skin treatment is altered. */
-
-/* Chapter 1: unmistakable Greek/Roman border skin, no layout change. */
-body.chapter-1-current .card,
-body.chapter-1-current .panel,
-body.chapter-1-current .content-card,
-body.chapter-1-current .teacher-content-card,
-body.chapter-1-current .keyword-card,
-body.chapter-1-current .shop-item,
-body.chapter-1-current .wallet-item,
-body.chapter-1-current .owned-item,
-body.chapter-1-current .quiz-card,
-body.chapter-1-current .results-card,
-body.chapter-1-current .modal-card {
-  border: 2px solid #c5a458 !important;
-  outline: 1px solid rgba(255,255,255,.88) !important;
-  outline-offset: -6px !important;
-  box-shadow:
-    inset 0 0 0 3px rgba(215,188,119,.18),
-    0 8px 20px rgba(99,76,31,.10) !important;
-}
-body.chapter-1-current .card::before,
-body.chapter-1-current .panel::before,
-body.chapter-1-current .content-card::before,
-body.chapter-1-current .teacher-content-card::before,
-body.chapter-1-current .keyword-card::before,
-body.chapter-1-current .shop-item::before,
-body.chapter-1-current .wallet-item::before,
-body.chapter-1-current .owned-item::before,
-body.chapter-1-current .quiz-card::before,
-body.chapter-1-current .results-card::before,
-body.chapter-1-current .modal-card::before {
-  content:"" !important;
-  position:absolute !important;
-  inset:8px !important;
-  border:1px solid rgba(173,132,52,.55) !important;
-  border-radius:inherit !important;
-  pointer-events:none !important;
-  z-index:0 !important;
-}
-body.chapter-1-current .card::after,
-body.chapter-1-current .panel::after,
-body.chapter-1-current .content-card::after,
-body.chapter-1-current .teacher-content-card::after,
-body.chapter-1-current .keyword-card::after,
-body.chapter-1-current .shop-item::after,
-body.chapter-1-current .wallet-item::after,
-body.chapter-1-current .owned-item::after,
-body.chapter-1-current .quiz-card::after,
-body.chapter-1-current .results-card::after,
-body.chapter-1-current .modal-card::after {
-  content:"" !important;
-  position:absolute !important;
-  inset:4px !important;
-  pointer-events:none !important;
-  z-index:0 !important;
-  background:
-    radial-gradient(circle at 0 0, transparent 0 7px, #b58b35 8px 9px, transparent 10px) top left / 26px 26px no-repeat,
-    radial-gradient(circle at 100% 0, transparent 0 7px, #b58b35 8px 9px, transparent 10px) top right / 26px 26px no-repeat,
-    radial-gradient(circle at 0 100%, transparent 0 7px, #b58b35 8px 9px, transparent 10px) bottom left / 26px 26px no-repeat,
-    radial-gradient(circle at 100% 100%, transparent 0 7px, #b58b35 8px 9px, transparent 10px) bottom right / 26px 26px no-repeat !important;
-}
-body.chapter-1-current button,
-body.chapter-1-current .btn,
-body.chapter-1-current .answer,
-body.chapter-1-current .teacher-answer,
-body.chapter-1-current .toc-item {
-  border:1.5px solid #c1a05a !important;
-  box-shadow:inset 0 0 0 2px rgba(255,255,255,.65), inset 0 0 0 4px rgba(194,156,77,.10) !important;
-}
-
-
-
 /* item album toggle: history-book launcher for My Items */
 .home-wallet-card {
   overflow: hidden !important;
@@ -3119,7 +3045,7 @@ body.chapter-1-current .toc-item {
 /* Acquired-date line is removed everywhere, including stale cached markup. */
 .history2-acquired-date { display:none !important; }
 
-/* Chapter 1: same geometry, Greek/Roman border treatment only. */
+/* refined CSS-only box borders: no image mockup, no stacked corner frames. */
 body.chapter-1-current .card,
 body.chapter-1-current .panel,
 body.chapter-1-current .content-card,
@@ -3127,16 +3053,19 @@ body.chapter-1-current .teacher-content-card,
 body.chapter-1-current .keyword-card,
 body.chapter-1-current .shop-item,
 body.chapter-1-current .souvenir-item,
+body.chapter-1-current .wallet-item,
+body.chapter-1-current .owned-item,
 body.chapter-1-current .quiz-card,
 body.chapter-1-current .results-card,
 body.chapter-1-current .modal-card,
 body.chapter-1-current .myth-item-card:not(.history2-item-card) {
-  position: relative;
-  border-color: rgba(181,145,68,.58) !important;
+  position: relative !important;
+  border: 1px solid rgba(173, 132, 53, .36) !important;
+  outline: 0 !important;
+  background-clip: padding-box !important;
   box-shadow:
-    0 10px 24px rgba(91,72,34,.08),
-    inset 0 0 0 1px rgba(255,255,255,.72),
-    inset 0 0 0 3px rgba(198,164,91,.16) !important;
+    0 12px 28px rgba(93, 70, 32, .075),
+    inset 0 1px 0 rgba(255, 255, 255, .78) !important;
 }
 
 body.chapter-1-current .card::before,
@@ -3146,19 +3075,12 @@ body.chapter-1-current .teacher-content-card::before,
 body.chapter-1-current .keyword-card::before,
 body.chapter-1-current .shop-item::before,
 body.chapter-1-current .souvenir-item::before,
+body.chapter-1-current .wallet-item::before,
+body.chapter-1-current .owned-item::before,
 body.chapter-1-current .quiz-card::before,
 body.chapter-1-current .results-card::before,
 body.chapter-1-current .modal-card::before,
-body.chapter-1-current .myth-item-card:not(.history2-item-card)::before {
-  content:"";
-  position:absolute;
-  inset:6px;
-  border:1px solid rgba(182,145,69,.36);
-  border-radius:inherit;
-  pointer-events:none;
-  z-index:0;
-}
-
+body.chapter-1-current .myth-item-card:not(.history2-item-card)::before,
 body.chapter-1-current .card::after,
 body.chapter-1-current .panel::after,
 body.chapter-1-current .content-card::after,
@@ -3166,49 +3088,39 @@ body.chapter-1-current .teacher-content-card::after,
 body.chapter-1-current .keyword-card::after,
 body.chapter-1-current .shop-item::after,
 body.chapter-1-current .souvenir-item::after,
+body.chapter-1-current .wallet-item::after,
+body.chapter-1-current .owned-item::after,
 body.chapter-1-current .quiz-card::after,
 body.chapter-1-current .results-card::after,
 body.chapter-1-current .modal-card::after,
 body.chapter-1-current .myth-item-card:not(.history2-item-card)::after {
-  content:"";
-  position:absolute;
-  inset:7px;
-  pointer-events:none;
-  z-index:0;
-  background:
-    conic-gradient(from 180deg at 100% 100%, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) top left / 18px 18px no-repeat,
-    conic-gradient(from 270deg at 0 100%, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) top right / 18px 18px no-repeat,
-    conic-gradient(from 90deg at 100% 0, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) bottom left / 18px 18px no-repeat,
-    conic-gradient(from 0deg at 0 0, transparent 0 25%, rgba(174,135,55,.65) 0 35%, transparent 0) bottom right / 18px 18px no-repeat;
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
-/* Keep all actual content above the decorative border overlay. */
-body.chapter-1-current .card > *,
-body.chapter-1-current .panel > *,
-body.chapter-1-current .content-card > *,
-body.chapter-1-current .teacher-content-card > *,
-body.chapter-1-current .keyword-card > *,
-body.chapter-1-current .shop-item > *,
-body.chapter-1-current .souvenir-item > *,
-body.chapter-1-current .quiz-card > *,
-body.chapter-1-current .results-card > *,
-body.chapter-1-current .modal-card > *,
-body.chapter-1-current .myth-item-card:not(.history2-item-card) > * {
-  position:relative;
-  z-index:1;
-}
-
-/* Buttons: same dimensions and positions, only a restrained Greek-key-like double edge. */
 body.chapter-1-current button,
 body.chapter-1-current .btn,
 body.chapter-1-current .answer,
 body.chapter-1-current .teacher-answer,
 body.chapter-1-current .toc-item {
-  border-color: rgba(177,140,61,.52) !important;
+  border-color: rgba(173, 132, 53, .34) !important;
+  outline: 0 !important;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.56),
-    inset 0 0 0 3px rgba(192,155,76,.10),
-    0 4px 10px rgba(87,67,29,.06) !important;
+    0 4px 10px rgba(87, 67, 29, .045),
+    inset 0 1px 0 rgba(255,255,255,.72) !important;
+}
+
+/* The two home-page boxes that looked dated in the screenshot. */
+body.chapter-1-current .home-wallet-card,
+body.chapter-1-current .home-wallet-panel,
+body.chapter-1-current .card.compact {
+  border-color: rgba(173, 132, 53, .30) !important;
+  box-shadow:
+    0 10px 24px rgba(93,70,32,.06),
+    inset 0 1px 0 rgba(255,255,255,.82) !important;
 }
 
 
