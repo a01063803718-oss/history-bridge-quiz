@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260923-ch4-donggureung-cards-1';
+const CACHE_NAME = 'hbq-network-first-v20260923-ch4-donggureung-mainimage-2';
 
 const APP_SHELL = [
   './',
@@ -11,6 +11,7 @@ const APP_SHELL = [
   './icon-128.png',
   './icon-192.png',
   './icon-512.png',
+  './chapter4-donggureung-main.png',
   './apple-touch-icon.png'
 ];
 
