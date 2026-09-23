@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260923-ch4-quiz-shop-3';
+const CACHE_NAME = 'hbq-network-first-v20260923-ch4-item-art-4';
 
 const APP_SHELL = [
   './',
@@ -12,6 +12,12 @@ const APP_SHELL = [
   './icon-192.png',
   './icon-512.png',
   './chapter4-donggureung-main.png',
+  './ch4-hongsalmun-badge.png',
+  './ch4-geonwolleung-bookmark.png',
+  './ch4-jeongjagak-postcard.png',
+  './ch4-stone-guardians-card.png',
+  './ch4-officials-set.png',
+  './ch4-donggureung-theme-ticket.png',
   './apple-touch-icon.png'
 ];
 
