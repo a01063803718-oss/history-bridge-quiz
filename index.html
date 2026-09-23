@@ -3051,6 +3051,86 @@ body.countries-bg .chapter2-cloud {
 
 /* HBQ_MEMORY_ALBUM_SELF_CONTAINED_V1_20260923 */
 /* HBQ_MEMORY_ALBUM_RENDER_FIX_20260923 */
+
+/* HBQ_CH3_CROSSWORD_V1_20260923 */
+.ch3-crossword-wrap{display:grid;gap:16px}
+.ch3-crossword-hero h2{margin:4px 0 8px}
+.crossword-board{
+  width:min(100%,680px);margin:0 auto;
+  display:grid;grid-template-columns:repeat(15,minmax(0,1fr));
+  gap:2px;padding:8px;border-radius:18px;
+  background:rgba(30,37,49,.10);
+}
+.cw-cell{
+  aspect-ratio:1/1;position:relative;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:clamp(11px,3vw,22px);
+  user-select:none;
+}
+.cw-cell.block{background:transparent}
+.cw-cell.open{
+  background:#fff;border:1px solid rgba(35,48,74,.24);
+  box-shadow:0 1px 2px rgba(0,0,0,.05)
+}
+.cw-cell.filled{background:#fff8d8}
+.cw-cell .cw-num{
+  position:absolute;left:2px;top:1px;font-size:clamp(6px,1.5vw,10px);
+  line-height:1;color:#52606d;font-weight:800
+}
+.cw-progress{
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+  padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.72)
+}
+.cw-teachers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cw-teacher{
+  background:rgba(255,255,255,.82);border:1px solid rgba(35,48,74,.12);
+  border-radius:18px;padding:14px
+}
+.cw-teacher h3{margin:0 0 9px;font-size:17px}
+.cw-clue-list{display:grid;gap:8px}
+.cw-clue-btn{
+  text-align:left;border:1px solid rgba(35,48,74,.15);background:#fff;
+  border-radius:13px;padding:10px 11px;font-weight:800;cursor:pointer;
+  color:inherit
+}
+.cw-clue-btn.done{background:#eef9ef}
+.cw-clue-btn small{display:block;margin-top:3px;font-weight:600;color:var(--muted)}
+.cw-modal{
+  position:fixed;inset:0;z-index:10000;background:rgba(10,16,28,.58);
+  display:flex;align-items:center;justify-content:center;padding:18px
+}
+.cw-dialog{
+  width:min(100%,520px);max-height:88vh;overflow:auto;
+  background:#fff;border-radius:22px;padding:19px;
+  box-shadow:0 22px 70px rgba(0,0,0,.28)
+}
+.cw-dialog h3{margin:4px 0 8px}
+.cw-question{font-size:17px;line-height:1.55;font-weight:800}
+.cw-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.cw-choice{
+  min-height:52px;border:1px solid rgba(35,48,74,.18);border-radius:14px;
+  background:#f8f9fb;font-weight:900;padding:9px;cursor:pointer;color:inherit
+}
+.cw-choice.correct{background:#edf8ee}
+.cw-choice.wrong{background:#fff0f0}
+.cw-modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+.cw-hint-pop{z-index:10002}
+.cw-hint-box{
+  width:min(92vw,430px);background:#fff7cf;border-radius:22px;padding:20px;
+  box-shadow:0 22px 70px rgba(0,0,0,.34);border:2px solid rgba(186,143,34,.25)
+}
+.cw-hint-box h3{margin-top:0}
+.cw-feedback{min-height:24px;font-weight:800;margin:8px 0}
+.cw-complete{
+  padding:16px;border-radius:18px;background:#eef8ef;text-align:center;
+  font-weight:900
+}
+@media(max-width:620px){
+  .cw-teachers{grid-template-columns:1fr}
+  .cw-choice-grid{grid-template-columns:1fr}
+  .crossword-board{gap:1px;padding:5px}
+}
+
 </style>
 
 <style id="v70-final-polish">
@@ -6308,13 +6388,13 @@ function renderHome() {
     if (memoryAlbumBtn) memoryAlbumBtn.innerHTML = '<span class="teacher-content-icon">📸</span><strong>추억 앨범</strong><small>선사시대 박물관 탐험 기록</small>';
   }
   if (selectedChapterNo === 3) {
-    if (tipHubBtn) tipHubBtn.innerHTML = '<span class="teacher-content-icon">📚</span><strong>선생님 팁</strong><small>Chapter 3 준비 중</small>';
+    if (tipHubBtn) tipHubBtn.innerHTML = '<span class="teacher-content-icon">🧩</span><strong>크로스퍼즐</strong><small>12개 키워드 · 보기 4개 · 힌트 팝업</small>';
     if (learningComicBtn) learningComicBtn.innerHTML = '<span class="teacher-content-icon">🎨</span><strong>학습만화</strong><small>Chapter 3 준비 중</small>';
     if (memoryAlbumBtn) memoryAlbumBtn.innerHTML = '<span class="teacher-content-icon">📸</span><strong>추억 앨범</strong><small>서대문형무소 역사 탐방 기록</small>';
   }
 
   document.querySelector('#startQuizBtn').addEventListener('click', () => startQuiz(false));
-  tipHubBtn.addEventListener('click', () => renderTip());
+  tipHubBtn.addEventListener('click', () => selectedChapterNo === 3 ? renderChapter3Crossword() : renderTip());
   learningComicBtn.addEventListener('click', renderLearningComic);
   memoryAlbumBtn.addEventListener('click', renderMemoryAlbum);
   document.querySelector('#shopBtn').addEventListener('click', renderShop);
@@ -7148,6 +7228,288 @@ function renderTip(target = null) {
   } else {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+}
+
+
+
+// ===== Chapter 3 Cross Puzzle =====
+const CH3_CROSSWORD_STORAGE = 'hbq_ch3_crossword_solved_v1';
+
+const CH3_CROSSWORD_ENTRIES = [
+  {
+    id:'yun', displayNo:'1', dir:'down', row:0, col:13, word:'윤봉길의사',
+    answer:'윤봉길 의사', teacher:'에블린',
+    question:'1932년 상하이 훙커우공원에서 의거를 일으킨 독립운동가는 누구일까요?',
+    hint:'한인애국단원이었고, 도시락 폭탄과 물통 폭탄을 준비한 것으로 알려져 있어요.',
+    choices:['윤봉길 의사','안중근 의사','이봉창 의사','강우규 의사']
+  },
+  {
+    id:'hague', displayNo:'2', dir:'down', row:2, col:10, word:'헤이그특사',
+    answer:'헤이그특사', teacher:'루크',
+    question:'1907년 고종이 을사늑약의 부당함을 세계에 알리기 위해 보낸 사람들을 무엇이라고 할까요?',
+    hint:'만국평화회의가 열린 네덜란드의 도시 이름이 들어가요.',
+    choices:['헤이그특사','독립협회','의병','3·1만세운동']
+  },
+  {
+    id:'lee', displayNo:'3', dir:'across', row:3, col:10, word:'이봉창의사',
+    answer:'이봉창 의사', teacher:'헌',
+    question:'1932년 일본 도쿄에서 일왕을 향해 폭탄을 던진 한인애국단원은 누구일까요?',
+    hint:'윤봉길 의사의 의거가 있었던 같은 해에 의거를 실행했어요.',
+    choices:['이봉창 의사','윤봉길 의사','안중근 의사','강우규 의사']
+  },
+  {
+    id:'news', displayNo:'4', dir:'down', row:5, col:3, word:'독립신문',
+    answer:'독립신문', teacher:'미아',
+    question:'서재필이 창간하고 한글과 영문으로 발행해 국민 계몽에 힘쓴 신문은 무엇일까요?',
+    hint:'이름 앞 두 글자는 “독립”이고, 뒤 두 글자는 소식을 전하는 인쇄 매체예요.',
+    choices:['독립신문','백범일지','수형기록표','독립협회']
+  },
+  {
+    id:'security', displayNo:'5', dir:'down', row:5, col:6, word:'보안과청사',
+    answer:'보안과청사', teacher:'헌',
+    question:'서대문형무소에서 행정·조사 기능을 담당했고 지하에 취조실이 있었던 건물은 무엇일까요?',
+    hint:'현재 전시관으로 사용되는 건물이며 이름 끝에 “청사”가 붙어요.',
+    choices:['보안과청사','망루','공작사','여옥사']
+  },
+  {
+    id:'ahn', displayNo:'6', dir:'across', row:6, col:6, word:'안중근의사',
+    answer:'안중근 의사', teacher:'에블린',
+    question:'1909년 하얼빈역에서 이토 히로부미를 처단한 독립운동가는 누구일까요?',
+    hint:'손가락을 끊어 혈서로 독립 의지를 다진 것으로도 유명해요.',
+    choices:['안중근 의사','윤봉길 의사','이봉창 의사','강우규 의사']
+  },
+  {
+    id:'army', displayNo:'7', dir:'down', row:6, col:9, word:'의병',
+    answer:'의병', teacher:'헌',
+    question:'나라가 위기에 처했을 때 외세에 맞서 자발적으로 무장해 싸운 민간 세력을 무엇이라고 할까요?',
+    hint:'두 글자이며, “옳을 의(義)”의 뜻을 떠올리면 쉬워요.',
+    choices:['의병','독립협회','3·1만세운동','6·10만세운동']
+  },
+  {
+    id:'gate', displayNo:'8', clueSuffix:'가로', dir:'across', row:8, col:1, word:'독립문',
+    answer:'독립문', teacher:'미아',
+    question:'영은문을 헐고 자주독립의 뜻을 나타내기 위해 세운 문은 무엇일까요?',
+    hint:'서대문독립공원에서 볼 수 있고, 파리 개선문과 비슷한 형태예요.',
+    choices:['독립문','영은문','독립관','모화관']
+  },
+  {
+    id:'hall', displayNo:'8', clueSuffix:'세로', dir:'down', row:8, col:1, word:'독립관',
+    answer:'독립관', teacher:'미아',
+    question:'독립협회가 모화관을 고쳐 강연·토론·집회 공간으로 사용한 곳은 무엇일까요?',
+    hint:'독립문 근처에 있었고 이름 끝에 “관”이 붙어요.',
+    choices:['독립관','모화관','보안과청사','여옥사']
+  },
+  {
+    id:'eulmi', displayNo:'9', clueSuffix:'가로', dir:'across', row:9, col:4, word:'을미사변',
+    answer:'을미사변', teacher:'루크',
+    question:'1895년 일본 세력이 경복궁에 침입해 명성황후를 시해한 사건은 무엇일까요?',
+    hint:'을미년(1895)에 일어난 사건이에요.',
+    choices:['을미사변','아관파천','을사늑약','운요호 사건']
+  },
+  {
+    id:'eulsa', displayNo:'9', clueSuffix:'세로', dir:'down', row:9, col:4, word:'을사늑약',
+    answer:'을사늑약', teacher:'루크',
+    question:'1905년 일본이 대한제국의 외교권을 빼앗고 통감부를 설치하게 한 강제 조약은 무엇일까요?',
+    hint:'이름에 “을사”가 들어가고, 고종의 정식 승인을 받지 못한 강압적 조약이에요.',
+    choices:['을사늑약','강화도조약','헤이그특사','러일전쟁']
+  },
+  {
+    id:'yu', displayNo:'10', dir:'across', row:10, col:0, word:'유관순열사',
+    answer:'유관순 열사', teacher:'에블린',
+    question:'아우내 장터 만세운동을 이끌고 서대문형무소에 수감되어 순국한 독립운동가는 누구일까요?',
+    hint:'3·1운동을 대표하는 학생 독립운동가로 기억되고 있어요.',
+    choices:['유관순 열사','윤봉길 의사','안중근 의사','강우규 의사']
+  }
+];
+
+function getCh3CrosswordSolved(){
+  try {
+    const saved = JSON.parse(localStorage.getItem(CH3_CROSSWORD_STORAGE) || '[]');
+    return new Set(Array.isArray(saved) ? saved : []);
+  } catch(e) {
+    return new Set();
+  }
+}
+function saveCh3CrosswordSolved(set){
+  localStorage.setItem(CH3_CROSSWORD_STORAGE, JSON.stringify([...set]));
+}
+function ch3CrosswordCells(){
+  const cells = new Map();
+  CH3_CROSSWORD_ENTRIES.forEach(entry => {
+    [...entry.word].forEach((char, i) => {
+      const r = entry.row + (entry.dir === 'down' ? i : 0);
+      const c = entry.col + (entry.dir === 'across' ? i : 0);
+      const key = `${r},${c}`;
+      if (!cells.has(key)) cells.set(key, {char, entries:[], starts:[]});
+      const cell = cells.get(key);
+      cell.entries.push(entry.id);
+      if (i === 0 && !cell.starts.includes(entry.displayNo)) cell.starts.push(entry.displayNo);
+    });
+  });
+  return cells;
+}
+
+function renderChapter3Crossword(){
+  applySouvenirTheme();
+  app.innerHTML = '';
+  const solved = getCh3CrosswordSolved();
+  const cells = ch3CrosswordCells();
+
+  const wrap = document.createElement('div');
+  wrap.className = 'ch3-crossword-wrap';
+  wrap.innerHTML = `
+    <section class="card ch3-crossword-hero">
+      <p class="eyebrow">Chapter 3 · 크로스퍼즐</p>
+      <h2>역사 키워드 12개를 연결해 보세요.</h2>
+      <p class="muted">문제를 고르면 보기 4개가 열립니다. 어려우면 <strong>힌트 보기</strong>를 눌러 새 팝업의 도움을 받을 수 있습니다. 정답을 선택하면 퍼즐 칸에 글자가 자동으로 채워집니다.</p>
+      <div class="cw-progress"><strong id="cwProgressText"></strong><span>미아 · 루크 · 에블린 · 헌</span></div>
+    </section>
+    <section class="card">
+      <div class="crossword-board" id="ch3CrosswordBoard" aria-label="챕터 3 크로스퍼즐"></div>
+    </section>
+    <section class="cw-teachers" id="cwTeacherGroups"></section>
+    <div id="cwCompleteArea"></div>
+    <button class="secondary full" id="cwResetBtn">퍼즐 처음부터 다시 풀기</button>
+    <button class="secondary full" id="cwHomeBtn">챕터 화면으로 돌아가기</button>
+  `;
+  app.append(wrap);
+
+  const board = document.querySelector('#ch3CrosswordBoard');
+  for (let r=0; r<13; r++){
+    for (let c=0; c<15; c++){
+      const key = `${r},${c}`;
+      const info = cells.get(key);
+      const div = document.createElement('div');
+      if (!info){
+        div.className = 'cw-cell block';
+      } else {
+        const visible = info.entries.some(id => solved.has(id));
+        div.className = `cw-cell open${visible ? ' filled' : ''}`;
+        if (info.starts.length){
+          const n = document.createElement('span');
+          n.className = 'cw-num';
+          n.textContent = info.starts.join('/');
+          div.append(n);
+        }
+        const letter = document.createElement('span');
+        letter.textContent = visible ? info.char : '';
+        div.append(letter);
+      }
+      board.append(div);
+    }
+  }
+
+  const teachers = ['미아','루크','에블린','헌'];
+  const teacherGroups = document.querySelector('#cwTeacherGroups');
+  teachers.forEach(teacher => {
+    const box = document.createElement('section');
+    box.className = 'cw-teacher';
+    const entries = CH3_CROSSWORD_ENTRIES.filter(x => x.teacher === teacher);
+    box.innerHTML = `<h3>${teacher}의 문제 3개</h3><div class="cw-clue-list"></div>`;
+    const list = box.querySelector('.cw-clue-list');
+    entries.forEach(entry => {
+      const btn = document.createElement('button');
+      btn.className = `cw-clue-btn${solved.has(entry.id) ? ' done' : ''}`;
+      const clueNo = `${entry.displayNo}${entry.clueSuffix ? ' ' + entry.clueSuffix : ''}`;
+      btn.innerHTML = `<strong>${clueNo}. ${solved.has(entry.id) ? '✓ 완료' : '문제 열기'}</strong><small>${entry.dir === 'across' ? '가로' : '세로'} · ${entry.word.length}칸</small>`;
+      btn.addEventListener('click', () => openCh3CrosswordQuestion(entry.id));
+      list.append(btn);
+    });
+    teacherGroups.append(box);
+  });
+
+  updateCh3CrosswordProgress();
+  document.querySelector('#cwResetBtn').addEventListener('click', () => {
+    if (confirm('챕터 3 크로스퍼즐의 완료 기록을 모두 지울까요?')){
+      localStorage.removeItem(CH3_CROSSWORD_STORAGE);
+      renderChapter3Crossword();
+    }
+  });
+  document.querySelector('#cwHomeBtn').addEventListener('click', renderHome);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateCh3CrosswordProgress(){
+  const solved = getCh3CrosswordSolved();
+  const progress = document.querySelector('#cwProgressText');
+  if (progress) progress.textContent = `완성 ${solved.size} / ${CH3_CROSSWORD_ENTRIES.length}`;
+  const complete = document.querySelector('#cwCompleteArea');
+  if (complete){
+    complete.innerHTML = solved.size === CH3_CROSSWORD_ENTRIES.length
+      ? '<div class="cw-complete">🎉 크로스퍼즐 완성! 12개의 역사 키워드를 모두 연결했습니다.</div>'
+      : '';
+  }
+}
+
+function openCh3CrosswordQuestion(entryId){
+  const entry = CH3_CROSSWORD_ENTRIES.find(x => x.id === entryId);
+  if (!entry) return;
+  const alreadySolved = getCh3CrosswordSolved().has(entry.id);
+
+  const modal = document.createElement('div');
+  modal.className = 'cw-modal';
+  modal.innerHTML = `
+    <div class="cw-dialog" role="dialog" aria-modal="true">
+      <p class="eyebrow">${entry.teacher} · ${entry.displayNo}${entry.clueSuffix ? ' ' + entry.clueSuffix : ''} · ${entry.dir === 'across' ? '가로' : '세로'}</p>
+      <h3>${alreadySolved ? '이미 맞힌 문제예요.' : '보기에서 정답을 골라 보세요.'}</h3>
+      <div class="cw-question">${entry.question}</div>
+      <div class="cw-choice-grid"></div>
+      <div class="cw-feedback" aria-live="polite">${alreadySolved ? `정답: ${entry.answer}` : ''}</div>
+      <div class="cw-modal-actions">
+        <button class="primary" id="cwHintBtn">힌트 보기</button>
+        <button class="secondary" id="cwCloseBtn">닫기</button>
+      </div>
+    </div>
+  `;
+  document.body.append(modal);
+
+  const choices = modal.querySelector('.cw-choice-grid');
+  shuffle([...entry.choices]).forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'cw-choice';
+    btn.textContent = choice;
+    btn.disabled = alreadySolved;
+    btn.addEventListener('click', () => {
+      const feedback = modal.querySelector('.cw-feedback');
+      if (choice === entry.answer){
+        btn.classList.add('correct');
+        feedback.textContent = '정답! 퍼즐 칸에 글자를 채웠어요.';
+        const solved = getCh3CrosswordSolved();
+        solved.add(entry.id);
+        saveCh3CrosswordSolved(solved);
+        modal.querySelectorAll('.cw-choice').forEach(b => b.disabled = true);
+        setTimeout(() => {
+          modal.remove();
+          renderChapter3Crossword();
+        }, 650);
+      } else {
+        btn.classList.add('wrong');
+        feedback.textContent = '아직 아니에요. 다시 골라 보세요.';
+        setTimeout(() => btn.classList.remove('wrong'), 500);
+      }
+    });
+    choices.append(btn);
+  });
+
+  modal.querySelector('#cwHintBtn').addEventListener('click', () => openCh3CrosswordHint(entry));
+  modal.querySelector('#cwCloseBtn').addEventListener('click', () => modal.remove());
+  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+}
+
+function openCh3CrosswordHint(entry){
+  const hintModal = document.createElement('div');
+  hintModal.className = 'cw-modal cw-hint-pop';
+  hintModal.innerHTML = `
+    <div class="cw-hint-box" role="dialog" aria-modal="true">
+      <p class="eyebrow">${entry.teacher}의 추가 힌트</p>
+      <h3>힌트 보기</h3>
+      <p>${entry.hint}</p>
+      <button class="primary full" id="cwHintCloseBtn">힌트 닫기</button>
+    </div>
+  `;
+  document.body.append(hintModal);
+  hintModal.querySelector('#cwHintCloseBtn').addEventListener('click', () => hintModal.remove());
+  hintModal.addEventListener('click', e => { if (e.target === hintModal) hintModal.remove(); });
 }
 
 
