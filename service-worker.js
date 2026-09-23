@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-final-icon-v20260905-5';
+const CACHE_NAME = 'hbq-network-first-v20260923-ch3-comic-fix-2';
 
 const APP_SHELL = [
   './',
@@ -18,9 +18,9 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      await Promise.allSettled(
-        APP_SHELL.map(url => cache.add(new Request(url, { cache: 'reload' })))
-      );
+      await Promise.allSettled(APP_SHELL.map(url =>
+        cache.add(new Request(url, { cache: 'reload' }))
+      ));
     })
   );
 });
@@ -60,6 +60,6 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+  if (!['http:', 'https:'].includes(url.protocol)) return;
   event.respondWith(networkFirst(request));
 });

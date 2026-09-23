@@ -1,6 +1,13 @@
 (() => {
   if (!('serviceWorker' in navigator)) return;
   let reloading = false;
+  let registrationRef = null;
+
+  async function forceUpdate() {
+    try {
+      if (registrationRef) await registrationRef.update();
+    } catch (_) {}
+  }
 
   window.addEventListener('load', async () => {
     try {
@@ -8,12 +15,10 @@
         scope: './',
         updateViaCache: 'none'
       });
+      registrationRef = registration;
+      await forceUpdate();
 
-      registration.update().catch(() => {});
-
-      if (registration.waiting) {
-        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      }
+      if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
 
       registration.addEventListener('updatefound', () => {
         const worker = registration.installing;
@@ -28,6 +33,11 @@
       console.error('[HBQ] Service Worker registration failed:', error);
     }
   });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') forceUpdate();
+  });
+  window.addEventListener('pageshow', forceUpdate);
 
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (reloading) return;
