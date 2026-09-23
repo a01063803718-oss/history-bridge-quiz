@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260923-ch3-comic-fix-2';
+const CACHE_NAME = 'hbq-network-first-v20260923-ch4-donggureung-cards-1';
 
 const APP_SHELL = [
   './',
