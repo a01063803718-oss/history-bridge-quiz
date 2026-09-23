@@ -3050,6 +3050,7 @@ body.countries-bg .chapter2-cloud {
 }
 
 /* HBQ_MEMORY_ALBUM_SELF_CONTAINED_V1_20260923 */
+/* HBQ_MEMORY_ALBUM_RENDER_FIX_20260923 */
 </style>
 
 <style id="v70-final-polish">
@@ -7244,34 +7245,36 @@ function renderMemoryAlbum() {
 
   const list = document.createElement('section');
   list.className = `memory-album-list ${config?.className === 'chapter2-memory' ? 'chapter2-memory-album-list' : ''}`.trim();
-  const empty = document.createElement('div');
-  empty.className = 'memory-album-empty';
-  empty.textContent = '추억 사진을 준비 중입니다.';
-  list.append(empty);
 
-  let visibleCount = 0;
   const items = config?.items || [];
-  items.forEach((item) => {
-    const article = document.createElement('article');
-    article.className = `memory-polaroid ${config?.className === 'chapter2-memory' ? 'chapter2-memory-polaroid' : ''}`.trim();
-    article.hidden = true;
-    article.innerHTML = `
-      <img src="${item.src}" alt="${item.alt || item.title}" loading="lazy" decoding="async" />
-      <div class="memory-caption">
-        <strong>${item.title}</strong>
-        <span>${item.caption}</span>
-      </div>`;
-    const img = article.querySelector('img');
-    img.addEventListener('load', () => {
-      if (article.hidden) {
-        article.hidden = false;
-        visibleCount += 1;
-        empty.hidden = visibleCount > 0;
-      }
-    }, { once: true });
-    img.addEventListener('error', () => { article.remove(); }, { once: true });
-    list.append(article);
-  });
+
+  if (items.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'memory-album-empty';
+    empty.textContent = '추억 사진을 준비 중입니다.';
+    list.append(empty);
+  } else {
+    items.forEach((item) => {
+      const article = document.createElement('article');
+      article.className = `memory-polaroid ${config?.className === 'chapter2-memory' ? 'chapter2-memory-polaroid' : ''}`.trim();
+      article.innerHTML = `
+        <img src="${item.src}" alt="${item.alt || item.title}" loading="eager" decoding="async" />
+        <div class="memory-caption">
+          <strong>${item.title}</strong>
+          <span>${item.caption}</span>
+        </div>`;
+      const img = article.querySelector('img');
+      img.addEventListener('error', () => {
+        article.innerHTML = `
+          <div class="memory-album-empty">사진을 불러오지 못했습니다.</div>
+          <div class="memory-caption">
+            <strong>${item.title}</strong>
+            <span>${item.caption}</span>
+          </div>`;
+      }, { once: true });
+      list.append(article);
+    });
+  }
   app.append(list);
 
   const homeBtn = document.createElement('button');
