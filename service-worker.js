@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260924-ch4-itemart-webp-6';
+const CACHE_NAME = 'hbq-network-first-v20260924-creator-profiles-12';
 
 const APP_SHELL = [
   './',
@@ -12,6 +12,10 @@ const APP_SHELL = [
   './icon-192.png',
   './icon-512.png',
   './chapter4-donggureung-main.png',
+  './creator-mia.webp',
+  './creator-evelyn.webp',
+  './creator-luke.webp',
+  './creator-hun.webp',
   './ch4-hongsalmun-badge.webp',
   './ch4-geonwolleung-bookmark.webp',
   './ch4-jeongjagak-postcard.webp',
