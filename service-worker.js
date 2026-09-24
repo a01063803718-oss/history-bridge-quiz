@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260924-creator-profiles-12';
+const CACHE_NAME = 'hbq-network-first-v20260924-creator-profiles-hint-13';
 
 const APP_SHELL = [
   './',
