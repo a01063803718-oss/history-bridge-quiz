@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260924-creator-profiles-hint-13';
+const CACHE_NAME = 'hbq-network-first-v20260929-icon-refresh-14';
 
 const APP_SHELL = [
   './',
@@ -6,11 +6,11 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './pwa-register.js',
   './offline.html',
-  './icon-72.png',
-  './icon-96.png',
-  './icon-128.png',
-  './icon-192.png',
-  './icon-512.png',
+  './icon-72.png?v=20260929-icon-refresh-14',
+  './icon-96.png?v=20260929-icon-refresh-14',
+  './icon-128.png?v=20260929-icon-refresh-14',
+  './icon-192.png?v=20260929-icon-refresh-14',
+  './icon-512.png?v=20260929-icon-refresh-14',
   './chapter4-donggureung-main.png',
   './creator-mia.webp',
   './creator-evelyn.webp',
@@ -22,7 +22,7 @@ const APP_SHELL = [
   './ch4-stone-guardians-card.webp',
   './ch4-officials-set.webp',
   './ch4-donggureung-theme-ticket.webp',
-  './apple-touch-icon.png'
+  './apple-touch-icon.png?v=20260929-icon-refresh-14'
 ];
 
 self.addEventListener('install', event => {
