@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20260929-icon-refresh-14';
+const CACHE_NAME = 'hbq-network-first-v20261004-ios-icon-fix-15';
 
 const APP_SHELL = [
   './',
@@ -22,7 +22,6 @@ const APP_SHELL = [
   './ch4-stone-guardians-card.webp',
   './ch4-officials-set.webp',
   './ch4-donggureung-theme-ticket.webp',
-  './apple-touch-icon.png?v=20260929-icon-refresh-14'
 ];
 
 self.addEventListener('install', event => {
