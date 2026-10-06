@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20261006-ch4-popup-heon-v22';
+const CACHE_NAME = 'hbq-network-first-v20261006-ch4-heon-comic-v23';
 
 const APP_SHELL = [
   './',
@@ -12,6 +12,7 @@ const APP_SHELL = [
   './icon-192.png',
   './icon-512.png',
   './chapter4-donggureung-main.png',
+  './ch4-heon-donggureung-learning-comic-v23.webp',
   './chapter5-gyeongbokgung-main.webp',
   './creator-mia.webp',
   './creator-evelyn.webp',
