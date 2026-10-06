@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20261006-ch4-heon-tip-21';
+const CACHE_NAME = 'hbq-network-first-v20261006-ch4-popup-heon-v22';
 
 const APP_SHELL = [
   './',
