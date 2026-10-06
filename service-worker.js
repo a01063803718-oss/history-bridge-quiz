@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hbq-network-first-v20261004-ios-icon-fix-15';
+const CACHE_NAME = 'hbq-network-first-v20261006-ch5-full-fix-20';
 
 const APP_SHELL = [
   './',
@@ -6,12 +6,13 @@ const APP_SHELL = [
   './manifest.webmanifest',
   './pwa-register.js',
   './offline.html',
-  './icon-72.png?v=20260929-icon-refresh-14',
-  './icon-96.png?v=20260929-icon-refresh-14',
-  './icon-128.png?v=20260929-icon-refresh-14',
-  './icon-192.png?v=20260929-icon-refresh-14',
-  './icon-512.png?v=20260929-icon-refresh-14',
+  './icon-72.png',
+  './icon-96.png',
+  './icon-128.png',
+  './icon-192.png',
+  './icon-512.png',
   './chapter4-donggureung-main.png',
+  './chapter5-gyeongbokgung-main.webp',
   './creator-mia.webp',
   './creator-evelyn.webp',
   './creator-luke.webp',
@@ -22,6 +23,12 @@ const APP_SHELL = [
   './ch4-stone-guardians-card.webp',
   './ch4-officials-set.webp',
   './ch4-donggureung-theme-ticket.webp',
+  './ch5-gwanghwamun-badge.webp',
+  './ch5-geunjeongjeon-postcard.webp',
+  './ch5-haechi-keyring.webp',
+  './ch5-irworobongdo-bookmark.webp',
+  './ch5-gyeonghoeru-miniature.webp',
+  './ch5-hyangwonjeong-pass.webp'
 ];
 
 self.addEventListener('install', event => {
