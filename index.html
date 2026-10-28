@@ -3194,6 +3194,27 @@ body.countries-bg .chapter2-cloud {
 .chapter-4-teacher-quiz h3 { color: #203226 !important; }
 .chapter-4-teacher-quiz .muted { color: #4d6552 !important; }
 
+.chapter-4-teacher-quiz.teacher-luke .teacher-quiz-art {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.15)),
+    url('./ch4-luke-pyramid-comic-v34.webp') center 16% / cover no-repeat !important;
+}
+
+.chapter-4-teacher-quiz.teacher-mia .teacher-quiz-art {
+  background:
+    linear-gradient(180deg, rgba(255,244,248,.14), rgba(255,255,255,.10)),
+    url('./chapter4-donggureung-main.png') center center / cover no-repeat !important;
+}
+.comic-section-divider {
+  height: 1px;
+  margin: 26px 0 22px;
+  background: linear-gradient(90deg, transparent, rgba(64,86,70,.28), transparent);
+}
+.luke-comic-viewer {
+  background: linear-gradient(180deg,#fffdf6,#f4f7ee);
+  border-color: rgba(104,126,88,.28) !important;
+}
+
 .chapter-2-teacher-quiz .teacher-quiz-art {
   background:
     linear-gradient(180deg, rgba(255,255,255,.10), rgba(244,231,198,.12)),
@@ -4163,19 +4184,20 @@ body.chapter-3-bg.chapter-3-ticket-bg > * {
 </style>
 
   <!-- HBQ PWA START -->
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=20260929-icon-refresh-14" />
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=20260929-icon-refresh-14" />
+  <link rel="manifest" href="./manifest-v35.webmanifest?v=35" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./hbq-icon-final-v26-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="./hbq-icon-final-v26-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./hbq-touch-icon-final-v26.png" />
 <meta name="application-name" content="History Bridge Quiz" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="HBQ" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <script src="./pwa-register.js?v=20261006-v20" defer></script>
+  <script src="./pwa-register-v35.js?v=35" defer></script>
   <!-- HBQ PWA END -->
 
 </head>
-<body data-hbq-build="v20-20261006">
+<body data-hbq-build="v35-20261028-force-refresh">
   <div class="toc-backdrop" id="tocBackdrop" hidden></div>
   <aside class="toc-drawer" id="tocDrawer" aria-label="목차" aria-hidden="true">
     <button class="ghost toc-close" id="tocCloseBtn">목차 닫기</button>
@@ -4646,6 +4668,15 @@ body.chapter-3-bg.chapter-3-ticket-bg > * {
         <img src="ch4-donggureung-story-comic-v24.webp" alt="네 친구가 대화하며 배우는 동구릉 이야기 8컷 학습만화" loading="lazy" decoding="async" />
         <figcaption>동구릉의 아홉 능 → 건원릉 → 봉분의 억새 → 태조와 태종 → 한식날 관리 → 인조의 보존 → 홍살문 → 금천과 다리</figcaption>
       </figure>
+
+      <div class="comic-section-divider" aria-hidden="true"></div>
+      <p class="eyebrow">루크 선생님 팁 · 비교 학습만화</p>
+      <h2>왕릉과 피라미드 이야기</h2>
+      <p class="muted">루크 선생님 팁의 내용을 바탕으로 미아·루크·에블린·헌이 왕릉과 피라미드의 모양, 크기, 자리 선택과 공통된 의미를 대화로 비교합니다.</p>
+      <figure class="comic-viewer luke-comic-viewer">
+        <img src="ch4-luke-pyramid-comic-v34.webp?v=35" alt="미아 루크 에블린 헌이 왕릉과 피라미드를 비교하는 8컷 학습만화" loading="lazy" decoding="async" />
+        <figcaption>왕릉과 피라미드의 모양·크기·명당의 기준·공통된 의미를 한눈에 비교해 보세요.</figcaption>
+      </figure>
       <div class="tip-note teacher-box notebook-paper handwritten decorated-tip-note">
         <h3>헌 선생님의 핵심 정리</h3>
         <p><strong>건원릉</strong>은 동구릉에서 가장 먼저 조성된 태조 이성계의 능이고, 봉분이 잔디가 아니라 <strong>억새</strong>로 덮여 있는 것이 큰 특징이야.</p>
@@ -4656,7 +4687,16 @@ body.chapter-3-bg.chapter-3-ticket-bg > * {
       </div>
       <button class="secondary full" id="chapter4ComicHomeBtn">챕터 4로 돌아가기</button>
     </section>
-  </template>
+  
+    <section class="comic-page-card">
+      <p class="eyebrow">미아 선생님 학습만화</p>
+      <h2>동구릉 이야기</h2>
+      <p class="muted">미아 선생님 팁을 바탕으로 동구릉의 뜻, 아홉 개의 능, 건원릉, 태조 이성계, 왕릉 조성 과정, 산릉도감, 홍살문과 서오릉을 8컷으로 정리한 학습만화입니다.</p>
+      <div class="comic-viewer">
+        <img src="ch4-mia-donggureung-comic-v32.webp?v=35" alt="미아 선생님 팁을 바탕으로 만든 동구릉 이야기 8컷 학습만화" loading="lazy" decoding="async" />
+      </div>
+    </section>
+</template>
 
   <template id="memoryAlbumTemplate">
     <section class="card memory-album-hero">
@@ -6235,20 +6275,29 @@ const CHAPTER2_TEACHER_QUIZ_QUESTIONS = [
 
 
 const CHAPTER4_TEACHER_QUIZ_QUESTIONS = [
-  { teacher: '헌', question: '동구릉에는 모두 몇 개의 능이 모여 있나요?', answer: '아홉 개', options: ['아홉 개','다섯 개','열한 개','세 개'] },
-  { teacher: '헌', question: '동구릉에서 가장 먼저 만들어진 능은 무엇인가요?', answer: '건원릉', options: ['건원릉','현릉','수릉','원릉'] },
-  { teacher: '헌', question: '건원릉에 잠든 인물은 누구인가요?', answer: '태조 이성계', options: ['태조 이성계','선조','고종','세종'] },
-  { teacher: '헌', question: '건원릉 봉분이 다른 능과 가장 다르게 보이는 까닭은 무엇인가요?', answer: '잔디가 아니라 억새로 덮여 있기 때문이다.', options: ['잔디가 아니라 억새로 덮여 있기 때문이다.','봉분 위에 돌탑이 있기 때문이다.','봉분이 네모 모양이기 때문이다.','봉분 위에 연못이 있기 때문이다.'] },
-  { teacher: '헌', question: '태조 이성계가 말년에 그리워한 고향은 어디인가요?', answer: '함흥', options: ['함흥','한양','개성','평양'] },
-  { teacher: '헌', question: '함흥의 억새를 뽑아와 건원릉 봉분에 심은 인물은 누구인가요?', answer: '이방원', options: ['이방원','정도전','세조','흥선대원군'] },
-  { teacher: '헌', question: '건원릉 억새의 하단부가 특별한 이유는 무엇인가요?', answer: '겨울에도 월동하여 시들지 않고 이어지기 때문이다.', options: ['겨울에도 월동하여 시들지 않고 이어지기 때문이다.','꽃이 금빛으로 변하기 때문이다.','돌처럼 굳어지기 때문이다.','스스로 다른 곳으로 옮겨 가기 때문이다.'] },
-  { teacher: '헌', question: '한식날이 되면 건원릉 억새는 어떻게 관리하나요?', answer: '상단부를 깎고 다시 자라나기를 기다린다.', options: ['상단부를 깎고 다시 자라나기를 기다린다.','뿌리째 모두 뽑아 새로 심는다.','물을 채운 연못에 옮겨 심는다.','붉은 천으로 봉분을 덮는다.'] },
-  { teacher: '헌', question: '신하들이 새 억새를 심자고 했을 때 이를 허락하지 않은 왕은 누구인가요?', answer: '인조', options: ['인조','태종','영조','고종'] },
-  { teacher: '헌', question: '인조가 다른 억새를 가져다 심는 것을 허락하지 않은 까닭은 무엇인가요?', answer: '함흥을 그리워하며 억새를 심은 조상들의 뜻을 지키기 위해서', options: ['함흥을 그리워하며 억새를 심은 조상들의 뜻을 지키기 위해서','억새 대신 소나무를 심고 싶어서','봉분을 평지로 바꾸고 싶어서','건원릉을 옮기려고 해서'] },
-  { teacher: '헌', question: '우리나라 다섯 궁궐 가운데 유네스코 세계유산으로 소개한 궁궐은 무엇인가요?', answer: '창덕궁', options: ['창덕궁','경복궁','덕수궁','경희궁'] },
-  { teacher: '헌', question: '홍살문 위에 솟아난 살은 몇 개라고 설명했나요?', answer: '열세 개', options: ['열세 개','아홉 개','다섯 개','스무 개'] },
-  { teacher: '헌', question: '동구릉에는 홍살문이 모두 몇 개 있다고 설명했나요?', answer: '열 개', options: ['열 개','아홉 개','열세 개','여섯 개'] },
-  { teacher: '헌', question: '홍살문 앞의 금천강을 건너기 위해 놓은 다리에는 어떤 뜻이 담겨 있나요?', answer: '다리를 건너면 몸의 나쁜 기운을 씻어내는 금천강을 지난 것과 같은 뜻이 있다.', options: ['다리를 건너면 몸의 나쁜 기운을 씻어내는 금천강을 지난 것과 같은 뜻이 있다.','왕만 건널 수 있다는 뜻이다.','전쟁 훈련을 하는 장소라는 뜻이다.','비가 올 때만 열리는 다리라는 뜻이다.'] }
+{ teacher: '헌', question: '동구릉에는 모두 몇 개의 능이 모여 있나요?', answer: '아홉 개', options: ['아홉 개','다섯 개','열한 개','세 개'] },
+{ teacher: '헌', question: '동구릉에서 가장 먼저 만들어진 능은 무엇인가요?', answer: '건원릉', options: ['건원릉','현릉','수릉','원릉'] },
+{ teacher: '헌', question: '건원릉에 잠든 인물은 누구인가요?', answer: '태조 이성계', options: ['태조 이성계','선조','고종','세종'] },
+{ teacher: '헌', question: '건원릉 봉분이 다른 능과 가장 다르게 보이는 까닭은 무엇인가요?', answer: '잔디가 아니라 억새로 덮여 있기 때문이다.', options: ['잔디가 아니라 억새로 덮여 있기 때문이다.','봉분 위에 돌탑이 있기 때문이다.','봉분이 네모 모양이기 때문이다.','봉분 위에 연못이 있기 때문이다.'] },
+{ teacher: '헌', question: '태조 이성계가 말년에 그리워한 고향은 어디인가요?', answer: '함흥', options: ['함흥','한양','개성','평양'] },
+{ teacher: '헌', question: '함흥의 억새를 뽑아와 건원릉 봉분에 심은 인물은 누구인가요?', answer: '이방원', options: ['이방원','정도전','세조','흥선대원군'] },
+{ teacher: '헌', question: '건원릉 억새의 하단부가 특별한 이유는 무엇인가요?', answer: '겨울에도 월동하여 시들지 않고 이어지기 때문이다.', options: ['겨울에도 월동하여 시들지 않고 이어지기 때문이다.','꽃이 금빛으로 변하기 때문이다.','돌처럼 굳어지기 때문이다.','스스로 다른 곳으로 옮겨 가기 때문이다.'] },
+{ teacher: '헌', question: '한식날이 되면 건원릉 억새는 어떻게 관리하나요?', answer: '상단부를 깎고 다시 자라나기를 기다린다.', options: ['상단부를 깎고 다시 자라나기를 기다린다.','뿌리째 모두 뽑아 새로 심는다.','물을 채운 연못에 옮겨 심는다.','붉은 천으로 봉분을 덮는다.'] },
+{ teacher: '헌', question: '신하들이 새 억새를 심자고 했을 때 이를 허락하지 않은 왕은 누구인가요?', answer: '인조', options: ['인조','태종','영조','고종'] },
+{ teacher: '헌', question: '인조가 다른 억새를 가져다 심는 것을 허락하지 않은 까닭은 무엇인가요?', answer: '함흥을 그리워하며 억새를 심은 조상들의 뜻을 지키기 위해서', options: ['함흥을 그리워하며 억새를 심은 조상들의 뜻을 지키기 위해서','억새 대신 소나무를 심고 싶어서','봉분을 평지로 바꾸고 싶어서','건원릉을 옮기려고 해서'] },
+{ teacher: '헌', question: '우리나라 다섯 궁궐 가운데 유네스코 세계유산으로 소개한 궁궐은 무엇인가요?', answer: '창덕궁', options: ['창덕궁','경복궁','덕수궁','경희궁'] },
+{ teacher: '헌', question: '홍살문 위에 솟아난 살은 몇 개라고 설명했나요?', answer: '열세 개', options: ['열세 개','아홉 개','다섯 개','스무 개'] },
+{ teacher: '헌', question: '동구릉에는 홍살문이 모두 몇 개 있다고 설명했나요?', answer: '열 개', options: ['열 개','아홉 개','열세 개','여섯 개'] },
+{ teacher: '헌', question: '홍살문 앞의 금천강을 건너기 위해 놓은 다리에는 어떤 뜻이 담겨 있나요?', answer: '다리를 건너면 몸의 나쁜 기운을 씻어내는 금천강을 지난 것과 같은 뜻이 있다.', options: ['다리를 건너면 몸의 나쁜 기운을 씻어내는 금천강을 지난 것과 같은 뜻이 있다.','왕만 건널 수 있다는 뜻이다.','전쟁 훈련을 하는 장소라는 뜻이다.','비가 올 때만 열리는 다리라는 뜻이다.'] },
+{ teacher: '루크', question: '피라미드의 모양에 대한 설명으로 알맞은 것은 무엇인가요?', answer: '거대한 돌을 계단처럼 쌓아 올린 뾰족한 형태', options: ['거대한 돌을 계단처럼 쌓아 올린 뾰족한 형태','흙을 둥글게 쌓아 올린 봉분 형태','나무기둥을 원형으로 세운 형태','평평한 돌판 하나로 덮은 형태'] },
+{ teacher: '루크', question: '루크 선생님 팁에서 소개한 일반적인 피라미드의 높이 범위는 얼마인가요?', answer: '약 30~60미터', options: ['약 30~60미터','약 3~5미터','약 7~11미터','약 15~30미터'] },
+{ teacher: '루크', question: '배산임수의 뜻으로 알맞은 것은 무엇인가요?', answer: '뒤에는 산이 있고 앞에는 물이 흐르는 지형', options: ['뒤에는 산이 있고 앞에는 물이 흐르는 지형','사방이 모두 바다로 둘러싸인 지형','높은 산 정상에만 자리한 지형','강이나 산이 전혀 없는 평지'] },
+{ teacher: '루크', question: '피라미드의 네 면은 어느 방향을 향하도록 만들어졌다고 설명했나요?', answer: '동서남북', options: ['동서남북','동북동·서북서만','강이 흐르는 한 방향','정해진 방향 없이 무작위'] },
+{ teacher: '미아', question: "동구릉의 '동·구·릉' 뜻을 합치면 무엇인가요?", answer: '동쪽에 있는 아홉 개의 왕릉', options: ['동쪽에 있는 아홉 개의 왕릉','서쪽에 있는 다섯 개의 왕릉','남쪽에 있는 열 개의 왕릉','북쪽에 있는 세 개의 왕릉'] },
+{ teacher: '미아', question: '왕릉 건설을 위해 임시 국가기관을 조성할 때 미아 선생님이 말한 이름은 무엇인가요?', answer: '산릉도감', options: ['산릉도감','의금부','승정원','집현전'] },
+{ teacher: '미아', question: '미아 선생님이 설명한 왕릉 건설의 첫 단계는 무엇인가요?', answer: '입지 선정 (풍수)', options: ['입지 선정 (풍수)','석물 및 지상 구조 설치','제향 및 정비','토목 및 지하 재궁'] },
+{ teacher: '미아', question: "홍살문의 뜻으로 미아 선생님이 설명한 것은 무엇인가요?", answer: '앞으로 마음을 다잡고 경건하게 들어가라는 뜻', options: ['앞으로 마음을 다잡고 경건하게 들어가라는 뜻','왕에게만 문을 열어 주라는 뜻','무덤 안에서 뛰어놀아도 된다는 뜻','전쟁을 준비하라는 뜻'] },
+{ teacher: '미아', question: "서오릉은 어떤 뜻이라고 했나요?", answer: '서쪽의 5개의 능', options: ['서쪽의 5개의 능','동쪽의 9개의 능','서쪽의 9개의 능','동쪽의 5개의 능'] },
 ];
 
 function shuffleTeacherQuizPool(pool) {
@@ -6793,12 +6842,12 @@ function renderHome() {
     if (tipHubBtn) {
       tipHubBtn.disabled = false;
       tipHubBtn.style.opacity = '1';
-      tipHubBtn.innerHTML = '<span class="teacher-content-icon">✍️</span><strong>헌 선생님 팁</strong><small>건원릉 억새 · 홍살문 이야기</small>';
+      tipHubBtn.innerHTML = '<span class="teacher-content-icon">✍️</span><strong>헌 · 루크 · 미아 선생님 팁</strong><small>건원릉 억새 · 왕릉과 피라미드 · 동구릉 핵심정리</small>';
     }
     if (learningComicBtn) {
       learningComicBtn.disabled = false;
       learningComicBtn.style.opacity = '1';
-      learningComicBtn.innerHTML = '<span class="teacher-content-icon">🎨</span><strong>학습만화</strong><small>동구릉 이야기 8컷 만화</small>';
+      learningComicBtn.innerHTML = '<span class="teacher-content-icon">🎨</span><strong>학습만화</strong><small>동구릉 · 왕릉과 피라미드</small>';
     }
     if (memoryAlbumBtn) {
       memoryAlbumBtn.disabled = false;
@@ -6810,7 +6859,7 @@ function renderHome() {
       const h3 = teacherSection.querySelector('h3');
       const p = teacherSection.querySelector('p.muted');
       if (h3) h3.textContent = '동구릉 선생님 콘텐츠';
-      if (p) p.textContent = '동구릉 선생님 팁·학습만화·추억 앨범을 모두 열었습니다. 퀴즈에서는 3문제마다 보너스 팝업 퀴즈가 나옵니다.';
+      if (p) p.textContent = '헌·루크·미아 선생님 팁과 학습만화·추억 앨범을 모두 열었습니다. 퀴즈에서는 3문제마다 선생님 보너스 팝업 퀴즈가 나옵니다.';
     }
   }
   if (selectedChapterNo === 5) {
@@ -7444,7 +7493,7 @@ function showTeacherQuizModal() {
   const modal = document.createElement('div');
   modal.className = 'modal-backdrop';
   modal.innerHTML = `
-    <div class="modal-card teacher-quiz-modal chapter-${selectedChapterNo || 1}-teacher-quiz" role="dialog" aria-modal="true" aria-label="선생님 퀴즈">
+    <div class="modal-card teacher-quiz-modal chapter-${selectedChapterNo || 1}-teacher-quiz teacher-${tq.teacher === '미아' ? 'mia' : tq.teacher === '루크' ? 'luke' : tq.teacher === '헌' ? 'hun' : 'default'}" role="dialog" aria-modal="true" aria-label="선생님 퀴즈">
       <div class="teacher-quiz-art" aria-hidden="true"></div>
       <div class="teacher-quiz-body">
         <p class="eyebrow">중간 보너스 · 선생님 팁 퀴즈</p>
@@ -7634,8 +7683,13 @@ function renderTip(target = null) {
     app.innerHTML = `
       <section class="card teacher-tips-page chapter4-heon-tip-page">
         <p class="eyebrow">Chapter 4 · 동구릉 · 선생님 팁</p>
-        <h2>헌 선생님의 동구릉 이야기</h2>
-        <p class="muted handwritten byline">by. Heon</p>
+        <h2>동구릉 선생님 팁</h2>
+        <p class="muted handwritten byline">헌 선생님 · 루크 선생님 · 미아 선생님</p>
+        <div class="teacher-tip-jump-row" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px;">
+          <button type="button" class="secondary" id="jumpChapter4HeonTipBtn">헌 선생님 팁</button>
+          <button type="button" class="secondary" id="jumpChapter4LukeTipBtn">루크 선생님 팁</button>
+          <button type="button" class="secondary" id="jumpChapter4MiaTipBtn">미아 선생님 팁</button>
+        </div>
 
         <div class="teacher-tip-block heon-tip-block" id="chapter4HeonTipBlock">
           <div class="tip-note teacher-box notebook-paper handwritten">
@@ -7674,9 +7728,56 @@ function renderTip(target = null) {
           </div>
         </div>
 
+
+
+        <div class="teacher-tip-block luke-tip-block" id="chapter4LukeTipBlock">
+          <div class="tip-note teacher-box notebook-paper handwritten">
+            <h3>루크 선생님 팁</h3>
+            <p>이번에는 동구릉에 다녀왔어<br>'릉'은 바로 옛날의 왕과 왕비들의 무덤이야.</p>
+
+            <p>내가 아는 대표적인 무덤 종류가 두가지 있는데,<br>그것들이 바로 피라미드와 이번에 다녀온 왕릉이야.</p>
+
+            <p>그래서 왕릉에 다녀와서 능과 피라미드의 차이점에 대해서 찾아봤어.</p>
+
+            <p>내가 가장 흥미로웠던 부분은, 그들의 모양과 크기의 차이야.<br>왕릉은 무덤이 있는 봉분 부분은 동그랗게 흙을 쌓아올린 형태이지만 피라미드는 거대한 돌을 계단, 뿔의 형태로 쌓아올린 모양이야.</p>
+
+            <p>릉은 봉분의 지름은 7~11미터 정도이고 높이는 약 3~5미터 내외야. 능침은 가로 세로 약 15~30m 정도래.</p>
+
+            <p>일반적인 피라미드의 평균 크기는 높이만 약 30~60미터라, 이는 아파트 10~20층 정도 되는 높이래.</p>
+
+            <p>단순히 크기만 본다면 피라미드가 훨씬 더 크긴 하지!</p>
+
+            <p>두 번째로 눈에 띄는 차이점은 두 무덤이 위치한 장소야. 우리나라에서는 '명당'이라고 표현하는데 두 문화가 생각하는 명당의 조건이 달라.</p>
+
+            <p>우리나라의 왕릉들은 자연의 생기를 받는 '풍수지리적 명당'에 위치하고 있어. 배산임수라고 하는데, 이는 뒤에는 산이 있어서 바람을 막아주고, 앞에는 물이 흘러 생기가 모이는 지형을 제일 좋은 장소라고 생각해. 그래서 왕릉들은 대부분 산과 강이 가까이 있어.</p>
+
+            <p>반면에 피라미드는 우주 및 태양신과 연결되는 '천문, 지리적 명당'에 위치해. 땅의 생기보다는 우주의 질서(별과 태양)와 파라오의 영혼이 하늘로 갈 수 있는 영적 좌표를 좋은 자리라고 생각했어. 그래서 피라미드의 네 면은 정확히 동서남북을 향하고 있대.</p>
+
+            <p>두 무덤의 형태나 위치는 다르지만, 두 무덤 모두 같은 의미를 지니고 있지. 바로 왕이 죽은 뒤에도 잘 쉴 수 있고, 그로 인해 후손들이 번창할 수 있기를 바라는 마음을 담고 있어.</p>
+          </div>
+        </div>
+
+
+
+        <div class="teacher-tip-block mia-tip-block" id="chapter4MiaTipBlock">
+          <div class="tip-note teacher-box notebook-paper handwritten">
+            <h3>미아 선생님 팁</h3>
+            <p>안녕? <br>난 미아야.<br>우리 동구릉에 갔다왔지. 응 어! 동구릉 뜻이 뭐냐고?<br>'동'쪽에 있는 '구' (아홉) 개의 '릉'이야.<br>건원릉, 목릉, 휘릉, 원릉, 혜릉, 경릉, 수릉, 순릉, 현릉이야. 근데 좀 특별한 게 있지?<br>맞아, '건원릉'만 2글자 능이야. 왜 그럴까?<br>건원릉의 주인공은 조선 1대 왕 태조야.<br>이건의 특징은 동구릉의 중심이자 가장 처음에 조성된 능이야. 가장 언덕이 높은것부터 차례대로 계급이 높았는데, 이때 건원릉이 가장 가파르다고 해.<br>왕릉 건설은 〈산릉도감〉이라는 것에 따라 임시 국가기관을 조성하여 엄격한 의례와 복잡한 건설 방법으로 이루어졌어. 주로 정리해 4단계로 이루어졌는데...</p>
+
+            <p>① 입지 선정 (풍수)<br>③ 석물 및 지상 구조 설치<br>② 토목 및 지하 재궁<br>④ 제향 및 정비</p>
+
+            <p>이렇게 대표적인 4가지로 차례대로 이루어졌다고 해.<br>또 '홍살문' 아니? 홍살문은 홍색의 살창 13개가 있는 대한 무늬 새긴 문이야.  동구릉엔 이게 10개 있는데 동구릉 입구에 1개, 능 입구마다 1개. 총 10개야.  홍살문의 뜻은 '앞으로 마음을 다잡고 경건하게 들어가라...'는 뜻이야.</p>
+
+            <p>마지막으로 키워드, 아니, 핵심 키워드를 말해 줄게.<br>① 동구릉<br>〈동쪽의 9개의 능〉<br>② 서오릉- 같이 알면 좋아!<br>〈서쪽의 5개의 능〉<br>③ 홍살문<br>〈홍색의 살창 13개 있는 대한 무늬 문〉<br>여기 까지야~!!!<br>안녕!! mmm...</p>
+          </div>
+        </div>
+
         <button class="secondary full" id="chapter4TipHomeBtn">동구릉 챕터로 돌아가기</button>
       </section>`;
     document.querySelector('#chapter4TipHomeBtn')?.addEventListener('click', renderHome);
+    document.querySelector('#jumpChapter4HeonTipBtn')?.addEventListener('click', () => document.querySelector('#chapter4HeonTipBlock')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.querySelector('#jumpChapter4LukeTipBtn')?.addEventListener('click', () => document.querySelector('#chapter4LukeTipBlock')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.querySelector('#jumpChapter4MiaTipBtn')?.addEventListener('click', () => document.querySelector('#chapter4MiaTipBlock')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
   }
